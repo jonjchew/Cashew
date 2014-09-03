@@ -19,6 +19,8 @@
 		3627ACCF19B6AEE3002E37D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3627ACB719B6AEE3002E37D7 /* UIKit.framework */; };
 		3627ACD719B6AEE3002E37D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3627ACD519B6AEE3002E37D7 /* InfoPlist.strings */; };
 		3627ACD919B6AEE3002E37D7 /* EasyBeansTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3627ACD819B6AEE3002E37D7 /* EasyBeansTests.m */; };
+		3627ACE319B6AF18002E37D7 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3627ACE219B6AF18002E37D7 /* Storyboard.storyboard */; };
+		3627ACE619B6B031002E37D7 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3627ACE519B6B031002E37D7 /* SearchViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,9 @@
 		3627ACD419B6AEE3002E37D7 /* EasyBeansTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EasyBeansTests-Info.plist"; sourceTree = "<group>"; };
 		3627ACD619B6AEE3002E37D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3627ACD819B6AEE3002E37D7 /* EasyBeansTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EasyBeansTests.m; sourceTree = "<group>"; };
+		3627ACE219B6AF18002E37D7 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		3627ACE419B6B031002E37D7 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		3627ACE519B6B031002E37D7 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +82,7 @@
 		3627ACA719B6AEE3002E37D7 = {
 			isa = PBXGroup;
 			children = (
+				3627ACE219B6AF18002E37D7 /* Storyboard.storyboard */,
 				3627ACB919B6AEE3002E37D7 /* EasyBeans */,
 				3627ACD219B6AEE3002E37D7 /* EasyBeansTests */,
 				3627ACB219B6AEE3002E37D7 /* Frameworks */,
@@ -108,6 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				3627ACC219B6AEE3002E37D7 /* AppDelegate.h */,
+				3627ACE419B6B031002E37D7 /* SearchViewController.h */,
+				3627ACE519B6B031002E37D7 /* SearchViewController.m */,
 				3627ACC319B6AEE3002E37D7 /* AppDelegate.m */,
 				3627ACC519B6AEE3002E37D7 /* Images.xcassets */,
 				3627ACBA19B6AEE3002E37D7 /* Supporting Files */,
@@ -221,6 +229,7 @@
 			files = (
 				3627ACBE19B6AEE3002E37D7 /* InfoPlist.strings in Resources */,
 				3627ACC619B6AEE3002E37D7 /* Images.xcassets in Resources */,
+				3627ACE319B6AF18002E37D7 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3627ACC419B6AEE3002E37D7 /* AppDelegate.m in Sources */,
+				3627ACE619B6B031002E37D7 /* SearchViewController.m in Sources */,
 				3627ACC019B6AEE3002E37D7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,6 +370,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EasyBeans/EasyBeans-Prefix.pch";
 				INFOPLIST_FILE = "EasyBeans/EasyBeans-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -373,6 +384,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EasyBeans/EasyBeans-Prefix.pch";
 				INFOPLIST_FILE = "EasyBeans/EasyBeans-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
