@@ -13,7 +13,4 @@
 @property (strong, nonatomic) IBOutlet UITextField *destinationLocation;
 - (IBAction)findResults:(id)sender;
 
-@property (strong, nonatomic) NSString *geocodeApiRootUrl;
--(NSString *)rawurlencodeCFString:(NSString *)rawdata;
-
 @end
