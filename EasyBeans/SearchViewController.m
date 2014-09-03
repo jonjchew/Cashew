@@ -49,7 +49,6 @@
 
     [[self retrieveOriginGeolocationTask] resume];
     [[self retrieveDestinationGeolocationTask] resume];
-    [self retrieveOriginGeolocationTask]
     
 }
 
@@ -62,9 +61,11 @@
         
         NSData *jsonData = [[NSData alloc] initWithContentsOfURL:location];
         
-        NSDictionary *originGeolocationDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+        NSDictionary *originGeolocationDictionary = [[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error] objectForKey:@"results"][0];
         
-        NSLog( @"%@", originGeolocationDictionary);
+        self.originAddress = [originGeolocationDictionary objectForKey:@"formatted_address"];
+        id originLatitude = [[[originGeolocationDictionary objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lat"];
+        id originLongitude = [[[originGeolocationDictionary objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lng"];
         
     }];
     return task;
@@ -79,9 +80,11 @@
         
         NSData *jsonData = [[NSData alloc] initWithContentsOfURL:location];
         
-        NSDictionary *destinationGeolocationDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+        NSDictionary *destinationGeolocationDictionary = [[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error] objectForKey:@"results"][0];
 
-        NSLog( @"%@", destinationGeolocationDictionary);
+        self.destinationAddress = [destinationGeolocationDictionary objectForKey:@"formatted_address"];
+        id destinationLatitude = [[[destinationGeolocationDictionary objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lat"];
+        id destinationLongitude = [[[destinationGeolocationDictionary objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lng"];
         
     }];
     return task;

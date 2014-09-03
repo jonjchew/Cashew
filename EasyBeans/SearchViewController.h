@@ -13,4 +13,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *destinationLocation;
 - (IBAction)findResults:(id)sender;
 
+@property (strong, nonatomic) NSString *originAddress;
+@property (strong, nonatomic) NSString *destinationAddress;
+
 @end
