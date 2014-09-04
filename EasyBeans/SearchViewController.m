@@ -7,7 +7,7 @@
 //
 
 #import "SearchViewController.h"
-
+#import <AFNetworking/AFHTTPRequestOperationManager.h>
 
 @interface SearchViewController ()
 
@@ -46,60 +46,35 @@
 */
 
 - (IBAction)findResults:(id)sender {
-
-    [[self retrieveOriginGeolocationTask] resume];
-    [[self retrieveDestinationGeolocationTask] resume];
+    
+    [self getGeocode: self.originLocation.text forLocation:@"origin"];
+    [self getGeocode: self.destinationLocation.text forLocation:@"destination"];
     
 }
 
-- (NSURLSessionDownloadTask *)retrieveOriginGeolocationTask {
+- (void) getGeocode: (NSString *) addressString forLocation: (NSString *) locationType
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *parameters = @{@"address": addressString};
 
-    NSURL *geocodeApiOriginQuery = [self buildGeocodeQueryWithAddress:self.originLocation.text];
-    NSURLSession *session = [NSURLSession sharedSession];
     
-    NSURLSessionDownloadTask *task = [session downloadTaskWithURL:geocodeApiOriginQuery completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+    [manager GET:_geocodeApiRootUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+        NSDictionary *geocodeResult = [responseObject objectForKey:@"results"][0];
+        NSDictionary *geocode = [[geocodeResult objectForKey:@"geometry"] objectForKey:@"location"];
         
-        NSData *jsonData = [[NSData alloc] initWithContentsOfURL:location];
         
-        NSDictionary *originGeolocationDictionary = [[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error] objectForKey:@"results"][0];
-        
-        self.originAddress = [originGeolocationDictionary objectForKey:@"formatted_address"];
-        id originLatitude = [[[originGeolocationDictionary objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lat"];
-        id originLongitude = [[[originGeolocationDictionary objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lng"];
-        
+        NSString *geocodeVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"Geocode"];
+        [self setValue:geocode forKey:geocodeVariableName];
+        NSLog(@"%@", self.originGeocode);
+        NSLog(@"%@", self.destinationGeocode);
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
     }];
-    return task;
+
 }
 
-- (NSURLSessionDownloadTask *)retrieveDestinationGeolocationTask {
-
-    NSURL *geocodeApiDestinationQuery = [self buildGeocodeQueryWithAddress:self.destinationLocation.text];
-    NSURLSession *session = [NSURLSession sharedSession];
-    
-    NSURLSessionDownloadTask *task = [session downloadTaskWithURL:geocodeApiDestinationQuery completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
-        
-        NSData *jsonData = [[NSData alloc] initWithContentsOfURL:location];
-        
-        NSDictionary *destinationGeolocationDictionary = [[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error] objectForKey:@"results"][0];
-
-        self.destinationAddress = [destinationGeolocationDictionary objectForKey:@"formatted_address"];
-        id destinationLatitude = [[[destinationGeolocationDictionary objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lat"];
-        id destinationLongitude = [[[destinationGeolocationDictionary objectForKey:@"geometry"] objectForKey:@"location"] objectForKey:@"lng"];
-        
-    }];
-    return task;
-}
-
--(NSString *)rawUrlEncodeCFString:(NSString *)rawdata {
-    NSString *escapedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
-                                                                                                    NULL,
-                                                                                                    (__bridge CFStringRef) rawdata,
-                                                                                                    NULL,
-                                                                                                    CFSTR("!*'();:@&=+$,/?%#[]\" "),
-                                                                                                    kCFStringEncodingUTF8));
-    
-    return escapedString == nil? @"":escapedString;
-}
 
 - (NSDictionary *) loadSecret {
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"secret" ofType:@"plist"];
@@ -107,11 +82,4 @@
     return dict;
 }
 
-- (NSURL *) buildGeocodeQueryWithAddress: (NSString *) address
-{
-    NSString *encodedAddress = [self rawUrlEncodeCFString:address];
-    NSString *geocodeApiQueryString = [NSString stringWithFormat:@"%@%@%@", _geocodeApiRootUrl, @"&address=", encodedAddress];
-
-    return [NSURL URLWithString:geocodeApiQueryString];
-}
 @end
