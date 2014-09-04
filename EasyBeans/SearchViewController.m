@@ -16,6 +16,7 @@
 @implementation SearchViewController {
     NSDictionary *_apiKeys;
     NSString *_geocodeApiRootUrl;
+    NSString *_googleDirectionsApiRootUrl;
 }
 
 - (void)viewDidLoad
@@ -24,6 +25,7 @@
     _apiKeys = [self loadSecret];
 
     _geocodeApiRootUrl = [NSString stringWithFormat:@"%@%@", @"https://maps.googleapis.com/maps/api/geocode/json?key=", [_apiKeys objectForKey:@"google"]];
+    _googleDirectionsApiRootUrl = [NSString stringWithFormat:@"%@%@", @"https://maps.googleapis.com/maps/api/directions/json?key=", [_apiKeys objectForKey:@"google"]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,6 +49,7 @@
 
 - (IBAction)findResults:(id)sender {
     
+    // 1. Find geocoordinates based on origin and destination addresses
     [self getGeocode: self.originLocation.text forLocation:@"origin"];
     [self getGeocode: self.destinationLocation.text forLocation:@"destination"];
     
@@ -56,7 +59,6 @@
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"address": addressString};
-
     
     [manager GET:_geocodeApiRootUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 
@@ -66,15 +68,38 @@
         
         NSString *geocodeVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"Geocode"];
         [self setValue:geocode forKey:geocodeVariableName];
-        NSLog(@"%@", self.originGeocode);
-        NSLog(@"%@", self.destinationGeocode);
+
+        // 2. Find directions once both origin and destination geocodes are done querying
+        if (self.originGeocode != NULL && self.destinationGeocode != NULL) {
+
+            NSLog(@"%@", self.originGeocode);
+            NSLog(@"%@", self.destinationGeocode);
+            [self getGoogleDrivingDirections: self.originGeocode toDestination: self.destinationGeocode byMode: @"driving"];
+        }
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
-
 }
 
+- (void) getGoogleDrivingDirections: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode byMode: (NSString *) transportationMode
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    NSString *originCoordinates = [NSString stringWithFormat:@"%@,%@", [originGeocode objectForKey:@"lat"],[originGeocode objectForKey:@"lng"]];
+    NSString *destinationCoordinates = [NSString stringWithFormat:@"%@,%@", [destinationGeocode objectForKey:@"lat"],[originGeocode objectForKey:@"lng"]];
+    
+    NSString *departureTime = [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970] + (3 * 60)];
+    NSDictionary *parameters = @{@"origin": originCoordinates, @"destination":destinationCoordinates, @"departure_time":departureTime, @"mode": transportationMode};
+
+    [manager GET:_googleDirectionsApiRootUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@", operation);
+        NSLog(@"%@", responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
 
 - (NSDictionary *) loadSecret {
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"secret" ofType:@"plist"];
