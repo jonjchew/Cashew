@@ -7,7 +7,7 @@
 //
 
 #import "SearchViewController.h"
-#import <AFNetworking/AFHTTPRequestOperationManager.h>
+#import <AFNetworking/AFNetworking.h>
 
 @interface SearchViewController ()
 
@@ -17,6 +17,8 @@
     NSDictionary *_apiKeys;
     NSString *_geocodeApiRootUrl;
     NSString *_googleDirectionsApiRootUrl;
+    NSString *_uberPriceApiRootUrl;
+    NSString *_uberTimeApiRootUrl;
 }
 
 - (void)viewDidLoad
@@ -26,6 +28,8 @@
 
     _geocodeApiRootUrl = [NSString stringWithFormat:@"%@%@", @"https://maps.googleapis.com/maps/api/geocode/json?key=", [_apiKeys objectForKey:@"google"]];
     _googleDirectionsApiRootUrl = [NSString stringWithFormat:@"%@%@", @"https://maps.googleapis.com/maps/api/directions/json?key=", [_apiKeys objectForKey:@"google"]];
+    _uberPriceApiRootUrl = @"https://api.uber.com/v1/estimates/price?";
+    _uberTimeApiRootUrl = @"https://api.uber.com/v1/estimates/time?";
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,6 +86,7 @@
             [self getGoogleDirections: self.originGeocode toDestination: self.destinationGeocode byMode: @"bicycling"];
             [self getGoogleDirections: self.originGeocode toDestination: self.destinationGeocode byMode: @"transit"];
             [self getGoogleDirections: self.originGeocode toDestination: self.destinationGeocode byMode: @"driving"];
+            [self getUberPrices:self.originGeocode toDestination:self.destinationGeocode];
         }
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -102,6 +107,29 @@
     [manager GET:_googleDirectionsApiRootUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        NSLog(@"%@", operation);
 //        NSLog(@"%@", responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+- (void) getUberPrices: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+
+    [manager.requestSerializer setValue:[NSString stringWithFormat:@"Token %@", [_apiKeys objectForKey:@"uberServer"]] forHTTPHeaderField:@"Authorization"];
+    
+    NSString *originLatitude = [originGeocode objectForKey:@"lat"];
+    NSString *originLongitude = [originGeocode objectForKey:@"lng"];
+    NSString *destinationLatitude = [destinationGeocode objectForKey:@"lat"];
+    NSString *destinationLongitude = [destinationGeocode objectForKey:@"lng"];
+    
+    NSDictionary *parameters = @{@"start_latitude": originLatitude, @"start_longitude": originLongitude, @"end_latitude": destinationLatitude, @"end_longitude": destinationLongitude};
+    
+    [manager GET:_uberPriceApiRootUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"%@", operation);
+        NSLog(@"%@", responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
