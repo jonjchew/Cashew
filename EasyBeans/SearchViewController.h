@@ -17,5 +17,7 @@
 @property (strong, nonatomic) NSString *destinationAddress;
 @property (strong, nonatomic) NSDictionary *originGeocode;
 @property (strong, nonatomic) NSDictionary *destinationGeocode;
+@property (strong, nonatomic) NSDictionary *originFormattedAddress;
+@property (strong, nonatomic) NSDictionary *destinationFormattedAddress;
 
 @end

@@ -64,17 +64,24 @@
 
         NSDictionary *geocodeResult = [responseObject objectForKey:@"results"][0];
         NSDictionary *geocode = [[geocodeResult objectForKey:@"geometry"] objectForKey:@"location"];
-        
+        NSString *formattedAddress = [geocodeResult objectForKey:@"formatted_address"];
         
         NSString *geocodeVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"Geocode"];
+        NSString *addressVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"FormattedAddress"];
         [self setValue:geocode forKey:geocodeVariableName];
+        [self setValue:formattedAddress forKey:addressVariableName];
 
         // 2. Find directions once both origin and destination geocodes are done querying
         if (self.originGeocode != NULL && self.destinationGeocode != NULL) {
 
             NSLog(@"%@", self.originGeocode);
             NSLog(@"%@", self.destinationGeocode);
-            [self getGoogleDrivingDirections: self.originGeocode toDestination: self.destinationGeocode byMode: @"driving"];
+            NSLog(@"%@", self.originFormattedAddress);
+            NSLog(@"%@", self.destinationFormattedAddress);
+            [self getGoogleDirections: self.originGeocode toDestination: self.destinationGeocode byMode: @"walking"];
+            [self getGoogleDirections: self.originGeocode toDestination: self.destinationGeocode byMode: @"bicycling"];
+            [self getGoogleDirections: self.originGeocode toDestination: self.destinationGeocode byMode: @"transit"];
+            [self getGoogleDirections: self.originGeocode toDestination: self.destinationGeocode byMode: @"driving"];
         }
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -82,7 +89,7 @@
     }];
 }
 
-- (void) getGoogleDrivingDirections: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode byMode: (NSString *) transportationMode
+- (void) getGoogleDirections: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode byMode: (NSString *) transportationMode
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
@@ -93,8 +100,8 @@
     NSDictionary *parameters = @{@"origin": originCoordinates, @"destination":destinationCoordinates, @"departure_time":departureTime, @"mode": transportationMode};
 
     [manager GET:_googleDirectionsApiRootUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@", operation);
-        NSLog(@"%@", responseObject);
+//        NSLog(@"%@", operation);
+//        NSLog(@"%@", responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
