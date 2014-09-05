@@ -7,17 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GoogleDirection.h"
 
 @interface SearchViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UITextField *originLocation;
 @property (strong, nonatomic) IBOutlet UITextField *destinationLocation;
 - (IBAction)findResults:(id)sender;
 
-@property (strong, nonatomic) NSString *originAddress;
-@property (strong, nonatomic) NSString *destinationAddress;
 @property (strong, nonatomic) NSDictionary *originGeocode;
 @property (strong, nonatomic) NSDictionary *destinationGeocode;
 @property (strong, nonatomic) NSDictionary *originFormattedAddress;
 @property (strong, nonatomic) NSDictionary *destinationFormattedAddress;
+@property (strong, nonatomic) NSMutableArray *googleDirections;
 
 @end

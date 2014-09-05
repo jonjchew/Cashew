@@ -30,6 +30,7 @@
     _googleDirectionsApiRootUrl = [NSString stringWithFormat:@"%@%@", @"https://maps.googleapis.com/maps/api/directions/json?key=", [_apiKeys objectForKey:@"google"]];
     _uberPriceApiRootUrl = @"https://api.uber.com/v1/estimates/price?";
     _uberTimeApiRootUrl = @"https://api.uber.com/v1/estimates/time?";
+    self.googleDirections = [NSMutableArray array];
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,20 +79,28 @@
         // 2. Find directions once both origin and destination geocodes are done querying
         if (self.originGeocode != NULL && self.destinationGeocode != NULL) {
 
-            NSLog(@"%@", self.originGeocode);
-            NSLog(@"%@", self.destinationGeocode);
-            NSLog(@"%@", self.originFormattedAddress);
-            NSLog(@"%@", self.destinationFormattedAddress);
-            [self getGoogleDirections: self.originGeocode toDestination: self.destinationGeocode byMode: @"walking"];
-            [self getGoogleDirections: self.originGeocode toDestination: self.destinationGeocode byMode: @"bicycling"];
-            [self getGoogleDirections: self.originGeocode toDestination: self.destinationGeocode byMode: @"transit"];
-            [self getGoogleDirections: self.originGeocode toDestination: self.destinationGeocode byMode: @"driving"];
-            [self getUberPrices:self.originGeocode toDestination:self.destinationGeocode];
+//            NSLog(@"%@", self.originGeocode);
+//            NSLog(@"%@", self.destinationGeocode);
+//            NSLog(@"%@", self.originFormattedAddress);
+//            NSLog(@"%@", self.destinationFormattedAddress);
+            
+            [self getTransportationEstimates: self.originGeocode toDestination: self.destinationGeocode];
+
         }
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
+}
+
+- (void) getTransportationEstimates: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode
+{
+    [self getGoogleDirections: originGeocode toDestination: destinationGeocode byMode: @"walking"];
+    [self getGoogleDirections: originGeocode toDestination: destinationGeocode byMode: @"bicycling"];
+    [self getGoogleDirections: originGeocode toDestination: destinationGeocode byMode: @"transit"];
+    [self getGoogleDirections: originGeocode toDestination: destinationGeocode byMode: @"driving"];
+    [self getUberPrices: originGeocode toDestination: destinationGeocode];
+    [self getUberTimes: originGeocode toDestination: destinationGeocode];
 }
 
 - (void) getGoogleDirections: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode byMode: (NSString *) transportationMode
@@ -101,12 +110,16 @@
     NSString *originCoordinates = [NSString stringWithFormat:@"%@,%@", [originGeocode objectForKey:@"lat"],[originGeocode objectForKey:@"lng"]];
     NSString *destinationCoordinates = [NSString stringWithFormat:@"%@,%@", [destinationGeocode objectForKey:@"lat"],[originGeocode objectForKey:@"lng"]];
     
-    NSString *departureTime = [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970] + (3 * 60)];
-    NSDictionary *parameters = @{@"origin": originCoordinates, @"destination":destinationCoordinates, @"departure_time":departureTime, @"mode": transportationMode};
+    // Add two minutes to current time as 'current' departure time
+    NSString *departureTime = [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970] + (2 * 60)];
+    NSDictionary *parameters = @{@"origin": originCoordinates, @"destination": destinationCoordinates, @"departure_time": departureTime, @"mode": transportationMode};
 
     [manager GET:_googleDirectionsApiRootUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"%@", operation);
-//        NSLog(@"%@", responseObject);
+
+        NSDictionary *data = [responseObject objectForKey:@"routes"][0];
+        GoogleDirection *direction = [GoogleDirection initWithJsonData: data andMode: transportationMode];
+        [self.googleDirections addObject: direction];
+        NSLog(@"%@", self.googleDirections);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -129,12 +142,37 @@
     
     [manager GET:_uberPriceApiRootUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        NSLog(@"%@", operation);
-        NSLog(@"%@", responseObject);
+//        NSLog(@"%@", responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
 }
+
+- (void) getUberTimes: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    [manager.requestSerializer setValue:[NSString stringWithFormat:@"Token %@", [_apiKeys objectForKey:@"uberServer"]] forHTTPHeaderField:@"Authorization"];
+    
+    NSString *originLatitude = [originGeocode objectForKey:@"lat"];
+    NSString *originLongitude = [originGeocode objectForKey:@"lng"];
+    NSString *destinationLatitude = [destinationGeocode objectForKey:@"lat"];
+    NSString *destinationLongitude = [destinationGeocode objectForKey:@"lng"];
+    
+    NSDictionary *parameters = @{@"start_latitude": originLatitude, @"start_longitude": originLongitude, @"end_latitude": destinationLatitude, @"end_longitude": destinationLongitude};
+    
+    [manager GET:_uberTimeApiRootUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"%@", operation);
+//        NSLog(@"%@", responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+#pragma mark - Config
 
 - (NSDictionary *) loadSecret {
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"secret" ofType:@"plist"];
