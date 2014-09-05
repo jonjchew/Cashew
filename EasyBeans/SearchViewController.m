@@ -8,6 +8,8 @@
 
 #import "SearchViewController.h"
 #import <AFNetworking/AFNetworking.h>
+#import "UberMode.h"
+#import "GoogleDirection.h"
 
 @interface SearchViewController ()
 
@@ -31,6 +33,7 @@
     _uberPriceApiRootUrl = @"https://api.uber.com/v1/estimates/price?";
     _uberTimeApiRootUrl = @"https://api.uber.com/v1/estimates/time?";
     self.googleDirections = [NSMutableArray array];
+    self.uberModes = [NSMutableArray array];
 }
 
 - (void)didReceiveMemoryWarning
@@ -100,7 +103,6 @@
     [self getGoogleDirections: originGeocode toDestination: destinationGeocode byMode: @"transit"];
     [self getGoogleDirections: originGeocode toDestination: destinationGeocode byMode: @"driving"];
     [self getUberPrices: originGeocode toDestination: destinationGeocode];
-    [self getUberTimes: originGeocode toDestination: destinationGeocode];
 }
 
 - (void) getGoogleDirections: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode byMode: (NSString *) transportationMode
@@ -116,11 +118,14 @@
 
     [manager GET:_googleDirectionsApiRootUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 
-        NSDictionary *data = [responseObject objectForKey:@"routes"][0];
-        GoogleDirection *direction = [GoogleDirection initWithJsonData: data andMode: transportationMode];
-        [self.googleDirections addObject: direction];
-        NSLog(@"%@", self.googleDirections);
-        
+        if ([[responseObject objectForKey:@"status"]  isEqual: @"OK"]) {
+            NSDictionary *data = [responseObject objectForKey:@"routes"][0];
+            
+            // Create new GoogleDirection instances and store in array
+            GoogleDirection *direction = [GoogleDirection initWithJsonData: data andMode: transportationMode];
+            [self.googleDirections addObject: direction];
+            //        NSLog(@"%@", self.googleDirections);
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
@@ -128,28 +133,33 @@
 
 - (void) getUberPrices: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [self getUberEstimates:originGeocode toDestination:destinationGeocode withUrl:_uberPriceApiRootUrl withBlock:^(NSDictionary *responseObject) {
+        NSArray *modes = [responseObject objectForKey:@"prices"];
 
-    [manager.requestSerializer setValue:[NSString stringWithFormat:@"Token %@", [_apiKeys objectForKey:@"uberServer"]] forHTTPHeaderField:@"Authorization"];
-    
-    NSString *originLatitude = [originGeocode objectForKey:@"lat"];
-    NSString *originLongitude = [originGeocode objectForKey:@"lng"];
-    NSString *destinationLatitude = [destinationGeocode objectForKey:@"lat"];
-    NSString *destinationLongitude = [destinationGeocode objectForKey:@"lng"];
-    
-    NSDictionary *parameters = @{@"start_latitude": originLatitude, @"start_longitude": originLongitude, @"end_latitude": destinationLatitude, @"end_longitude": destinationLongitude};
-    
-    [manager GET:_uberPriceApiRootUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"%@", operation);
-//        NSLog(@"%@", responseObject);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
+        for (id modeData in modes) {
+            UberMode *uberMode = [UberMode initWithJsonData: modeData];
+            [self.uberModes addObject:uberMode];
+        }
+        [self getUberTimes:originGeocode toDestination:destinationGeocode];
     }];
 }
 
 - (void) getUberTimes: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode
+{
+    [self getUberEstimates:originGeocode toDestination:destinationGeocode withUrl:_uberTimeApiRootUrl withBlock:^(NSDictionary *responseObject) {
+        NSArray *modes = [responseObject objectForKey:@"times"];
+        for (id modeData in modes) {
+            for (UberMode *uberMode in self.uberModes) {
+                if ([uberMode.productID isEqualToString:[modeData objectForKey:@"product_id"]]) {
+                    uberMode.timeEstimate = [modeData objectForKey:@"estimate"];
+                    NSLog(@"%@ %@ %@", uberMode.productName, uberMode.timeEstimate, uberMode.priceEstimate);
+                }
+            }
+        }
+    }];
+}
+
+- (void) getUberEstimates: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode withUrl: (NSString *) apiUrl withBlock:(successBlockWithResponse) successBlock
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -163,13 +173,22 @@
     
     NSDictionary *parameters = @{@"start_latitude": originLatitude, @"start_longitude": originLongitude, @"end_latitude": destinationLatitude, @"end_longitude": destinationLongitude};
     
-    [manager GET:_uberTimeApiRootUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"%@", operation);
-//        NSLog(@"%@", responseObject);
+    [manager GET:apiUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+        if ([operation.response statusCode] == 200) {
+            if (successBlock) {
+                successBlock(responseObject);
+            }
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
+}
+
+- (void) getUberEstimates: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode withUrl: (NSString *) apiUrl
+{
+    [self getUberEstimates:originGeocode toDestination:destinationGeocode withUrl:apiUrl withBlock:nil];
 }
 
 #pragma mark - Config

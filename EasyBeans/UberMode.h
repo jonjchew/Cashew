@@ -1,0 +1,22 @@
+//
+//  UberMode.h
+//  EasyBeans
+//
+//  Created by Jonathan Chew on 9/4/14.
+//  Copyright (c) 2014 JC. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface UberMode : NSObject
+
+@property (strong, nonatomic) NSString *productID;
+@property (strong, nonatomic) NSString *productName;
+@property (strong, nonatomic) NSString *priceEstimate;
+@property (strong, nonatomic) NSString *lowEstimate;
+@property (strong, nonatomic) NSString *highEstimate;
+@property (strong, nonatomic) NSString *surgeMutliplier;
+@property (strong, nonatomic) NSString *timeEstimate;
++ (instancetype) initWithJsonData: (NSDictionary *) data;
+
+@end

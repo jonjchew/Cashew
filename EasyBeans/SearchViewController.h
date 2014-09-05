@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GoogleDirection.h"
+
+typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 
 @interface SearchViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UITextField *originLocation;
@@ -19,5 +20,6 @@
 @property (strong, nonatomic) NSDictionary *originFormattedAddress;
 @property (strong, nonatomic) NSDictionary *destinationFormattedAddress;
 @property (strong, nonatomic) NSMutableArray *googleDirections;
+@property (strong, nonatomic) NSMutableArray *uberModes;
 
 @end
