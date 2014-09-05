@@ -151,7 +151,7 @@
         for (id modeData in modes) {
             for (UberMode *uberMode in self.uberModes) {
                 if ([uberMode.productID isEqualToString:[modeData objectForKey:@"product_id"]]) {
-                    uberMode.timeEstimate = [modeData objectForKey:@"estimate"];
+                    [uberMode setTimeEstimateFromSeconds: [[modeData objectForKey:@"estimate"] integerValue]];
                     NSLog(@"%@ %@ %@", uberMode.productName, uberMode.timeEstimate, uberMode.priceEstimate);
                 }
             }

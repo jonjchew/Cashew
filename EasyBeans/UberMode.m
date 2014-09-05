@@ -28,4 +28,9 @@
     return self;
 }
 
+- (void) setTimeEstimateFromSeconds:(int)timeEstimateSeconds
+{
+    _timeEstimate = [NSString stringWithFormat:@"%d mins", timeEstimateSeconds/60];
+
+}
 @end
