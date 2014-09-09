@@ -11,7 +11,7 @@
 #import "UberMode.h"
 #import "GoogleDirection.h"
 
-@interface SearchViewController ()
+@interface SearchViewController () 
 
 @end
 
@@ -21,6 +21,8 @@
     NSString *_googleDirectionsApiRootUrl;
     NSString *_uberPriceApiRootUrl;
     NSString *_uberTimeApiRootUrl;
+    NSString *_inputtedOrigin;
+    NSString *_inputtedDestination;
 }
 
 - (void)viewDidLoad
@@ -28,12 +30,17 @@
     [super viewDidLoad];
     _apiKeys = [self loadSecret];
 
-    _geocodeApiRootUrl = [NSString stringWithFormat:@"%@%@", @"https://maps.googleapis.com/maps/api/geocode/json?key=", [_apiKeys objectForKey:@"google"]];
-    _googleDirectionsApiRootUrl = [NSString stringWithFormat:@"%@%@", @"https://maps.googleapis.com/maps/api/directions/json?key=", [_apiKeys objectForKey:@"google"]];
+    _geocodeApiRootUrl = [NSString stringWithFormat:@"%@%@", @"https://maps.googleapis.com/maps/api/geocode/json?key=",
+                          [_apiKeys objectForKey:@"google"]];
+    _googleDirectionsApiRootUrl = [NSString stringWithFormat:@"%@%@", @"https://maps.googleapis.com/maps/api/directions/json?key=",
+                                   [_apiKeys objectForKey:@"google"]];
     _uberPriceApiRootUrl = @"https://api.uber.com/v1/estimates/price?";
     _uberTimeApiRootUrl = @"https://api.uber.com/v1/estimates/time?";
     self.googleDirections = [NSMutableArray array];
     self.uberModes = [NSMutableArray array];
+    _inputtedDestination = @"destination";
+    _inputtedOrigin = @"origin";
+    self.travelModesArray = [[NSArray alloc] initWithObjects:@"driving", @"biking", @"transit", @"walking", @"uber", nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,8 +48,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 /*
 #pragma mark - Navigation
@@ -57,10 +62,25 @@
 
 - (IBAction)findResults:(id)sender {
     
-    // 1. Find geocoordinates based on origin and destination addresses
-    [self getGeocode: self.originLocation.text forLocation:@"origin"];
-    [self getGeocode: self.destinationLocation.text forLocation:@"destination"];
+    [self resetVariables];
     
+    // 1. Find geocoordinates based on origin and destination addresses if they have changed
+    if (![_inputtedOrigin isEqualToString:self.originLocation.text]) {
+        _inputtedOrigin = self.originLocation.text;
+        [self getGeocode: self.originLocation.text forLocation:@"origin"];
+    }
+    
+    if (![_inputtedDestination isEqualToString:self.destinationLocation.text]) {
+        _inputtedDestination = self.originLocation.text;
+        [self getGeocode: self.destinationLocation.text forLocation:@"destination"];
+    }
+}
+
+- (void) resetVariables {
+    [self.googleDirections removeAllObjects];
+    [self.uberModes removeAllObjects];
+    self.originGeocode = NULL;
+    self.destinationGeocode = NULL;
 }
 
 - (void) getGeocode: (NSString *) addressString forLocation: (NSString *) locationType
@@ -81,14 +101,7 @@
 
         // 2. Find directions once both origin and destination geocodes are done querying
         if (self.originGeocode != NULL && self.destinationGeocode != NULL) {
-
-//            NSLog(@"%@", self.originGeocode);
-//            NSLog(@"%@", self.destinationGeocode);
-//            NSLog(@"%@", self.originFormattedAddress);
-//            NSLog(@"%@", self.destinationFormattedAddress);
-            
             [self getTransportationEstimates: self.originGeocode toDestination: self.destinationGeocode];
-
         }
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -109,12 +122,17 @@
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    NSString *originCoordinates = [NSString stringWithFormat:@"%@,%@", [originGeocode objectForKey:@"lat"],[originGeocode objectForKey:@"lng"]];
-    NSString *destinationCoordinates = [NSString stringWithFormat:@"%@,%@", [destinationGeocode objectForKey:@"lat"],[originGeocode objectForKey:@"lng"]];
+    NSString *originCoordinates = [NSString stringWithFormat:@"%@,%@",
+                                   [originGeocode objectForKey:@"lat"],[originGeocode objectForKey:@"lng"]];
+    NSString *destinationCoordinates = [NSString stringWithFormat:@"%@,%@",
+                                        [destinationGeocode objectForKey:@"lat"],[originGeocode objectForKey:@"lng"]];
     
     // Add two minutes to current time as 'current' departure time
     NSString *departureTime = [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970] + (2 * 60)];
-    NSDictionary *parameters = @{@"origin": originCoordinates, @"destination": destinationCoordinates, @"departure_time": departureTime, @"mode": transportationMode};
+    NSDictionary *parameters = @{@"origin": originCoordinates,
+                                 @"destination": destinationCoordinates,
+                                 @"departure_time": departureTime,
+                                 @"mode": transportationMode};
 
     [manager GET:_googleDirectionsApiRootUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 
@@ -124,7 +142,7 @@
             // Create new GoogleDirection instances and store in array
             GoogleDirection *direction = [GoogleDirection initWithJsonData: data andMode: transportationMode];
             [self.googleDirections addObject: direction];
-            //        NSLog(@"%@", self.googleDirections);
+            NSLog(@"%@ %@", direction.mode, direction.timeDuration);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -164,14 +182,19 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
-    [manager.requestSerializer setValue:[NSString stringWithFormat:@"Token %@", [_apiKeys objectForKey:@"uberServer"]] forHTTPHeaderField:@"Authorization"];
+    [manager.requestSerializer setValue:[NSString stringWithFormat:@"Token %@",
+                                         [_apiKeys objectForKey:@"uberServer"]] forHTTPHeaderField:@"Authorization"];
     
     NSString *originLatitude = [originGeocode objectForKey:@"lat"];
     NSString *originLongitude = [originGeocode objectForKey:@"lng"];
     NSString *destinationLatitude = [destinationGeocode objectForKey:@"lat"];
     NSString *destinationLongitude = [destinationGeocode objectForKey:@"lng"];
     
-    NSDictionary *parameters = @{@"start_latitude": originLatitude, @"start_longitude": originLongitude, @"end_latitude": destinationLatitude, @"end_longitude": destinationLongitude};
+    NSDictionary *parameters = @{@"start_latitude": originLatitude,
+                                 @"start_longitude": originLongitude,
+                                 @"end_latitude": destinationLatitude,
+                                 @"end_longitude": destinationLongitude
+                                 };
     
     [manager GET:apiUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 
@@ -189,6 +212,31 @@
 - (void) getUberEstimates: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode withUrl: (NSString *) apiUrl
 {
     [self getUberEstimates:originGeocode toDestination:destinationGeocode withUrl:apiUrl withBlock:nil];
+}
+
+#pragma mark - Table View methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return self.travelModesArray.count;
+//    return 1;
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    cell.textLabel.text = [self.travelModesArray objectAtIndex:indexPath.row];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+
 }
 
 #pragma mark - Config

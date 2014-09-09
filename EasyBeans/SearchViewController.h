@@ -10,11 +10,14 @@
 
 typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 
-@interface SearchViewController : UIViewController
+@interface SearchViewController : UIViewController  <UITableViewDelegate, UITableViewDataSource>
+
 @property (strong, nonatomic) IBOutlet UITextField *originLocation;
 @property (strong, nonatomic) IBOutlet UITextField *destinationLocation;
 - (IBAction)findResults:(id)sender;
+@property (strong, nonatomic) IBOutlet UITableView *selectModesTable;
 
+@property (strong, nonatomic) NSArray *travelModesArray;
 @property (strong, nonatomic) NSDictionary *originGeocode;
 @property (strong, nonatomic) NSDictionary *destinationGeocode;
 @property (strong, nonatomic) NSDictionary *originFormattedAddress;
