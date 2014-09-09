@@ -41,6 +41,8 @@
     _inputtedDestination = @"destination";
     _inputtedOrigin = @"origin";
     self.travelModesArray = [[NSArray alloc] initWithObjects:@"driving", @"biking", @"transit", @"walking", @"uber", nil];
+    self.selectedTravelModes = [NSMutableArray array];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)didReceiveMemoryWarning
@@ -111,11 +113,16 @@
 
 - (void) getTransportationEstimates: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode
 {
-    [self getGoogleDirections: originGeocode toDestination: destinationGeocode byMode: @"walking"];
-    [self getGoogleDirections: originGeocode toDestination: destinationGeocode byMode: @"bicycling"];
-    [self getGoogleDirections: originGeocode toDestination: destinationGeocode byMode: @"transit"];
-    [self getGoogleDirections: originGeocode toDestination: destinationGeocode byMode: @"driving"];
-    [self getUberPrices: originGeocode toDestination: destinationGeocode];
+    
+    for (NSString *travelMode in self.selectedTravelModes){
+        if ([travelMode isEqualToString:@"uber"]){
+            [self getUberPrices: originGeocode toDestination: destinationGeocode];
+        }
+        else {
+            [self getGoogleDirections: originGeocode toDestination: destinationGeocode byMode: travelMode];
+        }
+    }
+    
 }
 
 - (void) getGoogleDirections: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode byMode: (NSString *) transportationMode
@@ -222,8 +229,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return self.travelModesArray.count;
-//    return 1;
+    return self.travelModesArray.count;
 }
 
 // Customize the appearance of table view cells.
@@ -235,7 +241,22 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath: indexPath];
+    if (cell.accessoryType == UITableViewCellAccessoryNone) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
+    NSString *travelMode = [self.travelModesArray objectAtIndex:indexPath.row];
+    if ([self.selectedTravelModes indexOfObject: travelMode] == NSNotFound) {
+        [self.selectedTravelModes addObject: travelMode];
+    }
+    else {
+        [self.selectedTravelModes removeObject: travelMode];
+    }
 
 }
 

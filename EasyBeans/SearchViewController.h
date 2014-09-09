@@ -15,9 +15,10 @@ typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 @property (strong, nonatomic) IBOutlet UITextField *originLocation;
 @property (strong, nonatomic) IBOutlet UITextField *destinationLocation;
 - (IBAction)findResults:(id)sender;
-@property (strong, nonatomic) IBOutlet UITableView *selectModesTable;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSArray *travelModesArray;
+@property (strong, nonatomic) NSMutableArray *selectedTravelModes;
 @property (strong, nonatomic) NSDictionary *originGeocode;
 @property (strong, nonatomic) NSDictionary *destinationGeocode;
 @property (strong, nonatomic) NSDictionary *originFormattedAddress;
