@@ -25,6 +25,7 @@
 		3627ACF219B96233002E37D7 /* GoogleDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3627ACF119B96233002E37D7 /* GoogleDirection.m */; };
 		3627ACF519B974B4002E37D7 /* UberMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3627ACF419B974B4002E37D7 /* UberMode.m */; };
 		36C56A6B19BEBCDB0089D1E2 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C56A6A19BEBCDB0089D1E2 /* TableViewController.m */; };
+		36C56A6E19BECDFE0089D1E2 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C56A6D19BECDFE0089D1E2 /* ResultsViewController.m */; };
 		3782AD19558D4534B06DF582 /* libPods-EasyBeans.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56B30BD133FC40A5BD36FAFE /* libPods-EasyBeans.a */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,8 @@
 		3627ACF419B974B4002E37D7 /* UberMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberMode.m; sourceTree = "<group>"; };
 		36C56A6919BEBCDB0089D1E2 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		36C56A6A19BEBCDB0089D1E2 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		36C56A6C19BECDFE0089D1E2 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResultsViewController.h; path = ../ResultsViewController.h; sourceTree = "<group>"; };
+		36C56A6D19BECDFE0089D1E2 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResultsViewController.m; path = ../ResultsViewController.m; sourceTree = "<group>"; };
 		4802EFBD5E5B4595905E11C5 /* Pods-EasyBeans.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyBeans.xcconfig"; path = "Pods/Pods-EasyBeans.xcconfig"; sourceTree = "<group>"; };
 		56B30BD133FC40A5BD36FAFE /* libPods-EasyBeans.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyBeans.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -132,6 +135,8 @@
 		3627ACB919B6AEE3002E37D7 /* EasyBeans */ = {
 			isa = PBXGroup;
 			children = (
+				36C56A6C19BECDFE0089D1E2 /* ResultsViewController.h */,
+				36C56A6D19BECDFE0089D1E2 /* ResultsViewController.m */,
 				3627ACC219B6AEE3002E37D7 /* AppDelegate.h */,
 				3627ACE419B6B031002E37D7 /* SearchViewController.h */,
 				3627ACE519B6B031002E37D7 /* SearchViewController.m */,
@@ -309,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3627ACC419B6AEE3002E37D7 /* AppDelegate.m in Sources */,
+				36C56A6E19BECDFE0089D1E2 /* ResultsViewController.m in Sources */,
 				36C56A6B19BEBCDB0089D1E2 /* TableViewController.m in Sources */,
 				3627ACF519B974B4002E37D7 /* UberMode.m in Sources */,
 				3627ACE619B6B031002E37D7 /* SearchViewController.m in Sources */,
