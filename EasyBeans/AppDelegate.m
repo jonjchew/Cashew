@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "SearchViewController.h"
+#import "ResultsViewController.h"
 
 @implementation AppDelegate
 

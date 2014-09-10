@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ResultsViewController.h"
 
 typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 
@@ -19,11 +20,5 @@ typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 
 @property (strong, nonatomic) NSArray *travelModesArray;
 @property (strong, nonatomic) NSMutableArray *selectedTravelModes;
-@property (strong, nonatomic) NSDictionary *originGeocode;
-@property (strong, nonatomic) NSDictionary *destinationGeocode;
-@property (strong, nonatomic) NSDictionary *originFormattedAddress;
-@property (strong, nonatomic) NSDictionary *destinationFormattedAddress;
-@property (strong, nonatomic) NSMutableArray *googleDirections;
-@property (strong, nonatomic) NSMutableArray *uberModes;
 
 @end
