@@ -169,13 +169,12 @@
         for (id modeData in modes) {
             for (UberMode *uberMode in self.uberModes) {
                 if ([uberMode.productID isEqualToString:[modeData objectForKey:@"product_id"]]) {
-//                    [uberMode setTimeEstimateFromSeconds: [[modeData objectForKey:@"estimate"] integerValue]];
-                    NSLog(@"%@ %@ %@", uberMode.productName, uberMode.timeEstimate, uberMode.priceEstimate);
+                    [uberMode setTimeEstimateFromSeconds: [[modeData objectForKey:@"estimate"] integerValue]];
+                    [uberMode formatSurgeMultiplier: (int)[modeData objectForKey:@"surge_multiplier"]];
                     [self.travelModeResults addObject:uberMode];
-                    
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.tableView reloadData];
-                        NSLog(@"uber hit");
+                        NSLog(@"%@ %@ %@ %@", uberMode.productName, uberMode.timeEstimate, uberMode.priceEstimate, uberMode.surgeMutliplier);
                     });
                     
                 }
@@ -258,10 +257,21 @@
     UIButton *selectModeButton = (UIButton *)[cell viewWithTag:5];
     [selectModeButton addTarget:self action:@selector(selectMode:) forControlEvents:UIControlEventTouchUpInside];
     
-    modeLabel.text = ((GoogleDirection*)[self.travelModeResults objectAtIndex:indexPath.row]).mode;
-    timeDurationLabel.text = ((GoogleDirection*)[self.travelModeResults objectAtIndex:indexPath.row]).timeDuration;
-    thirdLabel.text = ((GoogleDirection*)[self.travelModeResults objectAtIndex:indexPath.row]).summary;
-    fourthLabel.text = ((GoogleDirection*)[self.travelModeResults objectAtIndex:indexPath.row]).distance;
+    id travelMode = [self.travelModeResults objectAtIndex:indexPath.row];
+    
+    if ([travelMode isKindOfClass:[GoogleDirection class]]) {
+        modeLabel.text = [(GoogleDirection*)travelMode mode];
+        timeDurationLabel.text = [travelMode timeDuration];
+        thirdLabel.text = [travelMode summary];
+        fourthLabel.text = [travelMode distance];
+    }
+    else {
+        modeLabel.text = [travelMode productName];
+        timeDurationLabel.text = [travelMode timeEstimate];
+        thirdLabel.text = [travelMode priceEstimate];
+        fourthLabel.text = [travelMode surgeMutliplier];
+    }
+    
     return cell;
 }
 

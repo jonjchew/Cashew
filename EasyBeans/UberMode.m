@@ -23,14 +23,26 @@
         _priceEstimate = [data objectForKey:@"estimate"];
         _lowEstimate = [data objectForKey:@"low_estimate"];
         _highEstimate = [data objectForKey:@"high_estimate"];
-        _surgeMutliplier = [data objectForKey:@"surge_multiplier"];
     }
     return self;
 }
 
-//- (void) setTimeEstimateFromSeconds:(int)timeEstimateSeconds
-//
-//    _timeEstimate = [NSString stringWithFormat:@"%d mins", timeEstimateSeconds/60];
+- (void) setTimeEstimateFromSeconds:(int)timeEstimateSeconds
+{
+    _timeEstimate = [NSString stringWithFormat:@"%d mins", timeEstimateSeconds/60];
 
-//}
+}
+
+- (void) formatSurgeMultiplier:(int)surgeMulitplierInt
+{
+    if (surgeMulitplierInt == 0) {
+        _surgeMutliplier = @"(No surge multiplier)";
+    }
+    else if ([self.productName isEqualToString:@"uberTAXI"]) {
+        _surgeMutliplier = @"";
+    }
+    else {
+        _surgeMutliplier = [NSString stringWithFormat:@"(%.1fx surge multiplier)", (double)surgeMulitplierInt];
+    }
+}
 @end
