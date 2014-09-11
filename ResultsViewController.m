@@ -9,6 +9,7 @@
 #import "ResultsViewController.h"
 #import "UberMode.h"
 #import "GoogleDirection.h"
+#import "ResultsViewCell.h"
 #import <AFNetworking/AFNetworking.h>
 
 @interface ResultsViewController ()
@@ -36,7 +37,6 @@
                                    [_apiKeys objectForKey:@"google"]];
     _uberPriceApiRootUrl = @"https://api.uber.com/v1/estimates/price?";
     _uberTimeApiRootUrl = @"https://api.uber.com/v1/estimates/time?";
-    self.googleDirections = [NSMutableArray array];
     self.uberModes = [NSMutableArray array];
     _inputtedDestination = @"destination";
     _inputtedOrigin = @"origin";
@@ -137,11 +137,10 @@
             
             // Create new GoogleDirection instances and store in array
             GoogleDirection *direction = [GoogleDirection initWithJsonData: data andMode: transportationMode];
-//            [self.googleDirections addObject: direction];
+
             [self.travelModeResults addObject:direction];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
-                NSLog(@"inside dispatch %@", self.travelModeResults);
             });
             NSLog(@"%@ %@", direction.mode, direction.timeDuration);
         }
@@ -249,12 +248,29 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-;
-    cell.textLabel.text = ((GoogleDirection*)[self.travelModeResults objectAtIndex:indexPath.row]).mode;
-    cell.detailTextLabel.text =  ((GoogleDirection*)[self.travelModeResults objectAtIndex:indexPath.row]).timeDuration;
-
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
+    UILabel *modeLabel = (UILabel *)[cell viewWithTag:1];
+    UILabel *timeDurationLabel = (UILabel *)[cell viewWithTag:2];
+    UILabel *thirdLabel = (UILabel *)[cell viewWithTag:3];
+    UILabel *fourthLabel = (UILabel *)[cell viewWithTag:4];
+    
+    UIButton *selectModeButton = (UIButton *)[cell viewWithTag:5];
+    [selectModeButton addTarget:self action:@selector(selectMode:) forControlEvents:UIControlEventTouchUpInside];
+    
+    modeLabel.text = ((GoogleDirection*)[self.travelModeResults objectAtIndex:indexPath.row]).mode;
+    timeDurationLabel.text = ((GoogleDirection*)[self.travelModeResults objectAtIndex:indexPath.row]).timeDuration;
+    thirdLabel.text = ((GoogleDirection*)[self.travelModeResults objectAtIndex:indexPath.row]).summary;
+    fourthLabel.text = ((GoogleDirection*)[self.travelModeResults objectAtIndex:indexPath.row]).distance;
     return cell;
+}
+
+- (void)selectMode:(UIButton *)sender
+{
+        CGPoint center= sender.center;
+        CGPoint rootViewPoint = [sender.superview convertPoint:center toView:self.tableView];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:rootViewPoint];
+        NSLog(@"%i",indexPath.row);
 }
 
 - (NSDictionary *) loadSecret {

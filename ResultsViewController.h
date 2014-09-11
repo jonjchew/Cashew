@@ -17,7 +17,6 @@ typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 @property (strong, nonatomic) NSString *originLocationText;
 @property (strong, nonatomic) NSString *destinationLocationText;
 @property (strong, nonatomic) NSArray *selectedTravelModes;
-@property (strong, nonatomic) NSMutableArray *googleDirections;
 @property (strong, nonatomic) NSMutableArray *uberModes;
 @property (strong, nonatomic) NSDictionary *originGeocode;
 @property (strong, nonatomic) NSDictionary *destinationGeocode;
