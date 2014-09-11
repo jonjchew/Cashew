@@ -41,7 +41,7 @@
     if ([_productName isEqualToString:@"uberTAXI"]) {
         surgeMultiplierString = @"";
     }
-    else if (surgeMulitplierInt == 0) {
+    else if (surgeMulitplierInt <= 1) {
         surgeMultiplierString = @"(No surge multiplier)";
     }
     else {

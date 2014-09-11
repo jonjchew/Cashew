@@ -39,8 +39,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-        [self getGeocode: self.originLocationText forLocation:@"origin"];
-        [self getGeocode: self.destinationLocationText forLocation:@"destination"];
+    [self getGeocode: self.originLocationText forLocation:@"origin"];
+    [self getGeocode: self.destinationLocationText forLocation:@"destination"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,7 +79,6 @@
 
 - (void) getTransportationEstimates: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode
 {
-    NSLog(@"%@", self.selectedTravelModes);
     for (NSString *travelMode in self.selectedTravelModes){
         if ([travelMode isEqualToString:@"uber"]){
             [self getUberPrices: originGeocode toDestination: destinationGeocode];
@@ -88,7 +87,6 @@
             [self getGoogleDirections: originGeocode toDestination: destinationGeocode byMode: travelMode];
         }
     }
-    
 }
 
 - (void) getGoogleDirections: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode byMode: (NSString *) transportationMode
