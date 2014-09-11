@@ -23,7 +23,7 @@
         _priceEstimate = [data objectForKey:@"estimate"];
         _lowEstimate = [data objectForKey:@"low_estimate"];
         _highEstimate = [data objectForKey:@"high_estimate"];
-        _surgeMutliplier = [self formatSurgeMultiplier:(int)[data objectForKey:@"surge_multiplier"]];
+        _surgeMutliplier = [self formatSurgeMultiplier:[[data objectForKey:@"surge_multiplier"] integerValue]];
     }
     return self;
 }

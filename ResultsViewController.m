@@ -28,46 +28,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _apiKeys = [self loadSecret];
-    
-    _geocodeApiRootUrl = [NSString stringWithFormat:@"%@%@", @"https://maps.googleapis.com/maps/api/geocode/json?key=",
-                          [_apiKeys objectForKey:@"google"]];
-    _googleDirectionsApiRootUrl = [NSString stringWithFormat:@"%@%@", @"https://maps.googleapis.com/maps/api/directions/json?key=",
-                                   [_apiKeys objectForKey:@"google"]];
-    _uberPriceApiRootUrl = @"https://api.uber.com/v1/estimates/price?";
-    _uberTimeApiRootUrl = @"https://api.uber.com/v1/estimates/time?";
-    self.uberModes = [NSMutableArray array];
+    [self initializeAPIs];
+
     _inputtedDestination = @"destination";
     _inputtedOrigin = @"origin";
 
     self.travelModeResults = [NSMutableArray array];
-
-    
-    
-    if (![_inputtedOrigin isEqualToString:self.originLocationText]) {
-        _inputtedOrigin = self.originLocationText;
-        [self getGeocode: self.originLocationText forLocation:@"origin"];
-    }
-    
-    if (![_inputtedDestination isEqualToString:self.destinationLocationText]) {
-        _inputtedDestination = self.originLocationText;
-        [self getGeocode: self.destinationLocationText forLocation:@"destination"];
-    }
-
-    NSLog(@"%@", self.tableView.dataSource);
-
+    self.uberModes = [NSMutableArray array];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+        [self getGeocode: self.originLocationText forLocation:@"origin"];
+        [self getGeocode: self.destinationLocationText forLocation:@"destination"];
+}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)refreshResults
-{
-    [self.tableView reloadData];
 }
 
 #pragma mark - Google API calls
@@ -148,6 +126,8 @@
     }];
 }
 
+#pragma mark - Uber API calls
+
 - (void) getUberPrices: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode
 {
     [self getUberEstimates:originGeocode toDestination:destinationGeocode withUrl:_uberPriceApiRootUrl withBlock:^(NSDictionary *responseObject) {
@@ -168,19 +148,17 @@
         for (id modeData in modes) {
             for (UberMode *uberMode in self.uberModes) {
                 if ([uberMode.productID isEqualToString:[modeData objectForKey:@"product_id"]]) {
-                    [uberMode setTimeEstimateFromSeconds: (int)[modeData objectForKey:@"estimate"]];
+                    [uberMode setTimeEstimateFromSeconds: [[modeData objectForKey:@"estimate"] integerValue]];
                     [self.travelModeResults addObject:uberMode];
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.tableView reloadData];
                     });
-                    
+                    break;
                 }
             }
         }
     }];
 }
-
-#pragma mark - Uber API calls
 
 - (void) getUberEstimates: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode withUrl: (NSString *) apiUrl withBlock:(successBlockWithResponse) successBlock
 {
@@ -241,7 +219,6 @@
     return self.travelModeResults.count;
 }
 
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
@@ -250,7 +227,6 @@
     UILabel *timeDurationLabel = (UILabel *)[cell viewWithTag:2];
     UILabel *thirdLabel = (UILabel *)[cell viewWithTag:3];
     UILabel *fourthLabel = (UILabel *)[cell viewWithTag:4];
-    
     UIButton *selectModeButton = (UIButton *)[cell viewWithTag:5];
     [selectModeButton addTarget:self action:@selector(selectMode:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -280,10 +256,23 @@
         NSLog(@"%i",indexPath.row);
 }
 
+# pragma mark - Helpers
+
 - (NSDictionary *) loadSecret {
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"secret" ofType:@"plist"];
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
     return dict;
+}
+
+- (void)initializeAPIs
+{
+    _apiKeys = [self loadSecret];
+    _geocodeApiRootUrl = [NSString stringWithFormat:@"%@%@", @"https://maps.googleapis.com/maps/api/geocode/json?key=",
+                          [_apiKeys objectForKey:@"google"]];
+    _googleDirectionsApiRootUrl = [NSString stringWithFormat:@"%@%@", @"https://maps.googleapis.com/maps/api/directions/json?key=",
+                                   [_apiKeys objectForKey:@"google"]];
+    _uberPriceApiRootUrl = @"https://api.uber.com/v1/estimates/price?";
+    _uberTimeApiRootUrl = @"https://api.uber.com/v1/estimates/time?";
 }
 
 @end
