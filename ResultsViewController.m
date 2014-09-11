@@ -9,7 +9,6 @@
 #import "ResultsViewController.h"
 #import "UberMode.h"
 #import "GoogleDirection.h"
-#import "ResultsViewCell.h"
 #import <AFNetworking/AFNetworking.h>
 
 @interface ResultsViewController ()
@@ -169,12 +168,10 @@
         for (id modeData in modes) {
             for (UberMode *uberMode in self.uberModes) {
                 if ([uberMode.productID isEqualToString:[modeData objectForKey:@"product_id"]]) {
-                    [uberMode setTimeEstimateFromSeconds: [[modeData objectForKey:@"estimate"] integerValue]];
-                    [uberMode formatSurgeMultiplier: (int)[modeData objectForKey:@"surge_multiplier"]];
+                    [uberMode setTimeEstimateFromSeconds: (int)[modeData objectForKey:@"estimate"]];
                     [self.travelModeResults addObject:uberMode];
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.tableView reloadData];
-                        NSLog(@"%@ %@ %@ %@", uberMode.productName, uberMode.timeEstimate, uberMode.priceEstimate, uberMode.surgeMutliplier);
                     });
                     
                 }

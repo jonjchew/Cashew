@@ -10,6 +10,8 @@
 
 @implementation GoogleDirection
 
+//@synthesize summary = _summary;
+
 + (instancetype) initWithJsonData: (NSDictionary *) data andMode: (NSString *) mode
 {
     return [[GoogleDirection alloc] initWithJSONData:data andMode: mode];
@@ -19,7 +21,7 @@
 {
     if (self = [super init]) {
         _mode = mode;
-        _summary = [data objectForKey:@"summary"];
+        _summary = [NSString stringWithFormat:@"via %@",[data objectForKey:@"summary"]];
         _distance = [[data valueForKeyPath:@"legs.distance.text"] componentsJoinedByString:@""];
         _timeDuration = [[data valueForKeyPath:@"legs.duration.text"] componentsJoinedByString:@""];
         if ([[data objectForKey:@"legs"][0] objectForKey:@"departure_time"] && [[data objectForKey:@"legs"][0] objectForKey:@"arrival_time"])

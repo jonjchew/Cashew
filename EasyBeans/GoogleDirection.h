@@ -17,5 +17,5 @@
 @property (strong, nonatomic) NSString *arrivalTime;
 @property (strong, nonatomic) NSString *mode;
 + (id) initWithJsonData: (NSDictionary *) data andMode: (NSString *) mode;
-
+//- (void) setSummary:(NSString *)summary;
 @end

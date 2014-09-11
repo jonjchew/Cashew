@@ -19,6 +19,4 @@
 @property (strong, nonatomic) NSString *timeEstimate;
 + (instancetype) initWithJsonData: (NSDictionary *) data;
 - (void) setTimeEstimateFromSeconds:(int)timeEstimateSeconds;
-- (void) formatSurgeMultiplier:(int)surgeMulitplierInt;
-
 @end
