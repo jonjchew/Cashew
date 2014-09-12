@@ -15,9 +15,11 @@
 @property (strong, nonatomic) NSString *priceEstimate;
 @property (strong, nonatomic) NSString *lowEstimate;
 @property (strong, nonatomic) NSString *highEstimate;
-@property (strong, nonatomic) int surgeMutliplier;
-@property (strong, nonatomic) NSString *timeEstimate;
+@property (assign, nonatomic) NSInteger surgeMutliplier;
+@property (assign, nonatomic) NSInteger timeEstimate;
+
 + (instancetype) initWithJsonData: (NSDictionary *) data;
-- (void) setTimeEstimateFromSeconds:(int)timeEstimateSeconds;
+
 - (NSString *) formattedSurgeMultiplier;
+- (NSString *) formattedTimeDuration;
 @end

@@ -23,15 +23,9 @@
         _priceEstimate = [data objectForKey:@"estimate"];
         _lowEstimate = [data objectForKey:@"low_estimate"];
         _highEstimate = [data objectForKey:@"high_estimate"];
-        self.surgeMutliplier = (int)[data objectForKey:@"high_estimate"];
+        self.surgeMutliplier = [[data objectForKey:@"surge_multiplier"] integerValue];
     }
     return self;
-}
-
-- (void) setTimeEstimateFromSeconds:(int)timeEstimateSeconds
-{
-    _timeEstimate = [NSString stringWithFormat:@"%d mins", timeEstimateSeconds/60];
-
 }
 
 - (NSString *) formattedSurgeMultiplier
@@ -48,5 +42,11 @@
         surgeMultiplierString = [NSString stringWithFormat:@"(%.1fx surge multiplier)", (double)self.surgeMutliplier];
     }
     return surgeMultiplierString;
+}
+
+- (NSString *) formattedTimeDuration
+{
+    NSString *formattedTime = [NSString stringWithFormat:@"%i mins", self.timeEstimate/60];
+    return formattedTime;
 }
 @end

@@ -146,7 +146,7 @@
         for (id modeData in modes) {
             for (UberMode *uberMode in self.uberModes) {
                 if ([uberMode.productID isEqualToString:[modeData objectForKey:@"product_id"]]) {
-                    [uberMode setTimeEstimateFromSeconds: [[modeData objectForKey:@"estimate"] integerValue]];
+                    uberMode.timeEstimate = [[modeData objectForKey:@"estimate"] integerValue];
                     [self.travelModeResults addObject:uberMode];
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.tableView reloadData];
@@ -238,7 +238,7 @@
     }
     else {
         modeLabel.text = [travelMode productName];
-        timeDurationLabel.text = [travelMode timeEstimate];
+        timeDurationLabel.text = [travelMode formattedTimeDuration];
         thirdLabel.text = [travelMode priceEstimate];
         fourthLabel.text = [travelMode formattedSurgeMultiplier];
     }
