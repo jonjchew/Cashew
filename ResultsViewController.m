@@ -240,7 +240,7 @@
         modeLabel.text = [travelMode productName];
         timeDurationLabel.text = [travelMode timeEstimate];
         thirdLabel.text = [travelMode priceEstimate];
-        fourthLabel.text = [travelMode surgeMutliplier];
+        fourthLabel.text = [travelMode formattedSurgeMultiplier];
     }
     
     return cell;

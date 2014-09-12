@@ -23,7 +23,7 @@
         _priceEstimate = [data objectForKey:@"estimate"];
         _lowEstimate = [data objectForKey:@"low_estimate"];
         _highEstimate = [data objectForKey:@"high_estimate"];
-        _surgeMutliplier = [self formatSurgeMultiplier:[[data objectForKey:@"surge_multiplier"] integerValue]];
+        self.surgeMutliplier = (int)[data objectForKey:@"high_estimate"];
     }
     return self;
 }
@@ -34,18 +34,18 @@
 
 }
 
-- (NSString *) formatSurgeMultiplier:(int)surgeMulitplierInt
+- (NSString *) formattedSurgeMultiplier
 {
     NSString *surgeMultiplierString;
 
     if ([_productName isEqualToString:@"uberTAXI"]) {
         surgeMultiplierString = @"";
     }
-    else if (surgeMulitplierInt <= 1) {
+    else if (self.surgeMutliplier <= 1) {
         surgeMultiplierString = @"(No surge multiplier)";
     }
     else {
-        surgeMultiplierString = [NSString stringWithFormat:@"(%.1fx surge multiplier)", (double)surgeMulitplierInt];
+        surgeMultiplierString = [NSString stringWithFormat:@"(%.1fx surge multiplier)", (double)self.surgeMutliplier];
     }
     return surgeMultiplierString;
 }
