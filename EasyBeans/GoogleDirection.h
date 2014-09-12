@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSString *summary;
 @property (strong, nonatomic) NSString *distance;
 @property (strong, nonatomic) NSString *timeDuration;
+@property (assign, nonatomic) NSInteger timeDurationSeconds;
 @property (strong, nonatomic) NSString *departureTime;
 @property (strong, nonatomic) NSString *arrivalTime;
 @property (strong, nonatomic) NSString *mode;

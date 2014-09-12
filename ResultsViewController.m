@@ -23,6 +23,7 @@
     NSString *_uberTimeApiRootUrl;
     NSString *_inputtedOrigin;
     NSString *_inputtedDestination;
+    GoogleDirection *_drivingDirection;
 }
 
 - (void)viewDidLoad
@@ -39,8 +40,16 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self getGeocode: self.originLocationText forLocation:@"origin"];
-    [self getGeocode: self.destinationLocationText forLocation:@"destination"];
+    if ([_inputtedOrigin isEqualToString:self.originLocationText] && [_inputtedDestination isEqualToString:self.destinationLocationText]) {
+        [self getTransportationEstimates:self.originGeocode toDestination:self.destinationGeocode];
+    }
+    
+    if (![_inputtedOrigin isEqualToString:self.originLocationText]) {
+        [self getGeocode: self.originLocationText forLocation:@"origin"];
+    }
+    if (![_inputtedDestination isEqualToString:self.destinationLocationText]) {
+        [self getGeocode: self.destinationLocationText forLocation:@"destination"];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,11 +88,16 @@
 
 - (void) getTransportationEstimates: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode
 {
+    // Get driving directions and estimates for uber / driving
+    if ([self.selectedTravelModes containsObject:@"driving"] || [self.selectedTravelModes containsObject:@"uber"]) {
+        [self getGoogleDirections:self.originGeocode toDestination:self.destinationGeocode byMode:@"driving"];
+    }
+    
     for (NSString *travelMode in self.selectedTravelModes){
         if ([travelMode isEqualToString:@"uber"]){
             [self getUberPrices: originGeocode toDestination: destinationGeocode];
         }
-        else {
+        else if (![travelMode isEqualToString:@"driving"]){ // Get estimates for everything else besides driving
             [self getGoogleDirections: originGeocode toDestination: destinationGeocode byMode: travelMode];
         }
     }
@@ -112,8 +126,17 @@
             
             // Create new GoogleDirection instances and store in array
             GoogleDirection *direction = [GoogleDirection initWithJsonData: data andMode: transportationMode];
+            
+            if ([direction.mode isEqualToString:@"driving"]) {
+                _drivingDirection = direction;
+                if ([self.selectedTravelModes containsObject:@"driving"]) {
+                    [self.travelModeResults addObject:direction];
+                }
+            }
+            else {
+                [self.travelModeResults addObject:direction];
+            }
 
-            [self.travelModeResults addObject:direction];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
             });
@@ -238,9 +261,10 @@
     }
     else {
         modeLabel.text = [travelMode productName];
-        timeDurationLabel.text = [travelMode formattedTimeDuration];
-        thirdLabel.text = [travelMode priceEstimate];
-        fourthLabel.text = [travelMode formattedSurgeMultiplier];
+        timeDurationLabel.text = [NSString stringWithFormat:@"%i mins total", (_drivingDirection.timeDurationSeconds + [travelMode timeEstimate])/60];
+
+        thirdLabel.text = [NSString stringWithFormat:@"%@, %@", [travelMode priceEstimate], [travelMode formattedSurgeMultiplier] ];
+        fourthLabel.text = [NSString stringWithFormat:@"will takee about %@ to get to you", [travelMode formattedTimeDuration] ];
     }
     
     return cell;

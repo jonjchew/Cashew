@@ -48,7 +48,6 @@
         viewController.originLocationText = self.originLocation.text;
         viewController.destinationLocationText = self.destinationLocation.text;
      }
-
 }
 
 

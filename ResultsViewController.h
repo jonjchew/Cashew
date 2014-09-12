@@ -20,6 +20,7 @@ typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 @property (strong, nonatomic) NSMutableArray *uberModes;
 @property (strong, nonatomic) NSDictionary *originGeocode;
 @property (strong, nonatomic) NSDictionary *destinationGeocode;
-@property (strong, nonatomic) NSDictionary *originFormattedAddress;
+@property (strong, nonatomic) NSString *originFormattedAddress;
+@property (strong, nonatomic) IBOutlet UILabel *resultsTableHeader;
 @property (strong, nonatomic) NSDictionary *destinationFormattedAddress;
 @end
