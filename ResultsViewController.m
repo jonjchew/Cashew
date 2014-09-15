@@ -11,6 +11,7 @@
 #import "GoogleDirection.h"
 #import "UberApi.h"
 #import "GoogleApi.h"
+#import "StepsViewController.h"
 #import <AFNetworking/AFNetworking.h>
 
 @interface ResultsViewController ()
@@ -83,7 +84,6 @@
         NSDictionary *data = [responseObject objectForKey:@"routes"][0];
         
         GoogleDirection *direction = [GoogleDirection initWithJsonData: data andMode: travelMode];
-        NSLog(@"%@", direction.steps);
         
         if ([direction.mode isEqualToString:@"driving"]) {
             _drivingDirection = direction;
@@ -197,12 +197,21 @@
         NSLog(@"%i",indexPath.row);
 }
 
-# pragma mark - Helpers
-
-- (NSDictionary *) loadSecret {
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"secret" ofType:@"plist"];
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
-    return dict;
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"showSteps"]) {
+        StepsViewController *viewController = (StepsViewController *) segue.destinationViewController;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        id selectedDirection = [self.travelModeResults objectAtIndex:indexPath.row];
+        if ([selectedDirection isKindOfClass:[GoogleDirection class]]) {
+            viewController.stepsArray = [selectedDirection steps];
+        }
+        else {
+            viewController.stepsArray = _drivingDirection.steps;
+        }
+    }
 }
+
+
 
 @end
