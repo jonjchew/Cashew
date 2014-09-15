@@ -21,6 +21,10 @@
 @implementation ResultsViewController {
     NSString *_inputtedOrigin;
     NSString *_inputtedDestination;
+    NSDictionary *_originGeocode;
+    NSDictionary *_destinationGeocode;
+    NSMutableArray *_uberModes;
+    NSMutableArray *_travelModeResults;
     GoogleDirection *_drivingDirection;
 }
 
@@ -31,15 +35,15 @@
     _inputtedDestination = @"destination";
     _inputtedOrigin = @"origin";
 
-    self.travelModeResults = [NSMutableArray array];
-    self.uberModes = [NSMutableArray array];
+    _travelModeResults = [NSMutableArray array];
+    _uberModes = [NSMutableArray array];
 }
 
 
 - (void)findResults
 {
     if ([_inputtedOrigin isEqualToString:self.originLocationText] && [_inputtedDestination isEqualToString:self.destinationLocationText]) {
-        [self getTransportationEstimates:self.originGeocode toDestination:self.destinationGeocode];
+        [self getTransportationEstimates:_originGeocode toDestination:_destinationGeocode];
     }
     
     if (![_inputtedOrigin isEqualToString:self.originLocationText]) {
@@ -59,7 +63,7 @@
 {
     // Get driving directions and estimates for Uber / driving
     if ([self.selectedTravelModes containsObject:@"driving"] || [self.selectedTravelModes containsObject:@"uber"]) {
-        [GoogleApi getGoogleDirections:self.originGeocode toDestination:self.destinationGeocode byMode:@"driving"
+        [GoogleApi getGoogleDirections:_originGeocode toDestination:_destinationGeocode byMode:@"driving"
                              withBlock:^(NSDictionary *responseObject) {
              [self storeAndUpdateDirections:responseObject forMode:@"driving"];
          }];
@@ -89,11 +93,11 @@
         if ([direction.mode isEqualToString:@"driving"]) {
             _drivingDirection = direction;
             if ([self.selectedTravelModes containsObject:@"driving"]) {
-                [self.travelModeResults addObject:direction];
+                [_travelModeResults addObject:direction];
             }
         }
         else {
-            [self.travelModeResults addObject:direction];
+            [_travelModeResults addObject:direction];
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -109,14 +113,13 @@
     NSString *formattedAddress = [geocodeResult objectForKey:@"formatted_address"];
     
     NSString *geocodeVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"Geocode"];
-    NSString *addressVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"FormattedAddress"];
     NSString *labelVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"Label"];
+    
     [self setValue:geocode forKey:geocodeVariableName];
-    [self setValue:formattedAddress forKey:addressVariableName];
     UILabel *formattedLabel = [self valueForKey:labelVariableName];
     formattedLabel.text = formattedAddress;
-    if (self.originGeocode != NULL && self.destinationGeocode != NULL) {
-        [self getTransportationEstimates: self.originGeocode toDestination: self.destinationGeocode];
+    if (_originGeocode != NULL && _destinationGeocode != NULL) {
+        [self getTransportationEstimates: _originGeocode toDestination: _destinationGeocode];
     }
 
 }
@@ -130,16 +133,16 @@
         
         for (id modeData in modes) {
             UberMode *uberMode = [UberMode initWithJsonData: modeData];
-            [self.uberModes addObject:uberMode];
+            [_uberModes addObject:uberMode];
         }
         
     } withSecondBlock:^(NSDictionary *responseObject) {
         NSArray *modes = [responseObject objectForKey:@"times"];
         for (id modeData in modes) {
-            for (UberMode *uberMode in self.uberModes) {
+            for (UberMode *uberMode in _uberModes) {
                 if ([uberMode.productID isEqualToString:[modeData objectForKey:@"product_id"]]) {
                     uberMode.timeEstimate = [[modeData objectForKey:@"estimate"] integerValue];
-                    [self.travelModeResults addObject:uberMode];
+                    [_travelModeResults addObject:uberMode];
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.tableView reloadData];
                     });
@@ -157,7 +160,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.travelModeResults.count;
+    return _travelModeResults.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -168,10 +171,8 @@
     UILabel *timeDurationLabel = (UILabel *)[cell viewWithTag:2];
     UILabel *thirdLabel = (UILabel *)[cell viewWithTag:3];
     UILabel *fourthLabel = (UILabel *)[cell viewWithTag:4];
-//    UIButton *selectModeButton = (UIButton *)[cell viewWithTag:5];
-//    [selectModeButton addTarget:self action:@selector(selectMode:) forControlEvents:UIControlEventTouchUpInside];
     
-    id travelMode = [self.travelModeResults objectAtIndex:indexPath.row];
+    id travelMode = [_travelModeResults objectAtIndex:indexPath.row];
     
     if ([travelMode isKindOfClass:[GoogleDirection class]]) {
         modeLabel.text = [(GoogleDirection*)travelMode mode];
@@ -190,20 +191,12 @@
     return cell;
 }
 
-//- (void)selectMode:(UIButton *)sender
-//{
-//        CGPoint center= sender.center;
-//        CGPoint rootViewPoint = [sender.superview convertPoint:center toView:self.tableView];
-//        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:rootViewPoint];
-//        NSLog(@"%i",indexPath.row);
-//}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showSteps"]) {
         StepsViewController *viewController = (StepsViewController *) segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        id selectedDirection = [self.travelModeResults objectAtIndex:indexPath.row];
+        id selectedDirection = [_travelModeResults objectAtIndex:indexPath.row];
         if ([selectedDirection isKindOfClass:[GoogleDirection class]]) {
             viewController.stepsArray = [selectedDirection steps];
         }

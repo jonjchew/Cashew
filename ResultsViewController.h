@@ -15,16 +15,9 @@ typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 @property (strong, nonatomic) IBOutlet UILabel *destinationLabel;
 @property (strong, nonatomic) IBOutlet UILabel *originLabel;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-
-@property (strong, nonatomic) NSMutableArray *travelModeResults;
 @property (strong, nonatomic) NSString *originLocationText;
 @property (strong, nonatomic) NSString *destinationLocationText;
 @property (strong, nonatomic) NSArray *selectedTravelModes;
-@property (strong, nonatomic) NSMutableArray *uberModes;
-@property (strong, nonatomic) NSDictionary *originGeocode;
-@property (strong, nonatomic) NSDictionary *destinationGeocode;
-@property (strong, nonatomic) NSString *originFormattedAddress;
-@property (strong, nonatomic) NSDictionary *destinationFormattedAddress;
 
 -(void)findResults;
 
