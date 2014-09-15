@@ -26,15 +26,15 @@ static Config *sharedConfigDict = nil;
 {
     self = [super init];
     if ( self ) {
-        _apiKeys = [self APIKeys];
-
+        NSDictionary *configDictionary = [self loadSecret];
+        _apiURLs = [self generateAPIUrls:configDictionary];
+        _travelModes = [NSArray arrayWithArray:[configDictionary objectForKey:@"travelModes"]];
     }
     return self;
 }
 
-- (NSDictionary *)APIKeys
+- (NSDictionary *)generateAPIUrls:(NSDictionary*)apiKeys
 {
-    NSDictionary *apiKeys = [self loadSecret];
     NSDictionary *configDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
         [NSString stringWithFormat:@"%@%@", @"https://maps.googleapis.com/maps/api/geocode/json?key=",
                         [apiKeys objectForKey:@"google"]], @"geocodeApiRootUrl",
@@ -43,7 +43,6 @@ static Config *sharedConfigDict = nil;
         [apiKeys objectForKey:@"uberServer"], @"uberServerToken",
         @"https://api.uber.com/v1/estimates/price?", @"uberPriceApiRootUrl",
         @"https://api.uber.com/v1/estimates/time?", @"uberTimeApiRootUrl", nil];
-    NSLog(@"%@", configDictionary);
     
     return configDictionary;
 }

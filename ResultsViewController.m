@@ -10,6 +10,7 @@
 #import "UberMode.h"
 #import "GoogleDirection.h"
 #import "UberApi.h"
+#import "GoogleApi.h"
 #import <AFNetworking/AFNetworking.h>
 
 @interface ResultsViewController ()
@@ -17,9 +18,6 @@
 @end
 
 @implementation ResultsViewController {
-    NSDictionary *_apiKeys;
-    NSString *_geocodeApiRootUrl;
-    NSString *_googleDirectionsApiRootUrl;
     NSString *_inputtedOrigin;
     NSString *_inputtedDestination;
     GoogleDirection *_drivingDirection;
@@ -28,7 +26,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initializeAPIs];
 
     _inputtedDestination = @"destination";
     _inputtedOrigin = @"origin";
@@ -44,127 +41,109 @@
     }
     
     if (![_inputtedOrigin isEqualToString:self.originLocationText]) {
-        [self getGeocode: self.originLocationText forLocation:@"origin"];
+        _inputtedOrigin = self.originLocationText;
+        [GoogleApi getGeocode: self.originLocationText forLocation:@"origin" withBlock:^(NSDictionary *responseObject) {
+            [self assignGeocode:responseObject forLocation:@"origin"];
+        }];
     }
     if (![_inputtedDestination isEqualToString:self.destinationLocationText]) {
-        [self getGeocode: self.destinationLocationText forLocation:@"destination"];
-    }
+        _inputtedDestination = self.destinationLocationText;
+        [GoogleApi getGeocode: self.destinationLocationText forLocation:@"destination" withBlock:^(NSDictionary *responseObject) {
+            [self assignGeocode:responseObject forLocation:@"destination"];
+        }];    }
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
-#pragma mark - Google API calls
-
-- (void) getGeocode: (NSString *) addressString forLocation: (NSString *) locationType
-{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"address": addressString};
-    
-    [manager GET:_geocodeApiRootUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSDictionary *geocodeResult = [responseObject objectForKey:@"results"][0];
-        NSDictionary *geocode = [[geocodeResult objectForKey:@"geometry"] objectForKey:@"location"];
-        NSString *formattedAddress = [geocodeResult objectForKey:@"formatted_address"];
-        
-        NSString *geocodeVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"Geocode"];
-        NSString *addressVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"FormattedAddress"];
-        [self setValue:geocode forKey:geocodeVariableName];
-        [self setValue:formattedAddress forKey:addressVariableName];
-        
-        // 2. Find directions once both origin and destination geocodes are done querying
-        if (self.originGeocode != NULL && self.destinationGeocode != NULL) {
-            [self getTransportationEstimates: self.originGeocode toDestination: self.destinationGeocode];
-        }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-}
-
 
 - (void) getTransportationEstimates: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode
 {
-    // Get driving directions and estimates for uber / driving
+    // Get driving directions and estimates for Uber / driving
     if ([self.selectedTravelModes containsObject:@"driving"] || [self.selectedTravelModes containsObject:@"uber"]) {
-        [self getGoogleDirections:self.originGeocode toDestination:self.destinationGeocode byMode:@"driving"];
+        [GoogleApi getGoogleDirections:self.originGeocode toDestination:self.destinationGeocode byMode:@"driving"
+                             withBlock:^(NSDictionary *responseObject) {
+             [self storeAndUpdateDirections:responseObject forMode:@"driving"];
+         }];
     }
     
     for (NSString *travelMode in self.selectedTravelModes){
         if ([travelMode isEqualToString:@"uber"]){
-            [UberApi getUberPrices: originGeocode toDestination: destinationGeocode withBlock:^(NSDictionary *responseObject) {
-                NSArray *modes = [responseObject objectForKey:@"prices"];
-                
-                for (id modeData in modes) {
-                    UberMode *uberMode = [UberMode initWithJsonData: modeData];
-                    [self.uberModes addObject:uberMode];
-                }
-
-            } withSecondBlock:^(NSDictionary *responseObject) {
-                NSArray *modes = [responseObject objectForKey:@"times"];
-                for (id modeData in modes) {
-                    for (UberMode *uberMode in self.uberModes) {
-                        if ([uberMode.productID isEqualToString:[modeData objectForKey:@"product_id"]]) {
-                            uberMode.timeEstimate = [[modeData objectForKey:@"estimate"] integerValue];
-                            [self.travelModeResults addObject:uberMode];
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                [self.tableView reloadData];
-                            });
-                            break;
-                        }
-                    }
-                }
-            }];
+            [self getUberEstimates:destinationGeocode originGeocode:originGeocode];
         }
         else if (![travelMode isEqualToString:@"driving"]){ // Get estimates for everything else besides driving
-            [self getGoogleDirections: originGeocode toDestination: destinationGeocode byMode: travelMode];
+            [GoogleApi getGoogleDirections: originGeocode toDestination: destinationGeocode byMode: travelMode withBlock:^(NSDictionary *responseObject) {
+                [self storeAndUpdateDirections:responseObject forMode:travelMode];
+            }];
         }
     }
 }
 
-- (void) getGoogleDirections: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode byMode: (NSString *) transportationMode
+#pragma mark - Google API response handling
+
+- (void)storeAndUpdateDirections:(NSDictionary *)responseObject forMode: (NSString *)travelMode
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    NSString *originCoordinates = [NSString stringWithFormat:@"%@,%@",
-                                   [originGeocode objectForKey:@"lat"],[originGeocode objectForKey:@"lng"]];
-    NSString *destinationCoordinates = [NSString stringWithFormat:@"%@,%@",
-                                        [destinationGeocode objectForKey:@"lat"],[originGeocode objectForKey:@"lng"]];
-    
-    // Add two minutes to current time as 'current' departure time
-    NSString *departureTime = [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970] + (2 * 60)];
-    NSDictionary *parameters = @{@"origin": originCoordinates,
-                                 @"destination": destinationCoordinates,
-                                 @"departure_time": departureTime,
-                                 @"mode": transportationMode};
-    
-    [manager GET:_googleDirectionsApiRootUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    if ([[responseObject objectForKey:@"status"]  isEqual: @"OK"]) {
+        NSDictionary *data = [responseObject objectForKey:@"routes"][0];
         
-        if ([[responseObject objectForKey:@"status"]  isEqual: @"OK"]) {
-            NSDictionary *data = [responseObject objectForKey:@"routes"][0];
-            
-            // Create new GoogleDirection instances and store in array
-            GoogleDirection *direction = [GoogleDirection initWithJsonData: data andMode: transportationMode];
-            
-            if ([direction.mode isEqualToString:@"driving"]) {
-                _drivingDirection = direction;
-                if ([self.selectedTravelModes containsObject:@"driving"]) {
-                    [self.travelModeResults addObject:direction];
-                }
-            }
-            else {
+        GoogleDirection *direction = [GoogleDirection initWithJsonData: data andMode: travelMode];
+        
+        if ([direction.mode isEqualToString:@"driving"]) {
+            _drivingDirection = direction;
+            if ([self.selectedTravelModes containsObject:@"driving"]) {
                 [self.travelModeResults addObject:direction];
             }
-
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-            });
-            NSLog(@"%@ %@", direction.mode, direction.timeDuration);
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
+        else {
+            [self.travelModeResults addObject:direction];
+        }
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+//        NSLog(@"%@ %@", direction.mode, direction.timeDuration);
+    }
+}
+
+- (void) assignGeocode:(NSDictionary *)responseObject forLocation:(NSString *)locationType
+{
+    NSDictionary *geocodeResult = [responseObject objectForKey:@"results"][0];
+    NSDictionary *geocode = [[geocodeResult objectForKey:@"geometry"] objectForKey:@"location"];
+    NSString *formattedAddress = [geocodeResult objectForKey:@"formatted_address"];
+    
+    NSString *geocodeVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"Geocode"];
+    NSString *addressVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"FormattedAddress"];
+    [self setValue:geocode forKey:geocodeVariableName];
+    [self setValue:formattedAddress forKey:addressVariableName];
+
+    if (self.originGeocode != NULL && self.destinationGeocode != NULL) {
+        [self getTransportationEstimates: self.originGeocode toDestination: self.destinationGeocode];
+    }
+
+}
+
+#pragma mark - Uber API response handling
+
+- (void)getUberEstimates:(NSDictionary *)destinationGeocode originGeocode:(NSDictionary *)originGeocode
+{
+    [UberApi getUberPrices: originGeocode toDestination: destinationGeocode withBlock:^(NSDictionary *responseObject) {
+        NSArray *modes = [responseObject objectForKey:@"prices"];
+        
+        for (id modeData in modes) {
+            UberMode *uberMode = [UberMode initWithJsonData: modeData];
+            [self.uberModes addObject:uberMode];
+        }
+        
+    } withSecondBlock:^(NSDictionary *responseObject) {
+        NSArray *modes = [responseObject objectForKey:@"times"];
+        for (id modeData in modes) {
+            for (UberMode *uberMode in self.uberModes) {
+                if ([uberMode.productID isEqualToString:[modeData objectForKey:@"product_id"]]) {
+                    uberMode.timeEstimate = [[modeData objectForKey:@"estimate"] integerValue];
+                    [self.travelModeResults addObject:uberMode];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.tableView reloadData];
+                    });
+                    break;
+                }
+            }
+        }
     }];
 }
 
@@ -174,7 +153,6 @@
     return 1;
 }
 
-// Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.travelModeResults.count;
 }
@@ -223,15 +201,6 @@
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"secret" ofType:@"plist"];
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
     return dict;
-}
-
-- (void)initializeAPIs
-{
-    _apiKeys = [self loadSecret];
-    _geocodeApiRootUrl = [NSString stringWithFormat:@"%@%@", @"https://maps.googleapis.com/maps/api/geocode/json?key=",
-                          [_apiKeys objectForKey:@"google"]];
-    _googleDirectionsApiRootUrl = [NSString stringWithFormat:@"%@%@", @"https://maps.googleapis.com/maps/api/directions/json?key=",
-                                   [_apiKeys objectForKey:@"google"]];
 }
 
 @end

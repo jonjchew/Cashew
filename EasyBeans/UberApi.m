@@ -15,7 +15,7 @@
 + (void) getUberPrices: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode withBlock: (successBlockWithResponse) successBlock
        withSecondBlock: (successBlockWithResponse) secondSuccessBlock
 {
-    NSString *uberPriceApiRootUrl = [[[Config sharedConfig] APIKeys] objectForKey:@"uberPriceApiRootUrl"];
+    NSString *uberPriceApiRootUrl = [[Config sharedConfig].apiURLs objectForKey:@"uberPriceApiRootUrl"];
     [self getUberEstimates:originGeocode toDestination:destinationGeocode withUrl:uberPriceApiRootUrl withBlock:^(NSDictionary *responseObject) {
         [self getUberTimes:originGeocode toDestination:destinationGeocode withBlock:secondSuccessBlock];
         successBlock(responseObject);
@@ -24,7 +24,7 @@
 
 + (void) getUberTimes: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode withBlock: (successBlockWithResponse) successBlock
 {
-    NSString *uberTimeApiRootUrl = [[[Config sharedConfig] APIKeys] objectForKey:@"uberTimeApiRootUrl"];
+    NSString *uberTimeApiRootUrl = [[Config sharedConfig].apiURLs objectForKey:@"uberTimeApiRootUrl"];
     [UberApi getUberEstimates:originGeocode toDestination:destinationGeocode withUrl:uberTimeApiRootUrl withBlock:^(NSDictionary *responseObject) {
         successBlock(responseObject);
     }];
@@ -34,9 +34,8 @@
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    NSLog(@"%@", [[Config sharedConfig] APIKeys]);
     
-    NSString *uberServerToken = [[[Config sharedConfig] APIKeys] objectForKey:@"uberServerToken"];
+    NSString *uberServerToken = [[Config sharedConfig].apiURLs objectForKey:@"uberServerToken"];
     [manager.requestSerializer setValue:[NSString stringWithFormat:@"Token %@",
                                          uberServerToken] forHTTPHeaderField:@"Authorization"];
 

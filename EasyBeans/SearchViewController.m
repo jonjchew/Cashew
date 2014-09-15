@@ -7,9 +7,10 @@
 //
 
 #import "SearchViewController.h"
-#import <AFNetworking/AFNetworking.h>
 #import "UberMode.h"
 #import "GoogleDirection.h"
+#import "Config.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface SearchViewController () 
 
@@ -26,7 +27,7 @@
 
     _inputtedDestination = @"destination";
     _inputtedOrigin = @"origin";
-    self.travelModesArray = [[NSArray alloc] initWithObjects:@"driving", @"biking", @"transit", @"walking", @"uber", nil];
+    self.travelModesArray = [Config sharedConfig].travelModes;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.selectedTravelModes = [NSMutableArray array];
 

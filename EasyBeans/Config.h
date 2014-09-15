@@ -11,6 +11,7 @@
 @interface Config : NSObject
 
 +(Config*)sharedConfig;
-- (NSDictionary *)APIKeys;
+@property (strong, nonatomic) NSDictionary *apiURLs;
+@property (strong, nonatomic) NSArray *travelModes;
 
 @end
