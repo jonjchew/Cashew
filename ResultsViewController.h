@@ -25,4 +25,7 @@ typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 @property (strong, nonatomic) NSDictionary *destinationGeocode;
 @property (strong, nonatomic) NSString *originFormattedAddress;
 @property (strong, nonatomic) NSDictionary *destinationFormattedAddress;
+
+-(void)findResults;
+
 @end

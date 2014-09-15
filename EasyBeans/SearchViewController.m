@@ -48,12 +48,13 @@
         viewController.selectedTravelModes = self.selectedTravelModes;
         viewController.originLocationText = self.originLocation.text;
         viewController.destinationLocationText = self.destinationLocation.text;
+        [viewController findResults];
      }
 }
 
 
 - (IBAction)findResults:(id)sender {
-
+    
 }
 
 #pragma mark - Table View methods

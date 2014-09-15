@@ -27,8 +27,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    NSLog(@"StepsViewController %@", self.stepsArray);
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,12 +49,18 @@
     
     UILabel *distanceLabel = (UILabel *)[cell viewWithTag:1];
     UILabel *timeDurationLabel = (UILabel *)[cell viewWithTag:2];
-    UILabel *directionsLabel = (UILabel *)[cell viewWithTag:3];
-    UILabel *travelModeLabel = (UILabel *)[cell viewWithTag:4];
+    UILabel *travelModeLabel = (UILabel *)[cell viewWithTag:3];
+    UILabel *directionsLabel = (UILabel *)[cell viewWithTag:4];
+    
+    NSString *htmlDirectionString = [[self.stepsArray objectAtIndex: indexPath.row] htmlDirections];
+    
+    NSDictionary *options = @{ NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType };
+    
+    NSMutableAttributedString *attrDirectionString = [[NSMutableAttributedString alloc] initWithData:[htmlDirectionString dataUsingEncoding:NSUTF8StringEncoding] options:options documentAttributes:nil error:nil];
 
     distanceLabel.text = [[self.stepsArray objectAtIndex:indexPath.row] distance];
     timeDurationLabel.text = [[self.stepsArray objectAtIndex: indexPath.row] timeDuration];
-    directionsLabel.text = [[self.stepsArray objectAtIndex: indexPath.row] htmlDirections];
+    directionsLabel.attributedText = attrDirectionString;
     travelModeLabel.text = [[self.stepsArray objectAtIndex: indexPath.row] travelMode];
     
     return cell;

@@ -20,7 +20,7 @@
     if (self = [super init]) {
         _distance = [[data objectForKey:@"distance"] objectForKey:@"text"];
         _timeDuration = [[data objectForKey:@"duration"] objectForKey:@"text"];
-        _htmlDirections = [data objectForKey:@"html_directions"];
+        _htmlDirections = [data objectForKey:@"html_instructions"];
         _travelMode = [data objectForKey:@"travel_mode"];
     }
     return self;

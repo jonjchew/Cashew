@@ -35,7 +35,8 @@
     self.uberModes = [NSMutableArray array];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+
+- (void)findResults
 {
     if ([_inputtedOrigin isEqualToString:self.originLocationText] && [_inputtedDestination isEqualToString:self.destinationLocationText]) {
         [self getTransportationEstimates:self.originGeocode toDestination:self.destinationGeocode];
@@ -167,8 +168,8 @@
     UILabel *timeDurationLabel = (UILabel *)[cell viewWithTag:2];
     UILabel *thirdLabel = (UILabel *)[cell viewWithTag:3];
     UILabel *fourthLabel = (UILabel *)[cell viewWithTag:4];
-    UIButton *selectModeButton = (UIButton *)[cell viewWithTag:5];
-    [selectModeButton addTarget:self action:@selector(selectMode:) forControlEvents:UIControlEventTouchUpInside];
+//    UIButton *selectModeButton = (UIButton *)[cell viewWithTag:5];
+//    [selectModeButton addTarget:self action:@selector(selectMode:) forControlEvents:UIControlEventTouchUpInside];
     
     id travelMode = [self.travelModeResults objectAtIndex:indexPath.row];
     
@@ -189,13 +190,13 @@
     return cell;
 }
 
-- (void)selectMode:(UIButton *)sender
-{
-        CGPoint center= sender.center;
-        CGPoint rootViewPoint = [sender.superview convertPoint:center toView:self.tableView];
-        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:rootViewPoint];
-        NSLog(@"%i",indexPath.row);
-}
+//- (void)selectMode:(UIButton *)sender
+//{
+//        CGPoint center= sender.center;
+//        CGPoint rootViewPoint = [sender.superview convertPoint:center toView:self.tableView];
+//        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:rootViewPoint];
+//        NSLog(@"%i",indexPath.row);
+//}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
