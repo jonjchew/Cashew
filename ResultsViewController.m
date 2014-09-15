@@ -195,7 +195,9 @@
 {
     if ([segue.identifier isEqualToString:@"showSteps"]) {
         StepsViewController *viewController = (StepsViewController *) segue.destinationViewController;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+
         id selectedDirection = [_travelModeResults objectAtIndex:indexPath.row];
         if ([selectedDirection isKindOfClass:[GoogleDirection class]]) {
             viewController.stepsArray = [selectedDirection steps];
@@ -205,7 +207,5 @@
         }
     }
 }
-
-
 
 @end
