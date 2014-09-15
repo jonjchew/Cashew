@@ -7,10 +7,9 @@
 //
 
 #import "GoogleDirection.h"
+#import "Step.h"
 
 @implementation GoogleDirection
-
-//@synthesize summary = _summary;
 
 + (instancetype) initWithJsonData: (NSDictionary *) data andMode: (NSString *) mode
 {
@@ -30,8 +29,19 @@
             _departureTime = [[data valueForKeyPath:@"legs.departure_time.text"] componentsJoinedByString:@""];
             _arrivalTime = [[data valueForKeyPath:@"legs.arrival_time.text"] componentsJoinedByString:@""];
         }
+        _steps = [NSArray arrayWithArray:[self seedSteps:[[data objectForKey:@"legs"][0] objectForKey:@"steps"]]];
     }
     return self;
+}
+
+- (NSArray *)seedSteps:(NSArray *)stepsResponseArray
+{
+    NSMutableArray *stepsArray = [NSMutableArray array];
+    for (NSDictionary *step in stepsResponseArray) {
+        Step *stepObject = [Step initWithJsonData:step];
+        [stepsArray addObject:stepObject];
+    }
+    return stepsArray;
 }
 
 @end

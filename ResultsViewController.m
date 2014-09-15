@@ -83,6 +83,7 @@
         NSDictionary *data = [responseObject objectForKey:@"routes"][0];
         
         GoogleDirection *direction = [GoogleDirection initWithJsonData: data andMode: travelMode];
+        NSLog(@"%@", direction.steps);
         
         if ([direction.mode isEqualToString:@"driving"]) {
             _drivingDirection = direction;
@@ -97,7 +98,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
-//        NSLog(@"%@ %@", direction.mode, direction.timeDuration);
     }
 }
 
@@ -109,9 +109,11 @@
     
     NSString *geocodeVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"Geocode"];
     NSString *addressVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"FormattedAddress"];
+    NSString *labelVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"Label"];
     [self setValue:geocode forKey:geocodeVariableName];
     [self setValue:formattedAddress forKey:addressVariableName];
-
+    UILabel *formattedLabel = [self valueForKey:labelVariableName];
+    formattedLabel.text = formattedAddress;
     if (self.originGeocode != NULL && self.destinationGeocode != NULL) {
         [self getTransportationEstimates: self.originGeocode toDestination: self.destinationGeocode];
     }
