@@ -20,10 +20,12 @@
 {
     if (self = [super init]) {
         _mode = mode;
-        _summary = [NSString stringWithFormat:@"via %@",[data objectForKey:@"summary"]];
         _distance = [[data valueForKeyPath:@"legs.distance.text"] componentsJoinedByString:@""];
         _timeDuration = [[data valueForKeyPath:@"legs.duration.text"] componentsJoinedByString:@""];
         _timeDurationSeconds = [[[data valueForKeyPath:@"legs.duration.value"] componentsJoinedByString:@""] integerValue];
+        if (![[data objectForKey:@"summary"] isEqualToString:@""]) {
+            _summary = [NSString stringWithFormat:@"via %@",[data objectForKey:@"summary"]];
+        }
         if ([[data objectForKey:@"legs"][0] objectForKey:@"departure_time"] && [[data objectForKey:@"legs"][0] objectForKey:@"arrival_time"])
         {
             _departureTime = [[data valueForKeyPath:@"legs.departure_time.text"] componentsJoinedByString:@""];

@@ -178,12 +178,17 @@
         modeLabel.text = [(GoogleDirection*)travelMode mode];
         timeDurationLabel.text = [travelMode timeDuration];
         thirdLabel.text = [travelMode summary];
+        if ([travelMode summary] != NULL) {
+            thirdLabel.text = [travelMode summary];
+        }
+        else {
+            thirdLabel.text = [NSString stringWithFormat:@"Departure time: %@", [travelMode departureTime]];
+        }
         fourthLabel.text = [travelMode distance];
     }
     else {
         modeLabel.text = [travelMode productName];
         timeDurationLabel.text = [NSString stringWithFormat:@"%i mins total", (_drivingDirection.timeDurationSeconds + [travelMode timeEstimate])/60];
-
         thirdLabel.text = [NSString stringWithFormat:@"%@, %@", [travelMode priceEstimate], [travelMode formattedSurgeMultiplier] ];
         fourthLabel.text = [NSString stringWithFormat:@"will take about %@ to get to you", [travelMode formattedTimeDuration] ];
     }
