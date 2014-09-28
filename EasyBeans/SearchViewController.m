@@ -24,6 +24,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.originLocation.delegate = self;
+    self.destinationLocation.delegate = self;
 
     _inputtedDestination = @"destination";
     _inputtedOrigin = @"origin";
@@ -36,6 +39,17 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == _originLocation) {
+        [_destinationLocation becomeFirstResponder];
+    }
+    if (textField == _destinationLocation) {
+        [textField resignFirstResponder];
+    }
+    return YES;
 }
 
 

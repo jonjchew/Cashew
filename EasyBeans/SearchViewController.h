@@ -11,7 +11,7 @@
 
 typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 
-@interface SearchViewController : UIViewController  <UITableViewDelegate, UITableViewDataSource>
+@interface SearchViewController : UIViewController  <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *originLocation;
 @property (strong, nonatomic) IBOutlet UITextField *destinationLocation;
