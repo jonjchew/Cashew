@@ -3,6 +3,7 @@
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Easy beans-->
@@ -17,28 +18,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter destination" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rMF-gJ-bYZ">
-                                <rect key="frame" x="20" y="134" width="280" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter destination" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rMF-gJ-bYZ">
+                                <rect key="frame" x="20" y="122" width="280" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="From where?" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PWA-Au-5yn">
-                                <rect key="frame" x="20" y="96" width="280" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="From where?" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PWA-Au-5yn">
+                                <rect key="frame" x="20" y="84" width="280" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zeG-Yi-uzV">
-                                <rect key="frame" x="99" y="172" width="122" height="30"/>
-                                <state key="normal" title="Compare!">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="findResults:" destination="59o-e4-g5P" eventType="touchUpInside" id="x4E-SE-wO8"/>
-                                    <segue destination="DDR-5W-pKy" kind="push" identifier="getResults" id="e7m-9i-yeo"/>
-                                </connections>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rgl-Qv-LXR">
-                                <rect key="frame" x="20" y="210" width="280" height="304"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rgl-Qv-LXR">
+                                <rect key="frame" x="20" y="160" width="280" height="333"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="dEs-1t-otD">
@@ -55,8 +46,34 @@
                                     <outlet property="delegate" destination="59o-e4-g5P" id="otE-bn-yRz"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zeG-Yi-uzV">
+                                <rect key="frame" x="99" y="508" width="122" height="30"/>
+                                <state key="normal" title="Compare!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="findResults:" destination="59o-e4-g5P" eventType="touchUpInside" id="x4E-SE-wO8"/>
+                                    <segue destination="DDR-5W-pKy" kind="push" identifier="getResults" id="e7m-9i-yeo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rMF-gJ-bYZ" firstAttribute="top" secondItem="PWA-Au-5yn" secondAttribute="bottom" constant="8" id="7dG-MO-meS"/>
+                            <constraint firstItem="rMF-gJ-bYZ" firstAttribute="leading" secondItem="Hnq-4t-0cf" secondAttribute="leadingMargin" constant="4" id="B3I-mD-pWH"/>
+                            <constraint firstItem="zeG-Yi-uzV" firstAttribute="top" secondItem="rgl-Qv-LXR" secondAttribute="bottom" constant="15" id="Bgx-YP-rDu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rgl-Qv-LXR" secondAttribute="trailing" constant="4" id="DBA-Fv-l1h"/>
+                            <constraint firstItem="rMF-gJ-bYZ" firstAttribute="top" secondItem="PWA-Au-5yn" secondAttribute="bottom" constant="8" id="EfC-0O-Av9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zeG-Yi-uzV" secondAttribute="trailing" constant="83" id="F0I-ts-aOZ"/>
+                            <constraint firstItem="PWA-Au-5yn" firstAttribute="leading" secondItem="Hnq-4t-0cf" secondAttribute="leadingMargin" constant="4" id="Fzk-ry-OUW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PWA-Au-5yn" secondAttribute="trailing" constant="4" id="MQc-7W-9Eq"/>
+                            <constraint firstItem="PWA-Au-5yn" firstAttribute="top" secondItem="6bs-N9-o7b" secondAttribute="bottom" constant="20" id="ShJ-Yc-0yW"/>
+                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="leading" secondItem="Hnq-4t-0cf" secondAttribute="leadingMargin" constant="4" id="UhH-3X-yY0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rMF-gJ-bYZ" secondAttribute="trailing" constant="4" id="cEN-o1-4gd"/>
+                            <constraint firstItem="XA0-nD-HnQ" firstAttribute="top" secondItem="zeG-Yi-uzV" secondAttribute="bottom" constant="30" id="fnk-c8-Wd6"/>
+                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="top" secondItem="rMF-gJ-bYZ" secondAttribute="bottom" constant="8" id="nI9-fJ-d9x"/>
+                            <constraint firstItem="zeG-Yi-uzV" firstAttribute="leading" secondItem="Hnq-4t-0cf" secondAttribute="leadingMargin" constant="83" id="oFI-1c-hPL"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Easy beans" id="cxF-qM-lYR"/>
                     <connections>
@@ -234,6 +251,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gsO-wZ-ox9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="489" y="57"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Wxb-Ud-qgh">
+            <objects>
+                <viewController id="DAy-Y8-6bT" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="T9k-ZP-1Z5"/>
+                        <viewControllerLayoutGuide type="bottom" id="vYy-sw-EtM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ujr-ga-bbq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ub0-nv-sLF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

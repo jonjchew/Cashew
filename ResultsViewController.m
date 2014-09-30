@@ -188,7 +188,7 @@
     }
     else {
         modeLabel.text = [travelMode productName];
-        timeDurationLabel.text = [NSString stringWithFormat:@"%i mins total", (_drivingDirection.timeDurationSeconds + [travelMode timeEstimate])/60];
+        timeDurationLabel.text = [NSString stringWithFormat:@"%i mins total", (int)(_drivingDirection.timeDurationSeconds + [travelMode timeEstimate])/60];
         thirdLabel.text = [NSString stringWithFormat:@"%@, %@", [travelMode priceEstimate], [travelMode formattedSurgeMultiplier] ];
         fourthLabel.text = [NSString stringWithFormat:@"will take about %@ to get to you", [travelMode formattedTimeDuration] ];
     }

@@ -46,7 +46,7 @@
 
 - (NSString *) formattedTimeDuration
 {
-    NSString *formattedTime = [NSString stringWithFormat:@"%i mins", self.timeEstimate/60];
+    NSString *formattedTime = [NSString stringWithFormat:@"%i mins", (int)(self.timeEstimate/60)];
     return formattedTime;
 }
 @end
