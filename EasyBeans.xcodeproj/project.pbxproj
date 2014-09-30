@@ -30,6 +30,10 @@
 		36BA9FE419C69E9300E38FD3 /* Step.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA9FE319C69E9300E38FD3 /* Step.m */; };
 		36BA9FE719C6A61A00E38FD3 /* StepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA9FE619C6A61A00E38FD3 /* StepsViewController.m */; };
 		36C56A6E19BECDFE0089D1E2 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C56A6D19BECDFE0089D1E2 /* ResultsViewController.m */; };
+		36FEFA1019DA5A23005C3FB3 /* TRUE TYPOLA.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36FEFA0F19DA5A23005C3FB3 /* TRUE TYPOLA.ttf */; };
+		36FEFA3819DA5C49005C3FB3 /* Walkway.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36FEFA2419DA5C49005C3FB3 /* Walkway.ttf */; };
+		36FEFA3C19DA5DD9005C3FB3 /* Champagne & Limousines.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36FEFA3A19DA5DD9005C3FB3 /* Champagne & Limousines.ttf */; };
+		36FEFA3D19DA5DD9005C3FB3 /* Champagne & Limousines Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36FEFA3B19DA5DD9005C3FB3 /* Champagne & Limousines Bold.ttf */; };
 		3782AD19558D4534B06DF582 /* libPods-EasyBeans.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56B30BD133FC40A5BD36FAFE /* libPods-EasyBeans.a */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +84,10 @@
 		36BA9FE619C6A61A00E38FD3 /* StepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StepsViewController.m; path = ../StepsViewController.m; sourceTree = "<group>"; };
 		36C56A6C19BECDFE0089D1E2 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResultsViewController.h; path = ../ResultsViewController.h; sourceTree = "<group>"; };
 		36C56A6D19BECDFE0089D1E2 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResultsViewController.m; path = ../ResultsViewController.m; sourceTree = "<group>"; };
+		36FEFA0F19DA5A23005C3FB3 /* TRUE TYPOLA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "TRUE TYPOLA.ttf"; path = "EasyBeans/TRUE TYPOLA.ttf"; sourceTree = "<group>"; };
+		36FEFA2419DA5C49005C3FB3 /* Walkway.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Walkway.ttf; sourceTree = "<group>"; };
+		36FEFA3A19DA5DD9005C3FB3 /* Champagne & Limousines.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Champagne & Limousines.ttf"; sourceTree = "<group>"; };
+		36FEFA3B19DA5DD9005C3FB3 /* Champagne & Limousines Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Champagne & Limousines Bold.ttf"; sourceTree = "<group>"; };
 		4802EFBD5E5B4595905E11C5 /* Pods-EasyBeans.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyBeans.xcconfig"; path = "Pods/Pods-EasyBeans.xcconfig"; sourceTree = "<group>"; };
 		56B30BD133FC40A5BD36FAFE /* libPods-EasyBeans.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyBeans.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -112,6 +120,7 @@
 		3627ACA719B6AEE3002E37D7 = {
 			isa = PBXGroup;
 			children = (
+				36FEFA3919DA5C52005C3FB3 /* Resources */,
 				3627ACE219B6AF18002E37D7 /* Storyboard.storyboard */,
 				3627ACB919B6AEE3002E37D7 /* EasyBeans */,
 				3627ACD219B6AEE3002E37D7 /* EasyBeansTests */,
@@ -225,6 +234,17 @@
 			name = Modules;
 			sourceTree = "<group>";
 		};
+		36FEFA3919DA5C52005C3FB3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				36FEFA3A19DA5DD9005C3FB3 /* Champagne & Limousines.ttf */,
+				36FEFA3B19DA5DD9005C3FB3 /* Champagne & Limousines Bold.ttf */,
+				36FEFA0F19DA5A23005C3FB3 /* TRUE TYPOLA.ttf */,
+				36FEFA2419DA5C49005C3FB3 /* Walkway.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -306,6 +326,10 @@
 				3627ACBE19B6AEE3002E37D7 /* InfoPlist.strings in Resources */,
 				3627ACC619B6AEE3002E37D7 /* Images.xcassets in Resources */,
 				3627ACE319B6AF18002E37D7 /* Storyboard.storyboard in Resources */,
+				36FEFA3C19DA5DD9005C3FB3 /* Champagne & Limousines.ttf in Resources */,
+				36FEFA3819DA5C49005C3FB3 /* Walkway.ttf in Resources */,
+				36FEFA3D19DA5DD9005C3FB3 /* Champagne & Limousines Bold.ttf in Resources */,
+				36FEFA1019DA5A23005C3FB3 /* TRUE TYPOLA.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

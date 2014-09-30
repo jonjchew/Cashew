@@ -26,6 +26,11 @@
 	<true/>
 	<key>UIMainStoryboardFile</key>
 	<string>Storyboard</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>TRUE TYPOLA.ttf</string>
+		<string>Walkway.ttf</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

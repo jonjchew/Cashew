@@ -5,8 +5,17 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="TRUE TYPOLA.ttf">
+            <string>Typola</string>
+            <string>Typola</string>
+        </mutableArray>
+        <mutableArray key="Walkway.ttf">
+            <string>Walkway</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
-        <!--Easy beans-->
+        <!--Cashew-->
         <scene sceneID="BtO-c7-i4G">
             <objects>
                 <viewController id="59o-e4-g5P" customClass="SearchViewController" sceneMemberID="viewController">
@@ -18,18 +27,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter destination" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rMF-gJ-bYZ">
-                                <rect key="frame" x="20" y="122" width="280" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="to where?" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rMF-gJ-bYZ">
+                                <rect key="frame" x="16" y="122" width="288" height="30"/>
+                                <fontDescription key="fontDescription" name="Typola" family="Typola" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="From where?" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PWA-Au-5yn">
-                                <rect key="frame" x="20" y="84" width="280" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="from where?" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PWA-Au-5yn">
+                                <rect key="frame" x="16" y="84" width="288" height="30"/>
+                                <fontDescription key="fontDescription" name="Typola" family="Typola" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rgl-Qv-LXR">
-                                <rect key="frame" x="20" y="160" width="280" height="333"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rgl-Qv-LXR">
+                                <rect key="frame" x="16" y="160" width="288" height="329"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="dEs-1t-otD">
@@ -47,9 +56,18 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zeG-Yi-uzV">
-                                <rect key="frame" x="99" y="508" width="122" height="30"/>
-                                <state key="normal" title="Compare!">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="20" y="504" width="280" height="44"/>
+                                <color key="backgroundColor" red="0.10980392160000001" green="0.80000000000000004" blue="0.66666666669999997" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Cqc-0p-mvd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Walkway" family="Walkway" pointSize="32"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="compare">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="findResults:" destination="59o-e4-g5P" eventType="touchUpInside" id="x4E-SE-wO8"/>
@@ -59,23 +77,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="rMF-gJ-bYZ" firstAttribute="top" secondItem="PWA-Au-5yn" secondAttribute="bottom" constant="8" id="7dG-MO-meS"/>
-                            <constraint firstItem="rMF-gJ-bYZ" firstAttribute="leading" secondItem="Hnq-4t-0cf" secondAttribute="leadingMargin" constant="4" id="B3I-mD-pWH"/>
-                            <constraint firstItem="zeG-Yi-uzV" firstAttribute="top" secondItem="rgl-Qv-LXR" secondAttribute="bottom" constant="15" id="Bgx-YP-rDu"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="rgl-Qv-LXR" secondAttribute="trailing" constant="4" id="DBA-Fv-l1h"/>
-                            <constraint firstItem="rMF-gJ-bYZ" firstAttribute="top" secondItem="PWA-Au-5yn" secondAttribute="bottom" constant="8" id="EfC-0O-Av9"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="zeG-Yi-uzV" secondAttribute="trailing" constant="83" id="F0I-ts-aOZ"/>
-                            <constraint firstItem="PWA-Au-5yn" firstAttribute="leading" secondItem="Hnq-4t-0cf" secondAttribute="leadingMargin" constant="4" id="Fzk-ry-OUW"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="PWA-Au-5yn" secondAttribute="trailing" constant="4" id="MQc-7W-9Eq"/>
-                            <constraint firstItem="PWA-Au-5yn" firstAttribute="top" secondItem="6bs-N9-o7b" secondAttribute="bottom" constant="20" id="ShJ-Yc-0yW"/>
-                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="leading" secondItem="Hnq-4t-0cf" secondAttribute="leadingMargin" constant="4" id="UhH-3X-yY0"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="rMF-gJ-bYZ" secondAttribute="trailing" constant="4" id="cEN-o1-4gd"/>
-                            <constraint firstItem="XA0-nD-HnQ" firstAttribute="top" secondItem="zeG-Yi-uzV" secondAttribute="bottom" constant="30" id="fnk-c8-Wd6"/>
-                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="top" secondItem="rMF-gJ-bYZ" secondAttribute="bottom" constant="8" id="nI9-fJ-d9x"/>
-                            <constraint firstItem="zeG-Yi-uzV" firstAttribute="leading" secondItem="Hnq-4t-0cf" secondAttribute="leadingMargin" constant="83" id="oFI-1c-hPL"/>
+                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="trailing" secondItem="rMF-gJ-bYZ" secondAttribute="trailing" id="6Ws-wl-ZMU"/>
+                            <constraint firstItem="PWA-Au-5yn" firstAttribute="top" secondItem="6bs-N9-o7b" secondAttribute="bottom" constant="20" id="7Hj-x1-oLk"/>
+                            <constraint firstItem="rMF-gJ-bYZ" firstAttribute="top" secondItem="PWA-Au-5yn" secondAttribute="bottom" constant="8" symbolic="YES" id="CiJ-PN-S6H"/>
+                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="leading" secondItem="Hnq-4t-0cf" secondAttribute="leadingMargin" id="JTM-Nb-u86"/>
+                            <constraint firstItem="zeG-Yi-uzV" firstAttribute="top" secondItem="rgl-Qv-LXR" secondAttribute="bottom" constant="15" id="Js5-6A-N0e"/>
+                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="centerX" secondItem="zeG-Yi-uzV" secondAttribute="centerX" id="LAl-Xh-uzf"/>
+                            <constraint firstItem="rMF-gJ-bYZ" firstAttribute="leading" secondItem="rgl-Qv-LXR" secondAttribute="leading" id="SJL-RF-OC5"/>
+                            <constraint firstAttribute="bottom" secondItem="zeG-Yi-uzV" secondAttribute="bottom" constant="20" symbolic="YES" id="Tri-OP-JhF"/>
+                            <constraint firstItem="PWA-Au-5yn" firstAttribute="leading" secondItem="rMF-gJ-bYZ" secondAttribute="leading" id="WgM-mz-g4a"/>
+                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="trailing" secondItem="Hnq-4t-0cf" secondAttribute="trailingMargin" id="dR8-OD-h64"/>
+                            <constraint firstItem="PWA-Au-5yn" firstAttribute="trailing" secondItem="rMF-gJ-bYZ" secondAttribute="trailing" id="v7k-h5-S7N"/>
+                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="top" secondItem="rMF-gJ-bYZ" secondAttribute="bottom" constant="8" symbolic="YES" id="vcb-xH-sxK"/>
+                            <constraint firstItem="zeG-Yi-uzV" firstAttribute="leading" secondItem="Hnq-4t-0cf" secondAttribute="leadingMargin" constant="4" id="yb3-ji-0gU"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Easy beans" id="cxF-qM-lYR"/>
+                    <navigationItem key="navigationItem" title="Cashew" id="cxF-qM-lYR">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="3wc-SY-NIl"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="destinationLocation" destination="rMF-gJ-bYZ" id="6lD-SH-GyF"/>
                         <outlet property="originLocation" destination="PWA-Au-5yn" id="K5C-Aq-iAb"/>
@@ -161,7 +180,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="bRA-aA-4W5"/>
+                    <navigationItem key="navigationItem" id="bRA-aA-4W5">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="MGe-KZ-UsO"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="destinationLabel" destination="atP-aj-Dpj" id="vT4-kX-mv5"/>
                         <outlet property="originLabel" destination="L02-GM-Q45" id="ZZo-SG-wwJ"/>
@@ -251,23 +272,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gsO-wZ-ox9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="489" y="57"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Wxb-Ud-qgh">
-            <objects>
-                <viewController id="DAy-Y8-6bT" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="T9k-ZP-1Z5"/>
-                        <viewControllerLayoutGuide type="bottom" id="vYy-sw-EtM"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ujr-ga-bbq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ub0-nv-sLF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

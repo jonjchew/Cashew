@@ -27,7 +27,7 @@
     
     self.originLocation.delegate = self;
     self.destinationLocation.delegate = self;
-
+    
     _inputtedDestination = @"destination";
     _inputtedOrigin = @"origin";
     self.travelModesArray = [Config sharedConfig].travelModes;
@@ -68,7 +68,7 @@
 
 
 - (IBAction)findResults:(id)sender {
-    
+    [sender setSelected:YES];
 }
 
 #pragma mark - Table View methods
@@ -87,6 +87,7 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     cell.textLabel.text = [self.travelModesArray objectAtIndex:indexPath.row];
+    cell.textLabel.font = [UIFont fontWithName:@"Walkway" size:25];
     return cell;
 }
 
