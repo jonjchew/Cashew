@@ -49,20 +49,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3627ACB019B6AEE3002E37D7 /* EasyBeans.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyBeans.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3627ACB019B6AEE3002E37D7 /* Cashew.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cashew.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3627ACB319B6AEE3002E37D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3627ACB519B6AEE3002E37D7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3627ACB719B6AEE3002E37D7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		3627ACBB19B6AEE3002E37D7 /* EasyBeans-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EasyBeans-Info.plist"; sourceTree = "<group>"; };
+		3627ACBB19B6AEE3002E37D7 /* Cashew-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Cashew-Info.plist"; sourceTree = "<group>"; };
 		3627ACBD19B6AEE3002E37D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3627ACBF19B6AEE3002E37D7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3627ACC119B6AEE3002E37D7 /* EasyBeans-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EasyBeans-Prefix.pch"; sourceTree = "<group>"; };
+		3627ACC119B6AEE3002E37D7 /* Cashew-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cashew-Prefix.pch"; sourceTree = "<group>"; };
 		3627ACC219B6AEE3002E37D7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3627ACC319B6AEE3002E37D7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3627ACC519B6AEE3002E37D7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		3627ACCB19B6AEE3002E37D7 /* EasyBeansTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyBeansTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3627ACCB19B6AEE3002E37D7 /* CashewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CashewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3627ACCC19B6AEE3002E37D7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		3627ACD419B6AEE3002E37D7 /* EasyBeansTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EasyBeansTests-Info.plist"; sourceTree = "<group>"; };
+		3627ACD419B6AEE3002E37D7 /* CashewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CashewTests-Info.plist"; sourceTree = "<group>"; };
 		3627ACD619B6AEE3002E37D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3627ACD819B6AEE3002E37D7 /* EasyBeansTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EasyBeansTests.m; sourceTree = "<group>"; };
 		3627ACE219B6AF18002E37D7 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
@@ -91,7 +91,6 @@
 		36FEFA3B19DA5DD9005C3FB3 /* Champagne & Limousines Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Champagne & Limousines Bold.ttf"; sourceTree = "<group>"; };
 		36FEFA4119DA7736005C3FB3 /* UIColor+CashewGreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CashewGreen.h"; sourceTree = "<group>"; };
 		36FEFA4219DA7736005C3FB3 /* UIColor+CashewGreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CashewGreen.m"; sourceTree = "<group>"; };
-		4802EFBD5E5B4595905E11C5 /* Pods-EasyBeans.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyBeans.xcconfig"; path = "Pods/Pods-EasyBeans.xcconfig"; sourceTree = "<group>"; };
 		56B30BD133FC40A5BD36FAFE /* libPods-EasyBeans.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyBeans.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB1A4B25CF13422DACD0DF77 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2EAB22307AA4EE783F015CE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -125,13 +124,11 @@
 		3627ACA719B6AEE3002E37D7 = {
 			isa = PBXGroup;
 			children = (
-				36FEFA3919DA5C52005C3FB3 /* Resources */,
 				3627ACE219B6AF18002E37D7 /* Storyboard.storyboard */,
 				3627ACB919B6AEE3002E37D7 /* EasyBeans */,
 				3627ACD219B6AEE3002E37D7 /* EasyBeansTests */,
 				3627ACB219B6AEE3002E37D7 /* Frameworks */,
 				3627ACB119B6AEE3002E37D7 /* Products */,
-				4802EFBD5E5B4595905E11C5 /* Pods-EasyBeans.xcconfig */,
 				E2EAB22307AA4EE783F015CE /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
@@ -139,8 +136,8 @@
 		3627ACB119B6AEE3002E37D7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3627ACB019B6AEE3002E37D7 /* EasyBeans.app */,
-				3627ACCB19B6AEE3002E37D7 /* EasyBeansTests.xctest */,
+				3627ACB019B6AEE3002E37D7 /* Cashew.app */,
+				3627ACCB19B6AEE3002E37D7 /* CashewTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,6 +158,7 @@
 		3627ACB919B6AEE3002E37D7 /* EasyBeans */ = {
 			isa = PBXGroup;
 			children = (
+				36FEFA3919DA5C52005C3FB3 /* Resources */,
 				36FEFA4119DA7736005C3FB3 /* UIColor+CashewGreen.h */,
 				36FEFA4219DA7736005C3FB3 /* UIColor+CashewGreen.m */,
 				36BA9FD119C65A7600E38FD3 /* Modules */,
@@ -180,10 +178,10 @@
 			isa = PBXGroup;
 			children = (
 				3627ACED19B6C8D0002E37D7 /* secret.plist */,
-				3627ACBB19B6AEE3002E37D7 /* EasyBeans-Info.plist */,
+				3627ACBB19B6AEE3002E37D7 /* Cashew-Info.plist */,
 				3627ACBC19B6AEE3002E37D7 /* InfoPlist.strings */,
 				3627ACBF19B6AEE3002E37D7 /* main.m */,
-				3627ACC119B6AEE3002E37D7 /* EasyBeans-Prefix.pch */,
+				3627ACC119B6AEE3002E37D7 /* Cashew-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -200,7 +198,7 @@
 		3627ACD319B6AEE3002E37D7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3627ACD419B6AEE3002E37D7 /* EasyBeansTests-Info.plist */,
+				3627ACD419B6AEE3002E37D7 /* CashewTests-Info.plist */,
 				3627ACD519B6AEE3002E37D7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -252,14 +250,15 @@
 				36FEFA2419DA5C49005C3FB3 /* Walkway.ttf */,
 			);
 			name = Resources;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3627ACAF19B6AEE3002E37D7 /* EasyBeans */ = {
+		3627ACAF19B6AEE3002E37D7 /* Cashew */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3627ACDC19B6AEE3002E37D7 /* Build configuration list for PBXNativeTarget "EasyBeans" */;
+			buildConfigurationList = 3627ACDC19B6AEE3002E37D7 /* Build configuration list for PBXNativeTarget "Cashew" */;
 			buildPhases = (
 				D9092FB33A91416CA821AA21 /* Check Pods Manifest.lock */,
 				3627ACAC19B6AEE3002E37D7 /* Sources */,
@@ -271,14 +270,14 @@
 			);
 			dependencies = (
 			);
-			name = EasyBeans;
+			name = Cashew;
 			productName = EasyBeans;
-			productReference = 3627ACB019B6AEE3002E37D7 /* EasyBeans.app */;
+			productReference = 3627ACB019B6AEE3002E37D7 /* Cashew.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3627ACCA19B6AEE3002E37D7 /* EasyBeansTests */ = {
+		3627ACCA19B6AEE3002E37D7 /* CashewTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3627ACDF19B6AEE3002E37D7 /* Build configuration list for PBXNativeTarget "EasyBeansTests" */;
+			buildConfigurationList = 3627ACDF19B6AEE3002E37D7 /* Build configuration list for PBXNativeTarget "CashewTests" */;
 			buildPhases = (
 				3627ACC719B6AEE3002E37D7 /* Sources */,
 				3627ACC819B6AEE3002E37D7 /* Frameworks */,
@@ -289,9 +288,9 @@
 			dependencies = (
 				3627ACD119B6AEE3002E37D7 /* PBXTargetDependency */,
 			);
-			name = EasyBeansTests;
+			name = CashewTests;
 			productName = EasyBeansTests;
-			productReference = 3627ACCB19B6AEE3002E37D7 /* EasyBeansTests.xctest */;
+			productReference = 3627ACCB19B6AEE3002E37D7 /* CashewTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -308,7 +307,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3627ACAB19B6AEE3002E37D7 /* Build configuration list for PBXProject "EasyBeans" */;
+			buildConfigurationList = 3627ACAB19B6AEE3002E37D7 /* Build configuration list for PBXProject "Cashew" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -320,8 +319,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3627ACAF19B6AEE3002E37D7 /* EasyBeans */,
-				3627ACCA19B6AEE3002E37D7 /* EasyBeansTests */,
+				3627ACAF19B6AEE3002E37D7 /* Cashew */,
+				3627ACCA19B6AEE3002E37D7 /* CashewTests */,
 			);
 		};
 /* End PBXProject section */
@@ -418,7 +417,7 @@
 /* Begin PBXTargetDependency section */
 		3627ACD119B6AEE3002E37D7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3627ACAF19B6AEE3002E37D7 /* EasyBeans */;
+			target = 3627ACAF19B6AEE3002E37D7 /* Cashew */;
 			targetProxy = 3627ACD019B6AEE3002E37D7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -520,10 +519,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EasyBeans/EasyBeans-Prefix.pch";
-				INFOPLIST_FILE = "EasyBeans/EasyBeans-Info.plist";
+				GCC_PREFIX_HEADER = "EasyBeans/Cashew-Prefix.pch";
+				INFOPLIST_FILE = "EasyBeans/Cashew-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Cashew;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -535,10 +534,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EasyBeans/EasyBeans-Prefix.pch";
-				INFOPLIST_FILE = "EasyBeans/EasyBeans-Info.plist";
+				GCC_PREFIX_HEADER = "EasyBeans/Cashew-Prefix.pch";
+				INFOPLIST_FILE = "EasyBeans/Cashew-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Cashew;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -558,8 +557,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "EasyBeansTests/EasyBeansTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "EasyBeansTests/CashewTests-Info.plist";
+				PRODUCT_NAME = CashewTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -576,8 +575,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EasyBeans/EasyBeans-Prefix.pch";
-				INFOPLIST_FILE = "EasyBeansTests/EasyBeansTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "EasyBeansTests/CashewTests-Info.plist";
+				PRODUCT_NAME = CashewTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -586,7 +585,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3627ACAB19B6AEE3002E37D7 /* Build configuration list for PBXProject "EasyBeans" */ = {
+		3627ACAB19B6AEE3002E37D7 /* Build configuration list for PBXProject "Cashew" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3627ACDA19B6AEE3002E37D7 /* Debug */,
@@ -595,7 +594,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3627ACDC19B6AEE3002E37D7 /* Build configuration list for PBXNativeTarget "EasyBeans" */ = {
+		3627ACDC19B6AEE3002E37D7 /* Build configuration list for PBXNativeTarget "Cashew" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3627ACDD19B6AEE3002E37D7 /* Debug */,
@@ -604,7 +603,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3627ACDF19B6AEE3002E37D7 /* Build configuration list for PBXNativeTarget "EasyBeansTests" */ = {
+		3627ACDF19B6AEE3002E37D7 /* Build configuration list for PBXNativeTarget "CashewTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3627ACE019B6AEE3002E37D7 /* Debug */,

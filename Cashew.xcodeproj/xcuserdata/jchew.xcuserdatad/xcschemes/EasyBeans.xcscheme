@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3627ACAF19B6AEE3002E37D7"
-               BuildableName = "EasyBeans.app"
-               BlueprintName = "EasyBeans"
-               ReferencedContainer = "container:EasyBeans.xcodeproj">
+               BuildableName = "Cashew.app"
+               BlueprintName = "Cashew"
+               ReferencedContainer = "container:Cashew.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3627ACCA19B6AEE3002E37D7"
-               BuildableName = "EasyBeansTests.xctest"
-               BlueprintName = "EasyBeansTests"
-               ReferencedContainer = "container:EasyBeans.xcodeproj">
+               BuildableName = "CashewTests.xctest"
+               BlueprintName = "CashewTests"
+               ReferencedContainer = "container:Cashew.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3627ACAF19B6AEE3002E37D7"
-            BuildableName = "EasyBeans.app"
-            BlueprintName = "EasyBeans"
-            ReferencedContainer = "container:EasyBeans.xcodeproj">
+            BuildableName = "Cashew.app"
+            BlueprintName = "Cashew"
+            ReferencedContainer = "container:Cashew.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3627ACAF19B6AEE3002E37D7"
-            BuildableName = "EasyBeans.app"
-            BlueprintName = "EasyBeans"
-            ReferencedContainer = "container:EasyBeans.xcodeproj">
+            BuildableName = "Cashew.app"
+            BlueprintName = "Cashew"
+            ReferencedContainer = "container:Cashew.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3627ACAF19B6AEE3002E37D7"
-            BuildableName = "EasyBeans.app"
-            BlueprintName = "EasyBeans"
-            ReferencedContainer = "container:EasyBeans.xcodeproj">
+            BuildableName = "Cashew.app"
+            BlueprintName = "Cashew"
+            ReferencedContainer = "container:Cashew.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
