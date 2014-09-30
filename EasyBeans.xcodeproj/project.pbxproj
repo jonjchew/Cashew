@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3189A6FDF6E54F6FB66360AD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB1A4B25CF13422DACD0DF77 /* libPods.a */; };
 		3627ACB419B6AEE3002E37D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3627ACB319B6AEE3002E37D7 /* Foundation.framework */; };
 		3627ACB619B6AEE3002E37D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3627ACB519B6AEE3002E37D7 /* CoreGraphics.framework */; };
 		3627ACB819B6AEE3002E37D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3627ACB719B6AEE3002E37D7 /* UIKit.framework */; };
@@ -35,7 +36,6 @@
 		36FEFA3C19DA5DD9005C3FB3 /* Champagne & Limousines.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36FEFA3A19DA5DD9005C3FB3 /* Champagne & Limousines.ttf */; };
 		36FEFA3D19DA5DD9005C3FB3 /* Champagne & Limousines Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36FEFA3B19DA5DD9005C3FB3 /* Champagne & Limousines Bold.ttf */; };
 		36FEFA4319DA7736005C3FB3 /* UIColor+CashewGreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FEFA4219DA7736005C3FB3 /* UIColor+CashewGreen.m */; };
-		3782AD19558D4534B06DF582 /* libPods-EasyBeans.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56B30BD133FC40A5BD36FAFE /* libPods-EasyBeans.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +93,8 @@
 		36FEFA4219DA7736005C3FB3 /* UIColor+CashewGreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CashewGreen.m"; sourceTree = "<group>"; };
 		4802EFBD5E5B4595905E11C5 /* Pods-EasyBeans.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyBeans.xcconfig"; path = "Pods/Pods-EasyBeans.xcconfig"; sourceTree = "<group>"; };
 		56B30BD133FC40A5BD36FAFE /* libPods-EasyBeans.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyBeans.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB1A4B25CF13422DACD0DF77 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2EAB22307AA4EE783F015CE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +105,7 @@
 				3627ACB619B6AEE3002E37D7 /* CoreGraphics.framework in Frameworks */,
 				3627ACB819B6AEE3002E37D7 /* UIKit.framework in Frameworks */,
 				3627ACB419B6AEE3002E37D7 /* Foundation.framework in Frameworks */,
-				3782AD19558D4534B06DF582 /* libPods-EasyBeans.a in Frameworks */,
+				3189A6FDF6E54F6FB66360AD /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +132,7 @@
 				3627ACB219B6AEE3002E37D7 /* Frameworks */,
 				3627ACB119B6AEE3002E37D7 /* Products */,
 				4802EFBD5E5B4595905E11C5 /* Pods-EasyBeans.xcconfig */,
+				E2EAB22307AA4EE783F015CE /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,6 +153,7 @@
 				3627ACB719B6AEE3002E37D7 /* UIKit.framework */,
 				3627ACCC19B6AEE3002E37D7 /* XCTest.framework */,
 				56B30BD133FC40A5BD36FAFE /* libPods-EasyBeans.a */,
+				DB1A4B25CF13422DACD0DF77 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -361,7 +365,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-EasyBeans-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D9092FB33A91416CA821AA21 /* Check Pods Manifest.lock */ = {
@@ -511,7 +515,7 @@
 		};
 		3627ACDD19B6AEE3002E37D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4802EFBD5E5B4595905E11C5 /* Pods-EasyBeans.xcconfig */;
+			baseConfigurationReference = E2EAB22307AA4EE783F015CE /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -526,7 +530,7 @@
 		};
 		3627ACDE19B6AEE3002E37D7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4802EFBD5E5B4595905E11C5 /* Pods-EasyBeans.xcconfig */;
+			baseConfigurationReference = E2EAB22307AA4EE783F015CE /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
