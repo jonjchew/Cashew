@@ -34,6 +34,7 @@
 		36FEFA3819DA5C49005C3FB3 /* Walkway.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36FEFA2419DA5C49005C3FB3 /* Walkway.ttf */; };
 		36FEFA3C19DA5DD9005C3FB3 /* Champagne & Limousines.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36FEFA3A19DA5DD9005C3FB3 /* Champagne & Limousines.ttf */; };
 		36FEFA3D19DA5DD9005C3FB3 /* Champagne & Limousines Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36FEFA3B19DA5DD9005C3FB3 /* Champagne & Limousines Bold.ttf */; };
+		36FEFA4319DA7736005C3FB3 /* UIColor+CashewGreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FEFA4219DA7736005C3FB3 /* UIColor+CashewGreen.m */; };
 		3782AD19558D4534B06DF582 /* libPods-EasyBeans.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56B30BD133FC40A5BD36FAFE /* libPods-EasyBeans.a */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,8 @@
 		36FEFA2419DA5C49005C3FB3 /* Walkway.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Walkway.ttf; sourceTree = "<group>"; };
 		36FEFA3A19DA5DD9005C3FB3 /* Champagne & Limousines.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Champagne & Limousines.ttf"; sourceTree = "<group>"; };
 		36FEFA3B19DA5DD9005C3FB3 /* Champagne & Limousines Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Champagne & Limousines Bold.ttf"; sourceTree = "<group>"; };
+		36FEFA4119DA7736005C3FB3 /* UIColor+CashewGreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CashewGreen.h"; sourceTree = "<group>"; };
+		36FEFA4219DA7736005C3FB3 /* UIColor+CashewGreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CashewGreen.m"; sourceTree = "<group>"; };
 		4802EFBD5E5B4595905E11C5 /* Pods-EasyBeans.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyBeans.xcconfig"; path = "Pods/Pods-EasyBeans.xcconfig"; sourceTree = "<group>"; };
 		56B30BD133FC40A5BD36FAFE /* libPods-EasyBeans.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyBeans.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -154,6 +157,8 @@
 		3627ACB919B6AEE3002E37D7 /* EasyBeans */ = {
 			isa = PBXGroup;
 			children = (
+				36FEFA4119DA7736005C3FB3 /* UIColor+CashewGreen.h */,
+				36FEFA4219DA7736005C3FB3 /* UIColor+CashewGreen.m */,
 				36BA9FD119C65A7600E38FD3 /* Modules */,
 				36BA9FD019C65A6400E38FD3 /* Controllers */,
 				36BA9FCF19C65A5400E38FD3 /* Models */,
@@ -381,6 +386,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36FEFA4319DA7736005C3FB3 /* UIColor+CashewGreen.m in Sources */,
 				36BA9FDE19C66F7100E38FD3 /* GoogleApi.m in Sources */,
 				3627ACC419B6AEE3002E37D7 /* AppDelegate.m in Sources */,
 				36BA9FE719C6A61A00E38FD3 /* StepsViewController.m in Sources */,

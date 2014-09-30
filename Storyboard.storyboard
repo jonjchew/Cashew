@@ -37,17 +37,21 @@
                                 <fontDescription key="fontDescription" name="Typola" family="Typola" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rgl-Qv-LXR">
-                                <rect key="frame" x="16" y="160" width="288" height="329"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rgl-Qv-LXR">
+                                <rect key="frame" x="16" y="160" width="288" height="338"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" red="0.10980392160000001" green="0.80000000000000004" blue="0.66666666669999997" alpha="1" colorSpace="deviceRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="dEs-1t-otD">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="dEs-1t-otD">
                                         <rect key="frame" x="0.0" y="22" width="280" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dEs-1t-otD" id="4Sf-wn-3WC">
                                             <rect key="frame" x="0.0" y="0.0" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -56,10 +60,10 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zeG-Yi-uzV">
-                                <rect key="frame" x="20" y="504" width="280" height="44"/>
+                                <rect key="frame" x="16" y="497" width="288" height="51"/>
                                 <color key="backgroundColor" red="0.10980392160000001" green="0.80000000000000004" blue="0.66666666669999997" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Cqc-0p-mvd"/>
+                                    <constraint firstAttribute="height" constant="51" id="MXN-pE-H2i"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Walkway" family="Walkway" pointSize="32"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -77,19 +81,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="trailing" secondItem="rMF-gJ-bYZ" secondAttribute="trailing" id="6Ws-wl-ZMU"/>
                             <constraint firstItem="PWA-Au-5yn" firstAttribute="top" secondItem="6bs-N9-o7b" secondAttribute="bottom" constant="20" id="7Hj-x1-oLk"/>
                             <constraint firstItem="rMF-gJ-bYZ" firstAttribute="top" secondItem="PWA-Au-5yn" secondAttribute="bottom" constant="8" symbolic="YES" id="CiJ-PN-S6H"/>
-                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="leading" secondItem="Hnq-4t-0cf" secondAttribute="leadingMargin" id="JTM-Nb-u86"/>
-                            <constraint firstItem="zeG-Yi-uzV" firstAttribute="top" secondItem="rgl-Qv-LXR" secondAttribute="bottom" constant="15" id="Js5-6A-N0e"/>
-                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="centerX" secondItem="zeG-Yi-uzV" secondAttribute="centerX" id="LAl-Xh-uzf"/>
-                            <constraint firstItem="rMF-gJ-bYZ" firstAttribute="leading" secondItem="rgl-Qv-LXR" secondAttribute="leading" id="SJL-RF-OC5"/>
-                            <constraint firstAttribute="bottom" secondItem="zeG-Yi-uzV" secondAttribute="bottom" constant="20" symbolic="YES" id="Tri-OP-JhF"/>
+                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="leading" secondItem="zeG-Yi-uzV" secondAttribute="leading" id="MI1-m2-HBf"/>
+                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="trailing" secondItem="rMF-gJ-bYZ" secondAttribute="trailing" id="VdY-Mz-w9w"/>
                             <constraint firstItem="PWA-Au-5yn" firstAttribute="leading" secondItem="rMF-gJ-bYZ" secondAttribute="leading" id="WgM-mz-g4a"/>
-                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="trailing" secondItem="Hnq-4t-0cf" secondAttribute="trailingMargin" id="dR8-OD-h64"/>
+                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="leading" secondItem="rMF-gJ-bYZ" secondAttribute="leading" id="dqA-JR-Qkr"/>
+                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="trailing" secondItem="Hnq-4t-0cf" secondAttribute="trailingMargin" id="oqD-yZ-LLw"/>
+                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="top" secondItem="rMF-gJ-bYZ" secondAttribute="bottom" constant="8" symbolic="YES" id="pYD-lT-QwH"/>
+                            <constraint firstItem="XA0-nD-HnQ" firstAttribute="top" secondItem="rgl-Qv-LXR" secondAttribute="bottom" constant="70" id="qXk-ar-xST"/>
+                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="leading" secondItem="Hnq-4t-0cf" secondAttribute="leadingMargin" id="tjP-vg-6FO"/>
                             <constraint firstItem="PWA-Au-5yn" firstAttribute="trailing" secondItem="rMF-gJ-bYZ" secondAttribute="trailing" id="v7k-h5-S7N"/>
-                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="top" secondItem="rMF-gJ-bYZ" secondAttribute="bottom" constant="8" symbolic="YES" id="vcb-xH-sxK"/>
-                            <constraint firstItem="zeG-Yi-uzV" firstAttribute="leading" secondItem="Hnq-4t-0cf" secondAttribute="leadingMargin" constant="4" id="yb3-ji-0gU"/>
+                            <constraint firstAttribute="bottom" secondItem="zeG-Yi-uzV" secondAttribute="bottom" constant="20" symbolic="YES" id="vKe-WB-RZc"/>
+                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="trailing" secondItem="zeG-Yi-uzV" secondAttribute="trailing" id="xcf-cJ-cQ7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Cashew" id="cxF-qM-lYR">

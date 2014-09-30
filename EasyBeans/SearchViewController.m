@@ -10,6 +10,7 @@
 #import "UberMode.h"
 #import "GoogleDirection.h"
 #import "Config.h"
+#import "UIColor+CashewGreen.h"
 #import <AFNetworking/AFNetworking.h>
 
 @interface SearchViewController () 
@@ -92,13 +93,17 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     UITableViewCell *cell = [tableView cellForRowAtIndexPath: indexPath];
+    
     if (cell.accessoryType == UITableViewCellAccessoryNone) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.contentView.backgroundColor = [UIColor whiteColor];
     }
     
     NSString *travelMode = [self.travelModesArray objectAtIndex:indexPath.row];
@@ -110,6 +115,7 @@
     }
 
 }
+
 
 #pragma mark - Config
 
