@@ -29,6 +29,8 @@
     self.originLocation.delegate = self;
     self.destinationLocation.delegate = self;
     
+    [[self compareButton] setEnabled:NO];
+    
     _inputtedDestination = @"destination";
     _inputtedOrigin = @"origin";
     self.travelModesArray = [Config sharedConfig].travelModes;
@@ -51,6 +53,13 @@
         [textField resignFirstResponder];
     }
     return YES;
+}
+
+- (void) enableButtonIfReady
+{
+    if (self.originLocation.text.length > 0 && self.destinationLocation.text.length > 0 && [self.selectedTravelModes count] > 0) {
+        [[self compareButton] setEnabled:YES];
+    }
 }
 
 
@@ -113,6 +122,8 @@
     else {
         [self.selectedTravelModes removeObject: travelMode];
     }
+    
+    [self enableButtonIfReady];
 
 }
 
