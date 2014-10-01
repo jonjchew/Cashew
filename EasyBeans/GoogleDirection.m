@@ -21,7 +21,7 @@
     if (self = [super init]) {
         _mode = mode;
         _distance = [[data valueForKeyPath:@"legs.distance.text"] componentsJoinedByString:@""];
-        _timeDuration = [[data valueForKeyPath:@"legs.duration.text"] componentsJoinedByString:@""];
+        _timeDurationText = [[data valueForKeyPath:@"legs.duration.text"] componentsJoinedByString:@""];
         _timeDurationSeconds = [[[data valueForKeyPath:@"legs.duration.value"] componentsJoinedByString:@""] integerValue];
         if (![[data objectForKey:@"summary"] isEqualToString:@""]) {
             _summary = [NSString stringWithFormat:@"via %@",[data objectForKey:@"summary"]];

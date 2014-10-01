@@ -38,6 +38,7 @@
 
     _travelModeResults = [NSMutableArray array];
     _uberModes = [NSMutableArray array];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 
@@ -102,7 +103,7 @@
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
+            [self reorderAndReloadTableView];
         });
     }
     else if ([[responseObject objectForKey:@"status"]  isEqual: @"ZERO_RESULTS"]) {
@@ -150,9 +151,10 @@
             for (UberMode *uberMode in _uberModes) {
                 if ([uberMode.productID isEqualToString:[modeData objectForKey:@"product_id"]]) {
                     uberMode.timeEstimate = [[modeData objectForKey:@"estimate"] integerValue];
+                    uberMode.timeDurationSeconds = uberMode.timeEstimate + _drivingDirection.timeDurationSeconds;
                     [_travelModeResults addObject:uberMode];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.tableView reloadData];
+                        [self reorderAndReloadTableView];
                     });
                     break;
                 }
@@ -184,7 +186,7 @@
     
     if ([travelMode isKindOfClass:[GoogleDirection class]]) {
         modeLabel.text = [(GoogleDirection*)travelMode mode];
-        timeDurationLabel.text = [travelMode timeDuration];
+        timeDurationLabel.text = [travelMode timeDurationText];
         thirdLabel.text = [travelMode summary];
         if ([travelMode summary] != NULL) {
             thirdLabel.text = [travelMode summary];
@@ -196,12 +198,25 @@
     }
     else {
         modeLabel.text = [travelMode productName];
-        timeDurationLabel.text = [NSString stringWithFormat:@"%i mins total", (int)(_drivingDirection.timeDurationSeconds + [travelMode timeEstimate])/60];
+        timeDurationLabel.text = [NSString stringWithFormat:@"%i mins total", (int)[travelMode timeDurationSeconds]/60];
         thirdLabel.text = [NSString stringWithFormat:@"%@, %@", [travelMode priceEstimate], [travelMode formattedSurgeMultiplier] ];
-        fourthLabel.text = [NSString stringWithFormat:@"will take about %@ to get to you", [travelMode formattedTimeDuration] ];
+        fourthLabel.text = [NSString stringWithFormat:@"~%@ to get to you", [travelMode formattedTimeDuration] ];
     }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)reorderAndReloadTableView
+{
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeDurationSeconds" ascending:YES];
+    NSArray *sortedTravelModeResults = [_travelModeResults sortedArrayUsingDescriptors:@[sortDescriptor]];
+    _travelModeResults = [[NSMutableArray alloc] initWithArray: sortedTravelModeResults];
+    [self.tableView reloadData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

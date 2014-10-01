@@ -126,12 +126,10 @@
     return 1;
 }
 
-// Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.travelModesArray.count;
 }
 
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
@@ -140,7 +138,8 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
@@ -161,8 +160,6 @@
     else {
         [self.selectedTravelModes removeObject: travelMode];
     }
-    
-//    [self enableButtonIfReady];
 
 }
 

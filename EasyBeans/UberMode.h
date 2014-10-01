@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSString *highEstimate;
 @property (assign, nonatomic) NSInteger surgeMutliplier;
 @property (assign, nonatomic) NSInteger timeEstimate;
+@property (assign, nonatomic) NSInteger timeDurationSeconds;
 
 + (instancetype) initWithJsonData: (NSDictionary *) data;
 
