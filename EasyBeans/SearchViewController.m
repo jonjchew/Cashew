@@ -30,6 +30,11 @@
     self.destinationLocation.delegate = self;
     
     [[self compareButton] setEnabled:NO];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChanged) name:UITextFieldTextDidChangeNotification
+                                               object:self.originLocation];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChanged) name:UITextFieldTextDidChangeNotification
+                                               object:self.destinationLocation];
+    [self.compareButton setBackgroundColor:[UIColor grayColor]];
     
     _inputtedDestination = @"destination";
     _inputtedOrigin = @"origin";
@@ -42,6 +47,11 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (void)textFieldChanged
+{
+    [self enableButtonIfReady];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -58,7 +68,8 @@
 - (void) enableButtonIfReady
 {
     if (self.originLocation.text.length > 0 && self.destinationLocation.text.length > 0 && [self.selectedTravelModes count] > 0) {
-        [[self compareButton] setEnabled:YES];
+        [self.compareButton setEnabled:YES];
+        [self.compareButton setBackgroundColor:[UIColor cashewGreenColor]];
     }
 }
 
@@ -78,7 +89,7 @@
 
 
 - (IBAction)findResults:(id)sender {
-    [sender setSelected:YES];
+
 }
 
 #pragma mark - Table View methods

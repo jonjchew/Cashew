@@ -89,8 +89,8 @@
 		36FEFA2419DA5C49005C3FB3 /* Walkway.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Walkway.ttf; sourceTree = "<group>"; };
 		36FEFA3A19DA5DD9005C3FB3 /* Champagne & Limousines.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Champagne & Limousines.ttf"; sourceTree = "<group>"; };
 		36FEFA3B19DA5DD9005C3FB3 /* Champagne & Limousines Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Champagne & Limousines Bold.ttf"; sourceTree = "<group>"; };
-		36FEFA4119DA7736005C3FB3 /* UIColor+CashewGreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CashewGreen.h"; sourceTree = "<group>"; };
-		36FEFA4219DA7736005C3FB3 /* UIColor+CashewGreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CashewGreen.m"; sourceTree = "<group>"; };
+		36FEFA4119DA7736005C3FB3 /* UIColor+CashewGreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+CashewGreen.h"; path = "EasyBeans/UIColor+CashewGreen.h"; sourceTree = "<group>"; };
+		36FEFA4219DA7736005C3FB3 /* UIColor+CashewGreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+CashewGreen.m"; path = "EasyBeans/UIColor+CashewGreen.m"; sourceTree = "<group>"; };
 		56B30BD133FC40A5BD36FAFE /* libPods-EasyBeans.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyBeans.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB1A4B25CF13422DACD0DF77 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2EAB22307AA4EE783F015CE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -159,8 +159,6 @@
 			isa = PBXGroup;
 			children = (
 				36FEFA3919DA5C52005C3FB3 /* Resources */,
-				36FEFA4119DA7736005C3FB3 /* UIColor+CashewGreen.h */,
-				36FEFA4219DA7736005C3FB3 /* UIColor+CashewGreen.m */,
 				36BA9FD119C65A7600E38FD3 /* Modules */,
 				36BA9FD019C65A6400E38FD3 /* Controllers */,
 				36BA9FCF19C65A5400E38FD3 /* Models */,
@@ -244,6 +242,8 @@
 		36FEFA3919DA5C52005C3FB3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				36FEFA4119DA7736005C3FB3 /* UIColor+CashewGreen.h */,
+				36FEFA4219DA7736005C3FB3 /* UIColor+CashewGreen.m */,
 				36FEFA3A19DA5DD9005C3FB3 /* Champagne & Limousines.ttf */,
 				36FEFA3B19DA5DD9005C3FB3 /* Champagne & Limousines Bold.ttf */,
 				36FEFA0F19DA5A23005C3FB3 /* TRUE TYPOLA.ttf */,
