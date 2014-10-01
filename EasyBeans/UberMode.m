@@ -46,7 +46,15 @@
 
 - (NSString *) formattedTimeDuration
 {
-    NSString *formattedTime = [NSString stringWithFormat:@"%i mins", (int)(self.timeEstimate/60)];
+    int minutes = (int)(self.timeEstimate/60);
+    NSString *minuteString;
+    if (minutes == 1) {
+        minuteString = @"min";
+    }
+    else {
+        minuteString = @"mins";
+    }
+    NSString *formattedTime = [NSString stringWithFormat:@"%i %@", minutes, minuteString];
     return formattedTime;
 }
 @end
