@@ -114,7 +114,6 @@
     else {
         return @"PASS";
     }
-
 }
 
 - (IBAction)findResults:(id)sender {
@@ -165,15 +164,6 @@
     
 //    [self enableButtonIfReady];
 
-}
-
-
-#pragma mark - Config
-
-- (NSDictionary *) loadSecret {
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"secret" ofType:@"plist"];
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
-    return dict;
 }
 
 @end

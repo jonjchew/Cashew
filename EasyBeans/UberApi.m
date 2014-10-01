@@ -52,14 +52,15 @@
     
     [manager GET:apiUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        if ([operation.response statusCode] == 200) {
-            if (successBlock) {
-                successBlock(responseObject);
-            }
-        }
+    if (successBlock) {
+        successBlock(responseObject);
+    }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
+        if(successBlock) {
+            successBlock(NULL);
+        }
     }];
 }
 

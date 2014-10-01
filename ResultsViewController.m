@@ -12,6 +12,7 @@
 #import "UberApi.h"
 #import "GoogleApi.h"
 #import "StepsViewController.h"
+#import <RTAlertView.h>
 #import <AFNetworking/AFNetworking.h>
 
 @interface ResultsViewController ()
@@ -104,6 +105,10 @@
             [self.tableView reloadData];
         });
     }
+    else if ([[responseObject objectForKey:@"status"]  isEqual: @"ZERO_RESULTS"]) {
+        NSString *errorMessage = [NSString stringWithFormat:@"No %@ directions found... =(", travelMode];
+        [self showErrorAlert:errorMessage];
+    }
 }
 
 - (void) assignGeocode:(NSDictionary *)responseObject forLocation:(NSString *)locationType
@@ -129,13 +134,16 @@
 - (void)getUberEstimates:(NSDictionary *)destinationGeocode originGeocode:(NSDictionary *)originGeocode
 {
     [UberApi getUberPrices: originGeocode toDestination: destinationGeocode withBlock:^(NSDictionary *responseObject) {
-        NSArray *modes = [responseObject objectForKey:@"prices"];
-        
-        for (id modeData in modes) {
-            UberMode *uberMode = [UberMode initWithJsonData: modeData];
-            [_uberModes addObject:uberMode];
+        if (responseObject == NULL) {
+            [self showErrorAlert:@"No Uber results found for your request =(..."];
+        } else {
+            NSArray *modes = [responseObject objectForKey:@"prices"];
+            
+            for (id modeData in modes) {
+                UberMode *uberMode = [UberMode initWithJsonData: modeData];
+                [_uberModes addObject:uberMode];
+            }
         }
-        
     } withSecondBlock:^(NSDictionary *responseObject) {
         NSArray *modes = [responseObject objectForKey:@"times"];
         for (id modeData in modes) {
@@ -211,6 +219,21 @@
             viewController.stepsArray = _drivingDirection.steps;
         }
     }
+}
+
+#pragma mark - Error handling
+
+- (void)showErrorAlert:(NSString *)errorMessage
+{
+    RTAlertView *alertView = [[RTAlertView alloc] initWithTitle:@"sorry"
+                                                        message:errorMessage
+                                                       delegate:nil
+                                              cancelButtonTitle:@"aw man.."
+                                              otherButtonTitles:nil];
+    alertView.messageFont = [UIFont fontWithName:@"Walkway" size:20];
+    alertView.titleFont = [UIFont fontWithName:@"Walkway" size:25];
+    alertView.cancelButtonFont = [UIFont fontWithName:@"Walkway" size:25];
+    [alertView show];
 }
 
 @end

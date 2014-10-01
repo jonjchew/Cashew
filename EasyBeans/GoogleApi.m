@@ -26,8 +26,7 @@
     }];
 }
 
-+ (void) getGoogleDirections: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode byMode: (NSString *) travelMode
-                   withBlock: (successBlockWithResponse) successBlock
++ (void) getGoogleDirections: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode byMode: (NSString *) travelMode withBlock: (successBlockWithResponse) successBlock
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
