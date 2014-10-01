@@ -41,6 +41,15 @@ install_resource()
       ;;
   esac
 }
+install_resource "RTAlertView/RTAlertView/RTAlertView/RTAlertViewController.xib"
+install_resource "RTAlertView/RTAlertView/RTAlertView/RTAlertViewDoubleTextFieldView.xib"
+install_resource "RTAlertView/RTAlertView/RTAlertView/RTAlertViewRecursiveButtonContainerView.xib"
+install_resource "RTAlertView/RTAlertView/RTAlertView/RTAlertViewSingleTextFieldView.xib"
+install_resource "RTAlertView/RTAlertView/RTAlertView/RTAlertView.xcassets"
+install_resource "RTAlertView/RTAlertView/RTAlertView/RTAlertView.xcassets/bg-double-textfield.imageset/bg-double-textfield.png"
+install_resource "RTAlertView/RTAlertView/RTAlertView/RTAlertView.xcassets/bg-double-textfield.imageset/bg-double-textfield@2x.png"
+install_resource "RTAlertView/RTAlertView/RTAlertView/RTAlertView.xcassets/bg-single-textfield.imageset/bg-single-textfield.png"
+install_resource "RTAlertView/RTAlertView/RTAlertView/RTAlertView.xcassets/bg-single-textfield.imageset/bg-single-textfield@2x.png"
 
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 if [[ "${ACTION}" == "install" ]]; then

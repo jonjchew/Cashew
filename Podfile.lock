@@ -20,11 +20,17 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - RBBAnimation (0.3.0)
+  - RTAlertView (0.0.6):
+    - RBBAnimation (= 0.3.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - RTAlertView (= 0.0.6)
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  RBBAnimation: 243d73be1a526f1b51d266b182e4aa0cfe9cbf64
+  RTAlertView: 93a2c3a42bffde43b0736a50e0d8e811081c3ea4
 
 COCOAPODS: 0.33.1

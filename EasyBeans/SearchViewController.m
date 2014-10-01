@@ -11,6 +11,7 @@
 #import "GoogleDirection.h"
 #import "Config.h"
 #import "UIColor+CashewGreen.h"
+#import <RTAlertView.h>
 #import <AFNetworking/AFNetworking.h>
 
 @interface SearchViewController () 
@@ -29,13 +30,6 @@
     self.originLocation.delegate = self;
     self.destinationLocation.delegate = self;
     
-    [[self compareButton] setEnabled:NO];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChanged) name:UITextFieldTextDidChangeNotification
-                                               object:self.originLocation];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChanged) name:UITextFieldTextDidChangeNotification
-                                               object:self.destinationLocation];
-    [self.compareButton setBackgroundColor:[UIColor grayColor]];
-    
     _inputtedDestination = @"destination";
     _inputtedOrigin = @"origin";
     self.travelModesArray = [Config sharedConfig].travelModes;
@@ -49,11 +43,6 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)textFieldChanged
-{
-    [self enableButtonIfReady];
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if (textField == _originLocation) {
@@ -63,14 +52,6 @@
         [textField resignFirstResponder];
     }
     return YES;
-}
-
-- (void) enableButtonIfReady
-{
-    if (self.originLocation.text.length > 0 && self.destinationLocation.text.length > 0 && [self.selectedTravelModes count] > 0) {
-        [self.compareButton setEnabled:YES];
-        [self.compareButton setBackgroundColor:[UIColor cashewGreenColor]];
-    }
 }
 
 
@@ -87,6 +68,54 @@
      }
 }
 
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    
+    if ([identifier isEqualToString:@"getResults"]) {
+        NSString *error = [self checkMissingField];
+        if ([error isEqualToString:@"PASS"]) {
+            return YES;
+        }
+        else {
+            [self showErrorMessage:error];
+            return NO;
+        }
+    }
+    else {
+        return NO;
+    }
+}
+
+- (void) showErrorMessage:(NSString*)error
+{
+    NSString *errorMessage = [NSString stringWithFormat:@"Remember to %@", error];
+    RTAlertView *alertView = [[RTAlertView alloc] initWithTitle:@"oops"
+                                                        message:errorMessage
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Got it!"
+                                              otherButtonTitles:nil];
+    alertView.messageFont = [UIFont fontWithName:@"Walkway" size:20];
+    alertView.titleFont = [UIFont fontWithName:@"Walkway" size:25];
+    alertView.cancelButtonFont = [UIFont fontWithName:@"Walkway" size:25];
+    [alertView show];
+}
+
+- (NSString*)checkMissingField
+{
+    if (self.originLocation.text.length == 0) {
+        return @"enter your start location!";
+    }
+    else if (self.destinationLocation.text.length == 0){
+        return @"enter your destination!";
+    }
+    else if ([self.selectedTravelModes count] == 0) {
+        return @"select a transportation mode to compare!";
+    }
+    else {
+        return @"PASS";
+    }
+
+}
 
 - (IBAction)findResults:(id)sender {
 
@@ -134,7 +163,7 @@
         [self.selectedTravelModes removeObject: travelMode];
     }
     
-    [self enableButtonIfReady];
+//    [self enableButtonIfReady];
 
 }
 

@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-RBBAnimation.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-RTAlertView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>45F021D2EB734A019F33A3E5</key>
+		<key>183C11797D914D728F9512DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C5E927AA254149DDBC8CE6E3</key>
+		<key>425D32E2D82248B383063D25</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9DB9DF2209C94E0FB5420C70</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BD55C6B1CBEA43F7B26184AD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
