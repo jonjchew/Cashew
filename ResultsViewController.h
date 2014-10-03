@@ -12,6 +12,7 @@ typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 
 @interface ResultsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
+- (IBAction)loadApp:(id)sender;
 @property (strong, nonatomic) IBOutlet UILabel *destinationLabel;
 @property (strong, nonatomic) IBOutlet UILabel *originLabel;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

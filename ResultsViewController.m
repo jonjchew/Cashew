@@ -186,7 +186,7 @@
     
     if ([travelMode isKindOfClass:[GoogleDirection class]]) {
         modeLabel.text = [(GoogleDirection*)travelMode mode];
-        timeDurationLabel.text = [travelMode timeDurationText];
+        timeDurationLabel.text = [NSString stringWithFormat:@"%@ total", [travelMode timeDurationText] ];
         thirdLabel.text = [travelMode summary];
         if ([travelMode summary] != NULL) {
             thirdLabel.text = [travelMode summary];
@@ -219,20 +219,51 @@
     [self.tableView reloadData];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)loadGoogleMapsWithDirections:(GoogleDirection *)selectedDirection withOrigin:(NSString *)originAddressURI withDestination:(NSString *)destinationAddressURI
 {
-    if ([segue.identifier isEqualToString:@"showSteps"]) {
-        StepsViewController *viewController = (StepsViewController *) segue.destinationViewController;
-        CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
-        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    if ([[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString:@"comgooglemaps://"]]) {
+        
+        NSString *googleMapURLString = [NSString stringWithFormat:@"comgooglemaps://?saddr=%@&daddr=%@&directionsmode=%@",
+                                        originAddressURI, destinationAddressURI, [(GoogleDirection*)selectedDirection mode]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:googleMapURLString]];
+    } else {
+        [self showErrorAlert:@"Looks like you don't have GoogleMaps installed... =("];
+    }
+}
 
-        id selectedDirection = [_travelModeResults objectAtIndex:indexPath.row];
-        if ([selectedDirection isKindOfClass:[GoogleDirection class]]) {
-            viewController.stepsArray = [selectedDirection steps];
-        }
-        else {
-            viewController.stepsArray = _drivingDirection.steps;
-        }
+#pragma mark- Load external apps
+
+- (void)loadUberWithPreferences:(UberMode *)selectedMode withOrigin:(NSString *)originAddressURI withDestination:(NSString *)destinationAddressURI
+{
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"uber://"]]) {
+//        NSString *originGeocode = [NSString stringWithFormat:@"%f,%f",
+//                                   [[_originGeocode objectForKey:@"lat"] floatValue], [[_originGeocode objectForKey:@"lng" ] floatValue]];
+//        NSString *destinationGeocode = [NSString stringWithFormat:@"%f,%f",
+//                                        [[_destinationGeocode objectForKey:@"lat"] floatValue], [[_destinationGeocode objectForKey:@"lng" ] floatValue]];
+        NSString *uberURLString = [NSString stringWithFormat:@"uber://?action=setPickup?pickup[formatted_address]=%@&dropoff[formatted_address]=%@&product_id=%@",
+                                   originAddressURI, destinationAddressURI, selectedMode.productID];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:uberURLString]];
+    }
+    else {
+        [self showErrorAlert:@"Looks like you don't have Uber installed... =("];
+    }
+}
+
+
+- (IBAction)loadApp:(id)sender
+{
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    
+    id selectedDirection = [_travelModeResults objectAtIndex:indexPath.row];
+    NSString *originAddressURI =[self.originLabel.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
+    NSString *destinationAddressURI =[self.destinationLabel.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
+    
+    if ([selectedDirection isKindOfClass:[GoogleDirection class]]) {
+        [self loadGoogleMapsWithDirections:selectedDirection withOrigin:originAddressURI withDestination:destinationAddressURI];
+    }
+    else {
+        [self loadUberWithPreferences:selectedDirection withOrigin:originAddressURI withDestination:destinationAddressURI];
     }
 }
 
@@ -246,7 +277,7 @@
                                               cancelButtonTitle:@"aw man.."
                                               otherButtonTitles:nil];
     alertView.messageFont = [UIFont fontWithName:@"Walkway" size:20];
-    alertView.titleFont = [UIFont fontWithName:@"Walkway" size:25];
+    alertView.titleFont = [UIFont fontWithName:@"Walkway" size:30];
     alertView.cancelButtonFont = [UIFont fontWithName:@"Walkway" size:25];
     [alertView show];
 }

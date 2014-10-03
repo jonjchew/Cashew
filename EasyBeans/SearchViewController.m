@@ -38,11 +38,6 @@
 
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if (textField == _originLocation) {
@@ -53,7 +48,6 @@
     }
     return YES;
 }
-
 
 #pragma mark - Navigation
 
@@ -77,7 +71,7 @@
             return YES;
         }
         else {
-            [self showErrorMessage:error];
+            [self showErrorAlert:error];
             return NO;
         }
     }
@@ -86,7 +80,7 @@
     }
 }
 
-- (void) showErrorMessage:(NSString*)error
+- (void) showErrorAlert:(NSString*)error
 {
     NSString *errorMessage = [NSString stringWithFormat:@"Remember to %@", error];
     RTAlertView *alertView = [[RTAlertView alloc] initWithTitle:@"oops"
@@ -140,7 +134,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath: indexPath];
@@ -160,7 +153,6 @@
     else {
         [self.selectedTravelModes removeObject: travelMode];
     }
-
 }
 
 @end
