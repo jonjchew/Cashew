@@ -60,3 +60,15 @@
 #define COCOAPODS_VERSION_MINOR_RTAlertView 0
 #define COCOAPODS_VERSION_PATCH_RTAlertView 6
 
+// StaticDataTableViewController
+#define COCOAPODS_POD_AVAILABLE_StaticDataTableViewController
+#define COCOAPODS_VERSION_MAJOR_StaticDataTableViewController 2
+#define COCOAPODS_VERSION_MINOR_StaticDataTableViewController 0
+#define COCOAPODS_VERSION_PATCH_StaticDataTableViewController 3
+
+// UITableView-AnimationControl
+#define COCOAPODS_POD_AVAILABLE_UITableView_AnimationControl
+#define COCOAPODS_VERSION_MAJOR_UITableView_AnimationControl 2
+#define COCOAPODS_VERSION_MINOR_UITableView_AnimationControl 0
+#define COCOAPODS_VERSION_PATCH_UITableView_AnimationControl 0
+

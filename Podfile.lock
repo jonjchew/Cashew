@@ -23,14 +23,20 @@ PODS:
   - RBBAnimation (0.3.0)
   - RTAlertView (0.0.6):
     - RBBAnimation (= 0.3.0)
+  - StaticDataTableViewController (2.0.3)
+  - UITableView-AnimationControl (2.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - RTAlertView (= 0.0.6)
+  - StaticDataTableViewController (~> 2.0)
+  - UITableView-AnimationControl
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   RBBAnimation: 243d73be1a526f1b51d266b182e4aa0cfe9cbf64
   RTAlertView: 93a2c3a42bffde43b0736a50e0d8e811081c3ea4
+  StaticDataTableViewController: 171ee35f17f6176baa98ce05c1e4769a628732ad
+  UITableView-AnimationControl: a2ba5c795b175381449301c922aae573046cd4fb
 
 COCOAPODS: 0.33.1

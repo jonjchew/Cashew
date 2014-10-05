@@ -19,6 +19,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-StaticDataTableViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-UITableView-AnimationControl.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>183C11797D914D728F9512DF</key>
+		<key>1EB5FE4A5C2E47DBBB3B0662</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>425D32E2D82248B383063D25</key>
+		<key>25CFAB269DF345FF90648CE0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9DB9DF2209C94E0FB5420C70</key>
+		<key>38DBA72DC2F142559D6D25BF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BD55C6B1CBEA43F7B26184AD</key>
+		<key>5CE9FC437A734B588716842F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A8A7241D2CA146DEA80A1F1A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B1152436930A4D89810C831D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

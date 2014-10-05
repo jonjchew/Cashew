@@ -46,7 +46,7 @@
 
 - (NSString *) formattedTimeDuration
 {
-    int minutes = (int)(self.timeEstimate/60);
+    int minutes = ceil((self.timeEstimate/60));
     NSString *minuteString;
     if (minutes == 1) {
         minuteString = @"min";
