@@ -115,16 +115,11 @@
         else {
             [_travelModeResults addObject:direction];
         }
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self reorderAndReloadTableView];
-        });
     }
-    else if ([[responseObject objectForKey:@"status"]  isEqual: @"ZERO_RESULTS"]) {
-        NSString *errorMessage = [NSString stringWithFormat:@"No %@ directions found... =(", travelMode];
+    else {
         [_errors addObject:travelMode];
-        [self showErrorAlert:errorMessage];
     }
+    [self reorderAndReloadTableView];
 }
 
 - (void)assignGeocode:(NSDictionary *)responseObject forLocation:(NSString *)locationType
@@ -152,7 +147,6 @@
     [UberApi getUberPrices: originGeocode toDestination: destinationGeocode withBlock:^(NSDictionary *responseObject) {
         if (responseObject == NULL) {
             [_errors addObject:@"uber"];
-            [self showErrorAlert:@"No Uber results found for your request =(..."];
         } else {
             [_successes addObject:@"uber"];
             NSArray *modes = [responseObject objectForKey:@"prices"];
@@ -236,6 +230,9 @@
     if ([self queriesComplete]) {
         [self.tableView reloadData];
         [self hideActivityIndicator];
+        if ([_errors count] > 0) {
+            [self showErrorAlert:[self buildErrorMessages]];
+        }
     }
     
 }
@@ -312,9 +309,52 @@
 
 #pragma mark - Error handling
 
+- (NSString *)buildErrorMessages
+{
+    NSMutableString *errorMessage = [NSMutableString string];
+    NSMutableString *uberErrorMessage = [NSMutableString stringWithString:@""];
+
+    if ([_errors containsObject:@"uber"]) {
+        [_errors removeObject:@"uber"];
+        if (![self.selectedTravelModes containsObject:@"driving"] && [_errors containsObject:@"driving"]) {
+            [_errors removeObject:@"driving"];
+        }
+        [uberErrorMessage appendString:@"No Uber results were found"];
+        if ([_errors count] > 0) {
+            [uberErrorMessage appendString:@", either"];
+            uberErrorMessage = [NSMutableString stringWithFormat:@" %@", uberErrorMessage];
+        }
+        [uberErrorMessage appendString:@"."];
+    }
+
+    if ([_errors count] > 0) {
+        [errorMessage appendString:@"No "];
+        [_errors enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if (![_errors[idx] isEqualToString:@"uber"]) {
+                if (idx == [_errors count] - 1 && [_errors count] > 1) {
+                    [errorMessage appendString:[NSString stringWithFormat:@"and %@", _errors[idx]]];
+                }
+                else if (idx == [_errors count] - 2) {
+                    [errorMessage appendString:[NSString stringWithFormat:@"%@ ", _errors[idx]]];
+                }
+                else if ([_errors count] == 1) {
+                    [errorMessage appendString:_errors[idx]];
+                }
+                else {
+                    [errorMessage appendString:[NSString stringWithFormat:@"%@, ", _errors[idx]]];
+                }
+            }
+        }];
+        [errorMessage appendString:[NSString stringWithFormat:@" directions were found."]];
+    }
+
+    [errorMessage appendString:uberErrorMessage];
+    return errorMessage;
+}
+
 - (void)showErrorAlert:(NSString *)errorMessage
 {
-    RTAlertView *alertView = [[RTAlertView alloc] initWithTitle:@"sorry"
+    RTAlertView *alertView = [[RTAlertView alloc] initWithTitle:@"sorry.."
                                                         message:errorMessage
                                                        delegate:nil
                                               cancelButtonTitle:@"aw man.."
