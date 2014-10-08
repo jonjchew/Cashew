@@ -9,22 +9,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Canvas.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-RBBAnimation.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-RTAlertView.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-StaticDataTableViewController.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-UITableView-AnimationControl.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,32 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1EB5FE4A5C2E47DBBB3B0662</key>
+		<key>0240ACC363814C598127C465</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>25CFAB269DF345FF90648CE0</key>
+		<key>98988BC3B81B4498BC7E70EC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>38DBA72DC2F142559D6D25BF</key>
+		<key>AA1A32E4B39A4017A84F4E15</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5CE9FC437A734B588716842F</key>
+		<key>C133528D43A94974A05AF435</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A8A7241D2CA146DEA80A1F1A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B1152436930A4D89810C831D</key>
+		<key>C89EEDA2D37F49D5AD7D4BD0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

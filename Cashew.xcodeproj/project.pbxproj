@@ -32,6 +32,7 @@
 		36BA9FE719C6A61A00E38FD3 /* StepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA9FE619C6A61A00E38FD3 /* StepsViewController.m */; };
 		36C56A6E19BECDFE0089D1E2 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C56A6D19BECDFE0089D1E2 /* ResultsViewController.m */; };
 		36E5655E19E0DA0E0068084F /* CashewNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E5655D19E0DA0E0068084F /* CashewNavigationController.m */; };
+		36E5656019E208D60068084F /* GeosansLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36E5655F19E208D60068084F /* GeosansLight.ttf */; };
 		36FEFA1019DA5A23005C3FB3 /* TRUE TYPOLA.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36FEFA0F19DA5A23005C3FB3 /* TRUE TYPOLA.ttf */; };
 		36FEFA3819DA5C49005C3FB3 /* Walkway.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36FEFA2419DA5C49005C3FB3 /* Walkway.ttf */; };
 		36FEFA3C19DA5DD9005C3FB3 /* Champagne & Limousines.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36FEFA3A19DA5DD9005C3FB3 /* Champagne & Limousines.ttf */; };
@@ -88,6 +89,7 @@
 		36C56A6D19BECDFE0089D1E2 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResultsViewController.m; path = ../ResultsViewController.m; sourceTree = "<group>"; };
 		36E5655C19E0DA0E0068084F /* CashewNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashewNavigationController.h; sourceTree = "<group>"; };
 		36E5655D19E0DA0E0068084F /* CashewNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashewNavigationController.m; sourceTree = "<group>"; };
+		36E5655F19E208D60068084F /* GeosansLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = GeosansLight.ttf; path = ../../../../Downloads/geo_sans_light/GeosansLight.ttf; sourceTree = "<group>"; };
 		36FEFA0F19DA5A23005C3FB3 /* TRUE TYPOLA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "TRUE TYPOLA.ttf"; path = "EasyBeans/TRUE TYPOLA.ttf"; sourceTree = "<group>"; };
 		36FEFA2419DA5C49005C3FB3 /* Walkway.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Walkway.ttf; sourceTree = "<group>"; };
 		36FEFA3A19DA5DD9005C3FB3 /* Champagne & Limousines.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Champagne & Limousines.ttf"; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 		36FEFA3919DA5C52005C3FB3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				36E5655F19E208D60068084F /* GeosansLight.ttf */,
 				36FEFA4119DA7736005C3FB3 /* UIColor+CashewGreen.h */,
 				36FEFA4219DA7736005C3FB3 /* UIColor+CashewGreen.m */,
 				36FEFA3A19DA5DD9005C3FB3 /* Champagne & Limousines.ttf */,
@@ -340,6 +343,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36E5656019E208D60068084F /* GeosansLight.ttf in Resources */,
 				3627ACEE19B6C8D0002E37D7 /* secret.plist in Resources */,
 				3627ACBE19B6AEE3002E37D7 /* InfoPlist.strings in Resources */,
 				3627ACC619B6AEE3002E37D7 /* Images.xcassets in Resources */,

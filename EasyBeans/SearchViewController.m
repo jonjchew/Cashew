@@ -35,7 +35,6 @@
     self.travelModesArray = [Config sharedConfig].travelModes;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.selectedTravelModes = [NSMutableArray array];
-
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

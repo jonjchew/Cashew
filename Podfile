@@ -1,5 +1,5 @@
-platform :ios, '7.0'
+platform :ios, "7.0"
 pod "AFNetworking", "~> 2.0"
-pod 'RTAlertView', '0.0.6'
-pod 'UITableView-AnimationControl'
+pod "RTAlertView", "0.0.6"
+pod "Canvas"
 

@@ -28,6 +28,7 @@
 	<string>Storyboard</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>GeosansLight</string>
 		<string>TRUE TYPOLA.ttf</string>
 		<string>Walkway.ttf</string>
 	</array>

@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kUg-HG-VlC">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="TRUE TYPOLA.ttf">
-            <string>Typola</string>
-            <string>Typola</string>
-        </mutableArray>
         <mutableArray key="Walkway.ttf">
+            <string>Walkway</string>
+            <string>Walkway</string>
             <string>Walkway</string>
             <string>Walkway</string>
             <string>Walkway</string>
@@ -33,16 +30,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="to where?" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rMF-gJ-bYZ">
-                                <rect key="frame" x="16" y="46" width="288" height="30"/>
-                                <fontDescription key="fontDescription" name="Typola" family="Typola" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="from where?" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PWA-Au-5yn">
-                                <rect key="frame" x="16" y="8" width="288" height="30"/>
-                                <fontDescription key="fontDescription" name="Typola" family="Typola" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                            </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rgl-Qv-LXR">
                                 <rect key="frame" x="16" y="87" width="288" height="350"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -84,16 +71,26 @@
                                     <segue destination="DDR-5W-pKy" kind="push" identifier="getResults" id="e7m-9i-yeo"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="to where?" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rMF-gJ-bYZ">
+                                <rect key="frame" x="16" y="49" width="288" height="30"/>
+                                <fontDescription key="fontDescription" name="Walkway" family="Walkway" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="from where?" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PWA-Au-5yn">
+                                <rect key="frame" x="16" y="11" width="288" height="30"/>
+                                <fontDescription key="fontDescription" name="Walkway" family="Walkway" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="rMF-gJ-bYZ" firstAttribute="leading" secondItem="PWA-Au-5yn" secondAttribute="leading" id="2vG-q8-Bvi"/>
                             <constraint firstItem="rMF-gJ-bYZ" firstAttribute="top" secondItem="PWA-Au-5yn" secondAttribute="bottom" constant="8" symbolic="YES" id="3Jj-a2-hDO"/>
-                            <constraint firstItem="PWA-Au-5yn" firstAttribute="top" secondItem="6bs-N9-o7b" secondAttribute="bottom" constant="8" id="7Hj-x1-oLk"/>
+                            <constraint firstItem="PWA-Au-5yn" firstAttribute="top" secondItem="6bs-N9-o7b" secondAttribute="bottom" constant="11" id="7Hj-x1-oLk"/>
                             <constraint firstItem="rMF-gJ-bYZ" firstAttribute="leading" secondItem="rgl-Qv-LXR" secondAttribute="leading" id="LAt-za-fm7"/>
                             <constraint firstItem="rgl-Qv-LXR" firstAttribute="leading" secondItem="zeG-Yi-uzV" secondAttribute="leading" id="MI1-m2-HBf"/>
                             <constraint firstItem="rMF-gJ-bYZ" firstAttribute="trailing" secondItem="rgl-Qv-LXR" secondAttribute="trailing" id="PiU-cV-5vT"/>
-                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="top" secondItem="rMF-gJ-bYZ" secondAttribute="bottom" constant="11" id="dId-8r-yA9"/>
+                            <constraint firstItem="rgl-Qv-LXR" firstAttribute="top" secondItem="rMF-gJ-bYZ" secondAttribute="bottom" constant="8" id="dId-8r-yA9"/>
                             <constraint firstItem="rgl-Qv-LXR" firstAttribute="trailing" secondItem="Hnq-4t-0cf" secondAttribute="trailingMargin" id="oqD-yZ-LLw"/>
                             <constraint firstItem="XA0-nD-HnQ" firstAttribute="top" secondItem="rgl-Qv-LXR" secondAttribute="bottom" constant="67" id="qXk-ar-xST"/>
                             <constraint firstItem="rMF-gJ-bYZ" firstAttribute="trailing" secondItem="PWA-Au-5yn" secondAttribute="trailing" id="qjW-Bs-MlG"/>
@@ -224,9 +221,23 @@
                                     <outlet property="delegate" destination="DDR-5W-pKy" id="GnS-7R-Rd0"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lkF-2s-Ghm">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="J6O-BD-DG1">
+                                        <rect key="frame" x="150" y="242" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="J6O-BD-DG1" secondAttribute="centerX" id="ly3-Lu-RJ8"/>
+                                    <constraint firstAttribute="centerY" secondItem="J6O-BD-DG1" secondAttribute="centerY" id="rKS-kJ-izv"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="lkF-2s-Ghm" firstAttribute="top" secondItem="uZn-34-UJV" secondAttribute="bottom" id="Aim-4W-xgc"/>
                             <constraint firstItem="L02-GM-Q45" firstAttribute="leading" secondItem="atP-aj-Dpj" secondAttribute="leading" id="HDk-mQ-8s7"/>
                             <constraint firstItem="Q52-du-kuf" firstAttribute="leading" secondItem="atP-aj-Dpj" secondAttribute="leading" id="K9U-VI-Y47"/>
                             <constraint firstItem="atP-aj-Dpj" firstAttribute="top" secondItem="L02-GM-Q45" secondAttribute="bottom" constant="8" id="MkS-QB-iVj"/>
@@ -234,9 +245,12 @@
                             <constraint firstItem="L02-GM-Q45" firstAttribute="trailing" secondItem="bgo-Oo-hhf" secondAttribute="trailingMargin" id="ScH-90-qTA"/>
                             <constraint firstItem="gbg-Zi-tfv" firstAttribute="top" secondItem="Q52-du-kuf" secondAttribute="bottom" constant="21" id="XVX-5I-Swf"/>
                             <constraint firstItem="L02-GM-Q45" firstAttribute="top" secondItem="uZn-34-UJV" secondAttribute="bottom" constant="8" symbolic="YES" id="Yf3-Uu-Wg4"/>
+                            <constraint firstItem="gbg-Zi-tfv" firstAttribute="top" secondItem="lkF-2s-Ghm" secondAttribute="bottom" id="YfQ-OA-RWL"/>
                             <constraint firstItem="L02-GM-Q45" firstAttribute="trailing" secondItem="atP-aj-Dpj" secondAttribute="trailing" id="bI8-YG-3eC"/>
+                            <constraint firstItem="lkF-2s-Ghm" firstAttribute="leading" secondItem="bgo-Oo-hhf" secondAttribute="leadingMargin" constant="-16" id="gZj-aA-JJz"/>
                             <constraint firstItem="Q52-du-kuf" firstAttribute="top" secondItem="atP-aj-Dpj" secondAttribute="bottom" constant="8" symbolic="YES" id="kot-ik-MH4"/>
                             <constraint firstItem="L02-GM-Q45" firstAttribute="top" secondItem="uZn-34-UJV" secondAttribute="bottom" constant="8" id="lbz-RF-oxM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lkF-2s-Ghm" secondAttribute="trailing" constant="-16" id="pJ0-Uw-1bu"/>
                             <constraint firstItem="L02-GM-Q45" firstAttribute="leading" secondItem="bgo-Oo-hhf" secondAttribute="leadingMargin" id="seP-QO-Tzg"/>
                         </constraints>
                     </view>
@@ -244,8 +258,10 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="CPl-WF-lVo"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="J6O-BD-DG1" id="rsF-Kz-4Ww"/>
                         <outlet property="destinationLabel" destination="atP-aj-Dpj" id="vT4-kX-mv5"/>
                         <outlet property="originLabel" destination="L02-GM-Q45" id="ZZo-SG-wwJ"/>
+                        <outlet property="progressView" destination="lkF-2s-Ghm" id="0fC-mY-Unr"/>
                         <outlet property="tableView" destination="Q52-du-kuf" id="e4I-c5-XSt"/>
                     </connections>
                 </viewController>
