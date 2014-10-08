@@ -35,6 +35,8 @@
     self.travelModesArray = [Config sharedConfig].travelModes;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.selectedTravelModes = [NSMutableArray array];
+    
+    self.compareButton.layer.cornerRadius = 5;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
