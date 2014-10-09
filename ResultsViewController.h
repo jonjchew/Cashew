@@ -10,7 +10,7 @@
 
 typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 
-@interface ResultsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface ResultsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 - (IBAction)loadApp:(id)sender;
 @property (strong, nonatomic) IBOutlet UIView *progressView;
 @property (strong, nonatomic) IBOutlet UILabel *destinationLabel;

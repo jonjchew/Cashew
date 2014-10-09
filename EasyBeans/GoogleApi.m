@@ -36,7 +36,7 @@
                                         [destinationGeocode objectForKey:@"lat"],[destinationGeocode objectForKey:@"lng"]];
     
     // Add two minutes to current time as 'current' departure time
-    NSString *departureTime = [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970] + (2 * 60)];
+    NSString *departureTime = [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970]];
     NSDictionary *parameters = @{@"origin": originCoordinates,
                                  @"destination": destinationCoordinates,
                                  @"departure_time": departureTime,

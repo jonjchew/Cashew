@@ -12,6 +12,7 @@
 #import "UberApi.h"
 #import "GoogleApi.h"
 #import "StepsViewController.h"
+#import "Config.h"
 #import <RTAlertView.h>
 #import <AFNetworking/AFNetworking.h>
 #import <CSAnimationView.h>
@@ -23,6 +24,8 @@
 @implementation ResultsViewController {
     NSString *_inputtedOrigin;
     NSString *_inputtedDestination;
+    NSString *_originAddressURI;
+    NSString *_destinationAddressURI;
     NSDictionary *_originGeocode;
     NSDictionary *_destinationGeocode;
     NSMutableArray *_uberModes;
@@ -130,8 +133,11 @@
     
     NSString *geocodeVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"Geocode"];
     NSString *labelVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"Label"];
+    NSString *URIVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"AddressURI"];
     
     [self setValue:geocode forKey:geocodeVariableName];
+    [self setValue:[formattedAddress stringByAddingPercentEncodingWithAllowedCharacters:
+                    [NSCharacterSet URLHostAllowedCharacterSet]] forKey:URIVariableName];
     UILabel *formattedLabel = [self valueForKey:labelVariableName];
     formattedLabel.text = formattedAddress;
     if (_originGeocode != NULL && _destinationGeocode != NULL) {
@@ -231,7 +237,7 @@
         [self.tableView reloadData];
         [self hideActivityIndicator];
         if ([_errors count] > 0) {
-            [self showErrorAlert:[self buildErrorMessages]];
+            [self showErrorAlert:[self buildErrorMessages] withOtherTitle:nil];
         }
     }
     
@@ -248,23 +254,28 @@
 {
     if ([[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString:@"comgooglemaps://"]]) {
         
-        NSString *googleMapURLString = [NSString stringWithFormat:@"comgooglemaps://?saddr=%@&daddr=%@&directionsmode=%@",
+        NSString *googleMapURLString =
+        [NSString stringWithFormat:@"comgooglemaps-x-callback://?saddr=%@&daddr=%@&directionsmode=%@&x-success=sourceapp://?resume=true&x-source=Cashew",
                                         originAddressURI, destinationAddressURI, [(GoogleDirection*)selectedDirection mode]];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:googleMapURLString]];
     } else {
-        [self showErrorAlert:@"Looks like you don't have GoogleMaps installed... =("];
+        [self showErrorAlert:@"Looks like you don't have GoogleMaps installed... =(" withOtherTitle:@"Open mobile site"];
     }
 }
 
 - (void)loadUberWithPreferences:(UberMode *)selectedMode withOrigin:(NSString *)originAddressURI withDestination:(NSString *)destinationAddressURI
 {
+    NSString *uberAppURLString = [NSString stringWithFormat:@"uber://?action=setPickup?pickup[formatted_address]=%@&dropoff[formatted_address]=%@&product_id=%@",
+                               originAddressURI, destinationAddressURI, selectedMode.productID];
+    NSLog(@"%@", uberAppURLString);
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"uber://"]]) {
-        NSString *uberURLString = [NSString stringWithFormat:@"uber://?action=setPickup?pickup[formatted_address]=%@&dropoff[formatted_address]=%@&product_id=%@",
-                                   originAddressURI, destinationAddressURI, selectedMode.productID];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:uberURLString]];
+//        NSString *uberURLString = [NSString stringWithFormat:@"uber://?action=setPickup?pickup[formatted_address]=%@&dropoff[formatted_address]=%@&product_id=%@",
+//                                   originAddressURI, destinationAddressURI, selectedMode.productID];
+//        NSLog(uberURLString);
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:uberAppURLString]];
     }
     else {
-        [self showErrorAlert:@"Looks like you don't have Uber installed... =("];
+        [self showErrorAlert:@"Looks like you don't have Uber installed... =(" withOtherTitle:@"Download Uber"];
     }
 }
 
@@ -275,14 +286,13 @@
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
     
     id selectedDirection = [_travelModeResults objectAtIndex:indexPath.row];
-    NSString *originAddressURI =[self.originLabel.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
-    NSString *destinationAddressURI =[self.destinationLabel.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
+   
     
     if ([selectedDirection isKindOfClass:[GoogleDirection class]]) {
-        [self loadGoogleMapsWithDirections:selectedDirection withOrigin:originAddressURI withDestination:destinationAddressURI];
+        [self loadGoogleMapsWithDirections:selectedDirection withOrigin:_originAddressURI withDestination:_destinationAddressURI];
     }
     else {
-        [self loadUberWithPreferences:selectedDirection withOrigin:originAddressURI withDestination:destinationAddressURI];
+        [self loadUberWithPreferences:selectedDirection withOrigin:_originAddressURI withDestination:_destinationAddressURI];
     }
 }
 
@@ -352,17 +362,39 @@
     return errorMessage;
 }
 
-- (void)showErrorAlert:(NSString *)errorMessage
+- (void)showErrorAlert:(NSString *)errorMessage withOtherTitle:(NSString *)otherTitle
 {
     RTAlertView *alertView = [[RTAlertView alloc] initWithTitle:@"sorry.."
                                                         message:errorMessage
-                                                       delegate:nil
+                                                       delegate:self
                                               cancelButtonTitle:@"aw man.."
-                                              otherButtonTitles:nil];
+                                              otherButtonTitles:otherTitle, nil];
     alertView.messageFont = [UIFont fontWithName:@"Walkway" size:20];
     alertView.titleFont = [UIFont fontWithName:@"Walkway" size:30];
-    alertView.cancelButtonFont = [UIFont fontWithName:@"Walkway" size:25];
+    if ([otherTitle length] == 0) {
+        alertView.cancelButtonFont = [UIFont fontWithName:@"Walkway" size:25];
+    }
+    else {
+       alertView.cancelButtonFont = [UIFont fontWithName:@"Walkway" size:15];
+    }
+    alertView.otherButtonFont = [UIFont fontWithName:@"Walkway" size:15];
     [alertView show];
+}
+
+- (void)alertView:(RTAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != [alertView cancelButtonIndex]){
+        if ([[alertView buttonTitleAtIndex:1] isEqualToString:@"Open mobile site"]) {
+            NSString *googleMapURL = [NSString stringWithFormat:@"https://maps.google.com?saddr=%@&daddr=%@",
+                                      _originAddressURI, _destinationAddressURI];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:googleMapURL]];
+            
+        } else{
+            NSString *uberUrl = [NSString stringWithFormat:@"https://m.uber.com/sign-up?client_id=%@",
+                                 [[Config sharedConfig].apiURLs objectForKey:@"uberClientID"] ];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:uberUrl]];
+        }
+    }
 }
 
 @end
