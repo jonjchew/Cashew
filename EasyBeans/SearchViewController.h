@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ResultsViewController.h"
+#import "InfoViewController.h"
 
 typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 

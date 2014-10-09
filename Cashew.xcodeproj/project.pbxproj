@@ -27,6 +27,7 @@
 		3627ACF519B974B4002E37D7 /* UberMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3627ACF419B974B4002E37D7 /* UberMode.m */; };
 		3645FAA819E60EE200508DA4 /* secret.sample in Resources */ = {isa = PBXBuildFile; fileRef = 3645FAA719E60EE200508DA4 /* secret.sample */; };
 		3645FAAA19E644F400508DA4 /* weezerfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3645FAA919E644F400508DA4 /* weezerfont.ttf */; };
+		3645FAAD19E7377E00508DA4 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3645FAAC19E7377E00508DA4 /* InfoViewController.m */; };
 		36BA9FD419C65A9100E38FD3 /* UberApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA9FD319C65A9100E38FD3 /* UberApi.m */; };
 		36BA9FDB19C65CE100E38FD3 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA9FDA19C65CE100E38FD3 /* Config.m */; };
 		36BA9FDE19C66F7100E38FD3 /* GoogleApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA9FDD19C66F7100E38FD3 /* GoogleApi.m */; };
@@ -79,6 +80,8 @@
 		3627ACF419B974B4002E37D7 /* UberMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberMode.m; sourceTree = "<group>"; };
 		3645FAA719E60EE200508DA4 /* secret.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = secret.sample; sourceTree = "<group>"; };
 		3645FAA919E644F400508DA4 /* weezerfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = weezerfont.ttf; path = ../../../../Downloads/weezerfont.ttf; sourceTree = "<group>"; };
+		3645FAAB19E7377E00508DA4 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		3645FAAC19E7377E00508DA4 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		36BA9FD219C65A9100E38FD3 /* UberApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberApi.h; sourceTree = "<group>"; };
 		36BA9FD319C65A9100E38FD3 /* UberApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberApi.m; sourceTree = "<group>"; };
 		36BA9FD919C65CE100E38FD3 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
@@ -230,6 +233,8 @@
 		36BA9FD019C65A6400E38FD3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3645FAAB19E7377E00508DA4 /* InfoViewController.h */,
+				3645FAAC19E7377E00508DA4 /* InfoViewController.m */,
 				36BA9FE519C6A61A00E38FD3 /* StepsViewController.h */,
 				36BA9FE619C6A61A00E38FD3 /* StepsViewController.m */,
 				36C56A6C19BECDFE0089D1E2 /* ResultsViewController.h */,
@@ -423,6 +428,7 @@
 				36E5655E19E0DA0E0068084F /* CashewNavigationController.m in Sources */,
 				3627ACE619B6B031002E37D7 /* SearchViewController.m in Sources */,
 				3627ACF219B96233002E37D7 /* GoogleDirection.m in Sources */,
+				3645FAAD19E7377E00508DA4 /* InfoViewController.m in Sources */,
 				3627ACC019B6AEE3002E37D7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

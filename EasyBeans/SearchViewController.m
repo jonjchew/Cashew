@@ -54,7 +54,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-     if ([segue.identifier isEqualToString:@"getResults"]) {
+     if ([segue.identifier isEqualToString:@"ResultsViewController"]) {
         ResultsViewController *viewController = (ResultsViewController *) segue.destinationViewController;
         viewController.selectedTravelModes = self.selectedTravelModes;
         viewController.originLocationText = self.originLocation.text;
@@ -66,7 +66,7 @@
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     
-    if ([identifier isEqualToString:@"getResults"]) {
+    if ([identifier isEqualToString:@"ResultsViewController"]) {
         NSString *error = [self checkMissingField];
         if ([error isEqualToString:@"PASS"]) {
             return YES;
@@ -76,8 +76,11 @@
             return NO;
         }
     }
+    else if ([identifier isEqualToString:@"InfoViewController"]){
+        return YES;
+    }
     else {
-        return NO;
+        return YES;
     }
 }
 
@@ -89,7 +92,7 @@
                                                        delegate:nil
                                               cancelButtonTitle:@"Got it!"
                                               otherButtonTitles:nil];
-    alertView.messageFont = [UIFont fontWithName:@"weezerfont" size:20];
+    alertView.messageFont = [UIFont fontWithName:@"Walkway" size:20];
     alertView.titleFont = [UIFont fontWithName:@"weezerfont" size:25];
     alertView.cancelButtonFont = [UIFont fontWithName:@"weezerfont" size:25];
     [alertView show];
@@ -113,6 +116,10 @@
 
 - (IBAction)findResults:(id)sender {
 
+}
+
+- (IBAction)goBack:(id)sender {
+    NSLog(@"HIT");
 }
 
 #pragma mark - Table View methods
@@ -155,5 +162,4 @@
         [self.selectedTravelModes removeObject: travelMode];
     }
 }
-
 @end
