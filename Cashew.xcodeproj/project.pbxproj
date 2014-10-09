@@ -26,6 +26,7 @@
 		3627ACF219B96233002E37D7 /* GoogleDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3627ACF119B96233002E37D7 /* GoogleDirection.m */; };
 		3627ACF519B974B4002E37D7 /* UberMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3627ACF419B974B4002E37D7 /* UberMode.m */; };
 		3645FAA819E60EE200508DA4 /* secret.sample in Resources */ = {isa = PBXBuildFile; fileRef = 3645FAA719E60EE200508DA4 /* secret.sample */; };
+		3645FAAA19E644F400508DA4 /* weezerfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3645FAA919E644F400508DA4 /* weezerfont.ttf */; };
 		36BA9FD419C65A9100E38FD3 /* UberApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA9FD319C65A9100E38FD3 /* UberApi.m */; };
 		36BA9FDB19C65CE100E38FD3 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA9FDA19C65CE100E38FD3 /* Config.m */; };
 		36BA9FDE19C66F7100E38FD3 /* GoogleApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA9FDD19C66F7100E38FD3 /* GoogleApi.m */; };
@@ -77,6 +78,7 @@
 		3627ACF319B974B4002E37D7 /* UberMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberMode.h; sourceTree = "<group>"; };
 		3627ACF419B974B4002E37D7 /* UberMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberMode.m; sourceTree = "<group>"; };
 		3645FAA719E60EE200508DA4 /* secret.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = secret.sample; sourceTree = "<group>"; };
+		3645FAA919E644F400508DA4 /* weezerfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = weezerfont.ttf; path = ../../../../Downloads/weezerfont.ttf; sourceTree = "<group>"; };
 		36BA9FD219C65A9100E38FD3 /* UberApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberApi.h; sourceTree = "<group>"; };
 		36BA9FD319C65A9100E38FD3 /* UberApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberApi.m; sourceTree = "<group>"; };
 		36BA9FD919C65CE100E38FD3 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 		36FEFA3919DA5C52005C3FB3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3645FAA919E644F400508DA4 /* weezerfont.ttf */,
 				36E5655F19E208D60068084F /* GeosansLight.ttf */,
 				36FEFA4119DA7736005C3FB3 /* UIColor+CashewGreen.h */,
 				36FEFA4219DA7736005C3FB3 /* UIColor+CashewGreen.m */,
@@ -351,6 +354,7 @@
 				3627ACBE19B6AEE3002E37D7 /* InfoPlist.strings in Resources */,
 				3627ACC619B6AEE3002E37D7 /* Images.xcassets in Resources */,
 				3627ACE319B6AF18002E37D7 /* Storyboard.storyboard in Resources */,
+				3645FAAA19E644F400508DA4 /* weezerfont.ttf in Resources */,
 				36FEFA3C19DA5DD9005C3FB3 /* Champagne & Limousines.ttf in Resources */,
 				36FEFA3819DA5C49005C3FB3 /* Walkway.ttf in Resources */,
 				36FEFA3D19DA5DD9005C3FB3 /* Champagne & Limousines Bold.ttf in Resources */,

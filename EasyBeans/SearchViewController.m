@@ -89,9 +89,9 @@
                                                        delegate:nil
                                               cancelButtonTitle:@"Got it!"
                                               otherButtonTitles:nil];
-    alertView.messageFont = [UIFont fontWithName:@"Walkway" size:20];
-    alertView.titleFont = [UIFont fontWithName:@"Walkway" size:25];
-    alertView.cancelButtonFont = [UIFont fontWithName:@"Walkway" size:25];
+    alertView.messageFont = [UIFont fontWithName:@"weezerfont" size:20];
+    alertView.titleFont = [UIFont fontWithName:@"weezerfont" size:25];
+    alertView.cancelButtonFont = [UIFont fontWithName:@"weezerfont" size:25];
     [alertView show];
 }
 
@@ -129,7 +129,7 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     cell.textLabel.text = [self.travelModesArray objectAtIndex:indexPath.row];
-    cell.textLabel.font = [UIFont fontWithName:@"Walkway" size:25];
+    cell.textLabel.font = [UIFont fontWithName:@"weezerfont" size:25];
     return cell;
 }
 

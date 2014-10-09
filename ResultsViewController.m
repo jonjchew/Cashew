@@ -369,15 +369,15 @@
                                                        delegate:self
                                               cancelButtonTitle:@"aw man.."
                                               otherButtonTitles:otherTitle, nil];
-    alertView.messageFont = [UIFont fontWithName:@"Walkway" size:20];
-    alertView.titleFont = [UIFont fontWithName:@"Walkway" size:30];
+    alertView.messageFont = [UIFont fontWithName:@"weezerfont" size:20];
+    alertView.titleFont = [UIFont fontWithName:@"weezerfont" size:30];
     if ([otherTitle length] == 0) {
-        alertView.cancelButtonFont = [UIFont fontWithName:@"Walkway" size:25];
+        alertView.cancelButtonFont = [UIFont fontWithName:@"weezerfont" size:25];
     }
     else {
-       alertView.cancelButtonFont = [UIFont fontWithName:@"Walkway" size:15];
+       alertView.cancelButtonFont = [UIFont fontWithName:@"weezerfont" size:15];
     }
-    alertView.otherButtonFont = [UIFont fontWithName:@"Walkway" size:15];
+    alertView.otherButtonFont = [UIFont fontWithName:@"weezerfont" size:15];
     [alertView show];
 }
 

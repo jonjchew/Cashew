@@ -15,7 +15,7 @@
 {
     [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                 [UIColor whiteColor], NSForegroundColorAttributeName,
-                                               [UIFont fontWithName:@"Walkway" size:30],
+                                               [UIFont fontWithName:@"weezerfont" size:30],
                                                 NSFontAttributeName, nil]];
     self.navigationBar.barTintColor = [UIColor cashewGreenColor];
     self.navigationBar.tintColor = [UIColor whiteColor];

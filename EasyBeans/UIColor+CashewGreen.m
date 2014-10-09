@@ -11,7 +11,7 @@
 @implementation UIColor (CashewGreen)
 
 +(UIColor*)cashewGreenColor {
-    return [UIColor colorWithRed:0.109 green:0.8 blue:0.6667 alpha:1];
+    return [UIColor colorWithRed:0.133 green:0.768 blue:0.603 alpha:1];
 }
 
 @end
