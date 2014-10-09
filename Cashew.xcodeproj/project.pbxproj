@@ -31,7 +31,6 @@
 		36BA9FD419C65A9100E38FD3 /* UberApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA9FD319C65A9100E38FD3 /* UberApi.m */; };
 		36BA9FDB19C65CE100E38FD3 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA9FDA19C65CE100E38FD3 /* Config.m */; };
 		36BA9FDE19C66F7100E38FD3 /* GoogleApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA9FDD19C66F7100E38FD3 /* GoogleApi.m */; };
-		36BA9FE419C69E9300E38FD3 /* Step.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA9FE319C69E9300E38FD3 /* Step.m */; };
 		36BA9FE719C6A61A00E38FD3 /* StepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA9FE619C6A61A00E38FD3 /* StepsViewController.m */; };
 		36C56A6E19BECDFE0089D1E2 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C56A6D19BECDFE0089D1E2 /* ResultsViewController.m */; };
 		36E5655E19E0DA0E0068084F /* CashewNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E5655D19E0DA0E0068084F /* CashewNavigationController.m */; };
@@ -88,8 +87,6 @@
 		36BA9FDA19C65CE100E38FD3 /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
 		36BA9FDC19C66F7100E38FD3 /* GoogleApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleApi.h; sourceTree = "<group>"; };
 		36BA9FDD19C66F7100E38FD3 /* GoogleApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleApi.m; sourceTree = "<group>"; };
-		36BA9FE219C69E9300E38FD3 /* Step.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Step.h; sourceTree = "<group>"; };
-		36BA9FE319C69E9300E38FD3 /* Step.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Step.m; sourceTree = "<group>"; };
 		36BA9FE519C6A61A00E38FD3 /* StepsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StepsViewController.h; path = ../StepsViewController.h; sourceTree = "<group>"; };
 		36BA9FE619C6A61A00E38FD3 /* StepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StepsViewController.m; path = ../StepsViewController.m; sourceTree = "<group>"; };
 		36C56A6C19BECDFE0089D1E2 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResultsViewController.h; path = ../ResultsViewController.h; sourceTree = "<group>"; };
@@ -224,8 +221,6 @@
 				3627ACF419B974B4002E37D7 /* UberMode.m */,
 				3627ACF019B96233002E37D7 /* GoogleDirection.h */,
 				3627ACF119B96233002E37D7 /* GoogleDirection.m */,
-				36BA9FE219C69E9300E38FD3 /* Step.h */,
-				36BA9FE319C69E9300E38FD3 /* Step.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -423,7 +418,6 @@
 				36BA9FDB19C65CE100E38FD3 /* Config.m in Sources */,
 				36C56A6E19BECDFE0089D1E2 /* ResultsViewController.m in Sources */,
 				36BA9FD419C65A9100E38FD3 /* UberApi.m in Sources */,
-				36BA9FE419C69E9300E38FD3 /* Step.m in Sources */,
 				3627ACF519B974B4002E37D7 /* UberMode.m in Sources */,
 				36E5655E19E0DA0E0068084F /* CashewNavigationController.m in Sources */,
 				3627ACE619B6B031002E37D7 /* SearchViewController.m in Sources */,

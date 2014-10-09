@@ -7,7 +7,6 @@
 //
 
 #import "GoogleDirection.h"
-#import "Step.h"
 
 @implementation GoogleDirection
 
@@ -33,19 +32,9 @@
         if ([mode isEqualToString:@"transit"]) {
             _summary = [self formattedTransitSummary:[[data objectForKey:@"legs"][0] objectForKey:@"steps"]];
         }
-        _steps = [NSArray arrayWithArray:[self seedSteps:[[data objectForKey:@"legs"][0] objectForKey:@"steps"]]];
+
     }
     return self;
-}
-
--(NSArray *)seedSteps:(NSArray *)stepsResponseArray
-{
-    NSMutableArray *stepsArray = [NSMutableArray array];
-    for (NSDictionary *step in stepsResponseArray) {
-        Step *stepObject = [Step initWithJsonData:step];
-        [stepsArray addObject:stepObject];
-    }
-    return stepsArray;
 }
 
 -(NSString *)formattedTransitSummary:(NSArray *)stepsResponseArray
