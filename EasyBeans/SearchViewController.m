@@ -36,7 +36,7 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.selectedTravelModes = [NSMutableArray array];
     
-    self.compareButton.layer.cornerRadius = 5;
+    self.compareButton.layer.cornerRadius = 25;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

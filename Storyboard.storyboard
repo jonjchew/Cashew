@@ -234,14 +234,18 @@
                                     <outlet property="delegate" destination="DDR-5W-pKy" id="GnS-7R-Rd0"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lkF-2s-Ghm">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lkF-2s-Ghm">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <subviews>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="J6O-BD-DG1">
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="J6O-BD-DG1">
                                         <rect key="frame" x="150" y="242" width="20" height="20"/>
                                     </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="J6O-BD-DG1" secondAttribute="centerX" id="5gY-xb-16d"/>
+                                    <constraint firstAttribute="centerY" secondItem="J6O-BD-DG1" secondAttribute="centerY" id="eZo-w1-4BN"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -249,11 +253,15 @@
                             <constraint firstItem="Q52-du-kuf" firstAttribute="top" secondItem="atP-aj-Dpj" secondAttribute="bottom" constant="12" id="1Vi-zs-HlI"/>
                             <constraint firstItem="L02-GM-Q45" firstAttribute="trailing" secondItem="atP-aj-Dpj" secondAttribute="trailing" id="2ux-wW-ieM"/>
                             <constraint firstItem="L02-GM-Q45" firstAttribute="top" secondItem="uZn-34-UJV" secondAttribute="bottom" constant="10" id="3GS-Uh-aek"/>
+                            <constraint firstItem="lkF-2s-Ghm" firstAttribute="top" secondItem="uZn-34-UJV" secondAttribute="bottom" id="8oA-HJ-6BN"/>
                             <constraint firstItem="atP-aj-Dpj" firstAttribute="top" secondItem="L02-GM-Q45" secondAttribute="bottom" constant="15" id="L9V-ft-wN2"/>
                             <constraint firstItem="Q52-du-kuf" firstAttribute="leading" secondItem="bgo-Oo-hhf" secondAttribute="leadingMargin" id="Nyk-KJ-359"/>
+                            <constraint firstItem="gbg-Zi-tfv" firstAttribute="top" secondItem="lkF-2s-Ghm" secondAttribute="bottom" id="OhD-HR-nNa"/>
                             <constraint firstItem="Q52-du-kuf" firstAttribute="trailing" secondItem="bgo-Oo-hhf" secondAttribute="trailingMargin" id="SyP-gE-CBi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lkF-2s-Ghm" secondAttribute="trailing" constant="-16" id="T3W-XT-hMt"/>
                             <constraint firstItem="won-SZ-2CD" firstAttribute="top" secondItem="uZn-34-UJV" secondAttribute="bottom" constant="14" id="VPk-xT-6m9"/>
                             <constraint firstItem="atP-aj-Dpj" firstAttribute="leading" secondItem="won-SZ-2CD" secondAttribute="trailing" constant="8" symbolic="YES" id="XFg-Iq-qDM"/>
+                            <constraint firstItem="lkF-2s-Ghm" firstAttribute="leading" secondItem="bgo-Oo-hhf" secondAttribute="leadingMargin" constant="-16" id="Zy5-5T-dnN"/>
                             <constraint firstItem="Q52-du-kuf" firstAttribute="top" secondItem="won-SZ-2CD" secondAttribute="bottom" constant="13" id="c5s-oS-3wg"/>
                             <constraint firstItem="won-SZ-2CD" firstAttribute="leading" secondItem="bgo-Oo-hhf" secondAttribute="leadingMargin" id="fC4-LD-H4n"/>
                             <constraint firstItem="gbg-Zi-tfv" firstAttribute="top" secondItem="Q52-du-kuf" secondAttribute="bottom" constant="21" id="fsK-hl-dXJ"/>
