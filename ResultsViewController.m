@@ -205,12 +205,6 @@
         modeLabel.text = [(GoogleDirection*)travelMode mode];
         timeDurationLabel.text = [NSString stringWithFormat:@"%@ total", [travelMode timeDurationText] ];
         thirdLabel.text = [travelMode summary];
-        if ([travelMode summary] != NULL) {
-            thirdLabel.text = [travelMode summary];
-        }
-        else {
-            thirdLabel.text = [NSString stringWithFormat:@"Departure time: %@", [travelMode departureTime]];
-        }
         fourthLabel.text = [travelMode distance];
     }
     else {
@@ -340,19 +334,17 @@
     if ([_errors count] > 0) {
         [errorMessage appendString:@"No "];
         [_errors enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            if (![_errors[idx] isEqualToString:@"uber"]) {
-                if (idx == [_errors count] - 1 && [_errors count] > 1) {
-                    [errorMessage appendString:[NSString stringWithFormat:@"and %@", _errors[idx]]];
-                }
-                else if (idx == [_errors count] - 2) {
-                    [errorMessage appendString:[NSString stringWithFormat:@"%@ ", _errors[idx]]];
-                }
-                else if ([_errors count] == 1) {
-                    [errorMessage appendString:_errors[idx]];
-                }
-                else {
-                    [errorMessage appendString:[NSString stringWithFormat:@"%@, ", _errors[idx]]];
-                }
+            if (idx == [_errors count] - 1 && [_errors count] > 1) {
+                [errorMessage appendString:[NSString stringWithFormat:@"and %@", _errors[idx]]];
+            }
+            else if (idx == [_errors count] - 2) {
+                [errorMessage appendString:[NSString stringWithFormat:@"%@ ", _errors[idx]]];
+            }
+            else if ([_errors count] == 1) {
+                [errorMessage appendString:_errors[idx]];
+            }
+            else {
+                [errorMessage appendString:[NSString stringWithFormat:@"%@, ", _errors[idx]]];
             }
         }];
         [errorMessage appendString:[NSString stringWithFormat:@" directions were found."]];
