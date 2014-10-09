@@ -41,6 +41,7 @@ static Config *sharedConfigDict = nil;
         [NSString stringWithFormat:@"%@%@", @"https://maps.googleapis.com/maps/api/directions/json?key=",
                                    [apiKeys objectForKey:@"google"]], @"googleDirectionsApiRootUrl",
         [apiKeys objectForKey:@"uberServer"], @"uberServerToken",
+        [apiKeys objectForKey:@"uberClientID"], @"uberClientID",
         @"https://api.uber.com/v1/estimates/price?", @"uberPriceApiRootUrl",
         @"https://api.uber.com/v1/estimates/time?", @"uberTimeApiRootUrl", nil];
     

@@ -64,13 +64,13 @@
     if (![_inputtedOrigin isEqualToString:self.originLocationText]) {
         _inputtedOrigin = self.originLocationText;
         [GoogleApi getGeocode: self.originLocationText forLocation:@"origin" withBlock:^(NSDictionary *responseObject) {
-            [self assignGeocode:responseObject forLocation:@"origin"];
+            [self storeLocations:responseObject forLocation:@"origin"];
         }];
     }
     if (![_inputtedDestination isEqualToString:self.destinationLocationText]) {
         _inputtedDestination = self.destinationLocationText;
         [GoogleApi getGeocode: self.destinationLocationText forLocation:@"destination" withBlock:^(NSDictionary *responseObject) {
-            [self assignGeocode:responseObject forLocation:@"destination"];
+            [self storeLocations:responseObject forLocation:@"destination"];
         }];    }
 }
 
@@ -125,7 +125,7 @@
     [self reorderAndReloadTableView];
 }
 
-- (void)assignGeocode:(NSDictionary *)responseObject forLocation:(NSString *)locationType
+- (void)storeLocations:(NSDictionary *)responseObject forLocation:(NSString *)locationType
 {
     NSDictionary *geocodeResult = [responseObject objectForKey:@"results"][0];
     NSDictionary *geocode = [[geocodeResult objectForKey:@"geometry"] objectForKey:@"location"];
@@ -390,8 +390,8 @@
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:googleMapURL]];
             
         } else{
-            NSString *uberUrl = [NSString stringWithFormat:@"https://m.uber.com/sign-up?client_id=%@",
-                                 [[Config sharedConfig].apiURLs objectForKey:@"uberClientID"] ];
+            NSString *uberUrl = [NSString stringWithFormat:@"https://m.uber.com/sign-up?client_id=%@&pickup_address=%@&dropoff_address=%@",
+                                 [[Config sharedConfig].apiURLs objectForKey:@"uberClientID"], _originAddressURI, _destinationAddressURI ];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:uberUrl]];
         }
     }
