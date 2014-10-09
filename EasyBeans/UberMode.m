@@ -10,12 +10,12 @@
 
 @implementation UberMode
 
-+ (instancetype) initWithJsonData: (NSDictionary *) data
++(instancetype)initWithJsonData: (NSDictionary *) data
 {
     return [[UberMode alloc] initWithJSONData:data];
 }
 
-- (id) initWithJSONData: (NSDictionary *) data
+-(id)initWithJSONData: (NSDictionary *) data
 {
     if (self = [super init]) {
         _productID = [data objectForKey:@"product_id"];
@@ -28,7 +28,7 @@
     return self;
 }
 
-- (NSString *) formattedSurgeMultiplier
+-(NSString *)formattedSurgeMultiplier
 {
     NSString *surgeMultiplierString;
 
@@ -44,7 +44,7 @@
     return surgeMultiplierString;
 }
 
-- (NSString *) formattedTimeDuration
+-(NSString *)formattedTimeDuration
 {
     int minutes = ceil((self.timeEstimate/60));
     NSString *minuteString;
@@ -57,4 +57,14 @@
     NSString *formattedTime = [NSString stringWithFormat:@"%i %@", minutes, minuteString];
     return formattedTime;
 }
+
+-(NSString *)formattedPriceAndSurgeMultiplier
+{
+    NSMutableString *formattedOuput = [NSMutableString stringWithString:self.priceEstimate];
+    if ([self.formattedSurgeMultiplier length] > 0) {
+        [formattedOuput appendString:[NSString stringWithFormat:@", %@", self.formattedSurgeMultiplier]];
+    }
+    return [NSString stringWithString:formattedOuput];
+}
+
 @end
