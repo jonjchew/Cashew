@@ -112,10 +112,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Cashew" id="cxF-qM-lYR">
                         <barButtonItem key="backBarButtonItem" title=" " id="fbO-XP-wZd"/>
-                        <barButtonItem key="rightBarButtonItem" id="TTd-0s-e09">
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="done" id="TTd-0s-e09">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="gAO-OO-ROl">
                                 <rect key="frame" x="233" y="7" width="90" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="-5" maxX="-20" maxY="5"/>
                                 <state key="normal" image="info">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -355,7 +356,7 @@
     </scenes>
     <resources>
         <image name="FromTo" width="20" height="52"/>
-        <image name="info" width="35" height="35"/>
+        <image name="info" width="25" height="25"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

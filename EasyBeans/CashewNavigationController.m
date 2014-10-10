@@ -18,8 +18,7 @@
                                                [UIFont fontWithName:@"weezerfont" size:30],
                                                 NSFontAttributeName, nil]];
     self.navigationBar.barTintColor = [UIColor cashewGreenColor];
-    self.navigationBar.tintColor = [UIColor whiteColor];
- 
+    self.navigationBar.tintColor = [UIColor whiteColor]; 
 }
 
 
