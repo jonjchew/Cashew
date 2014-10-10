@@ -21,6 +21,7 @@
 @implementation SearchViewController {
     NSString *_inputtedOrigin;
     NSString *_inputtedDestination;
+    CGFloat _screenHeight;
 }
 
 - (void)viewDidLoad
@@ -37,6 +38,9 @@
     self.selectedTravelModes = [NSMutableArray array];
     
     self.compareButton.layer.cornerRadius = 25;
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    _screenHeight = screenRect.size.height;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -118,10 +122,6 @@
 
 }
 
-- (IBAction)goBack:(id)sender {
-    NSLog(@"HIT");
-}
-
 #pragma mark - Table View methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -136,7 +136,7 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     cell.textLabel.text = [self.travelModesArray objectAtIndex:indexPath.row];
-    cell.textLabel.font = [UIFont fontWithName:@"weezerfont" size:25];
+    cell.textLabel.font = [self determineCellFont];
     return cell;
 }
 
@@ -162,4 +162,36 @@
         [self.selectedTravelModes removeObject: travelMode];
     }
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (_screenHeight > 700.0) {
+        return 98.0;
+    }
+    else if (_screenHeight > 600.0) {
+        return 90.0;
+    }
+    else if (_screenHeight > 500.0){
+        return 68.0;
+    }
+    else {
+        return 52.0;
+    }
+}
+
+- (UIFont *)determineCellFont
+{
+    if (_screenHeight > 700.0) {
+        return [UIFont fontWithName:@"weezerfont" size:42];
+    }
+    else if (_screenHeight > 600.0) {
+        return [UIFont fontWithName:@"weezerfont" size:38];
+    }
+    else if (_screenHeight > 500.0){
+        return [UIFont fontWithName:@"weezerfont" size:30];
+    }
+    else {
+        return [UIFont fontWithName:@"weezerfont" size:24];
+    }
+}
+
 @end
