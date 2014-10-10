@@ -31,6 +31,7 @@
         }
         if ([mode isEqualToString:@"transit"]) {
             _summary = [self formattedTransitSummary:[[data objectForKey:@"legs"][0] objectForKey:@"steps"]];
+            _walkingTransitTime = [self getWalkingTransitTime:[[data objectForKey:@"legs"][0] objectForKey:@"steps"]];
         }
 
     }
@@ -73,6 +74,23 @@
         }
     }
     return [NSArray arrayWithArray:vehicleTypesArray];
+}
+
+-(NSString *)getWalkingTransitTime:(NSArray *)stepsResponseArray
+{
+    NSUInteger walkingTime = 0;
+    NSUInteger transitTime = 0;
+    for (NSDictionary *step in stepsResponseArray) {
+        if ([[step objectForKey:@"travel_mode"] isEqualToString:@"TRANSIT"]) {
+            transitTime += [[[step objectForKey:@"duration"] objectForKey:@"value"] unsignedIntegerValue];
+        }
+        if ([[step objectForKey:@"travel_mode"] isEqualToString:@"WALKING"]) {
+            walkingTime += [[[step objectForKey:@"duration"] objectForKey:@"value"] unsignedIntegerValue];
+        }
+    }
+    NSString *transitTimeMins = [NSString stringWithFormat:@"%d mins transit", transitTime/60];
+    NSString *walkingTimeMins = [NSString stringWithFormat:@"%i mins walking", walkingTime/60];
+    return [NSString stringWithFormat:@"%@, %@", transitTimeMins, walkingTimeMins];
 }
 
 @end

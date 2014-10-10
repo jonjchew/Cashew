@@ -11,7 +11,6 @@
 #import "GoogleDirection.h"
 #import "UberApi.h"
 #import "GoogleApi.h"
-#import "StepsViewController.h"
 #import "Config.h"
 #import <RTAlertView.h>
 #import <AFNetworking/AFNetworking.h>
@@ -205,7 +204,12 @@
         modeLabel.text = [(GoogleDirection*)travelMode mode];
         timeDurationLabel.text = [NSString stringWithFormat:@"%@ total", [travelMode timeDurationText] ];
         thirdLabel.text = [travelMode summary];
-        fourthLabel.text = [travelMode distance];
+        if ([[(GoogleDirection*)travelMode mode] isEqualToString:@"transit"]) {
+            fourthLabel.text = [travelMode walkingTransitTime];
+        }
+        else {
+            fourthLabel.text = [travelMode distance];
+        }
     }
     else {
         modeLabel.text = [travelMode productName];

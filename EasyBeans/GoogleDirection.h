@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSString *departureTime;
 @property (strong, nonatomic) NSString *arrivalTime;
 @property (strong, nonatomic) NSString *mode;
+@property (strong, nonatomic) NSString *walkingTransitTime;
 +(id)initWithJsonData: (NSDictionary *) data andMode: (NSString *) mode;
 
 @end
