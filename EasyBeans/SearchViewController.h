@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "ResultsViewController.h"
 #import "InfoViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
 typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 
-@interface SearchViewController : UIViewController  <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+@interface SearchViewController : UIViewController  <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *originLocation;
 @property (strong, nonatomic) IBOutlet UITextField *destinationLocation;
@@ -22,5 +23,7 @@ typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 
 @property (strong, nonatomic) NSArray *travelModesArray;
 @property (strong, nonatomic) NSMutableArray *selectedTravelModes;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLLocation *currentLocation;
 
 @end

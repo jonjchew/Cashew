@@ -28,6 +28,7 @@
 		3645FAA819E60EE200508DA4 /* secret.sample in Resources */ = {isa = PBXBuildFile; fileRef = 3645FAA719E60EE200508DA4 /* secret.sample */; };
 		3645FAAA19E644F400508DA4 /* weezerfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3645FAA919E644F400508DA4 /* weezerfont.ttf */; };
 		3645FAAD19E7377E00508DA4 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3645FAAC19E7377E00508DA4 /* InfoViewController.m */; };
+		3675681C19EA4DAA004A9F39 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3675681B19EA4DAA004A9F39 /* CoreLocation.framework */; };
 		36BA9FD419C65A9100E38FD3 /* UberApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA9FD319C65A9100E38FD3 /* UberApi.m */; };
 		36BA9FDB19C65CE100E38FD3 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA9FDA19C65CE100E38FD3 /* Config.m */; };
 		36BA9FDE19C66F7100E38FD3 /* GoogleApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA9FDD19C66F7100E38FD3 /* GoogleApi.m */; };
@@ -80,6 +81,7 @@
 		3645FAA919E644F400508DA4 /* weezerfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = weezerfont.ttf; path = ../../../../Downloads/weezerfont.ttf; sourceTree = "<group>"; };
 		3645FAAB19E7377E00508DA4 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		3645FAAC19E7377E00508DA4 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		3675681B19EA4DAA004A9F39 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		36BA9FD219C65A9100E38FD3 /* UberApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberApi.h; sourceTree = "<group>"; };
 		36BA9FD319C65A9100E38FD3 /* UberApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberApi.m; sourceTree = "<group>"; };
 		36BA9FD919C65CE100E38FD3 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3675681C19EA4DAA004A9F39 /* CoreLocation.framework in Frameworks */,
 				3627ACB619B6AEE3002E37D7 /* CoreGraphics.framework in Frameworks */,
 				3627ACB819B6AEE3002E37D7 /* UIKit.framework in Frameworks */,
 				3627ACB419B6AEE3002E37D7 /* Foundation.framework in Frameworks */,
@@ -151,6 +154,7 @@
 		3627ACB219B6AEE3002E37D7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3675681B19EA4DAA004A9F39 /* CoreLocation.framework */,
 				3627ACB319B6AEE3002E37D7 /* Foundation.framework */,
 				3627ACB519B6AEE3002E37D7 /* CoreGraphics.framework */,
 				3627ACB719B6AEE3002E37D7 /* UIKit.framework */,

@@ -41,6 +41,8 @@
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     _screenHeight = screenRect.size.height;
+    
+    [self findGPSLocation];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -194,4 +196,64 @@
     }
 }
 
+#pragma mark - GPS
+
+- (void)findGPSLocation
+{
+    NSLog(@"findGPS");
+    
+    if (!self.locationManager) {
+        NSLog(@"self.locationmanager was nil");
+        if([CLLocationManager locationServicesEnabled] == NO){
+            NSLog(@"GPS not enabled");
+        }
+        self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        self.locationManager.distanceFilter = 10;
+        self.locationManager.delegate = self;
+        if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [self.locationManager requestWhenInUseAuthorization];
+        }
+    }
+    
+    [self.locationManager startUpdatingLocation];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    NSLog(@"updating location");
+    CLLocation *newLocation = [locations lastObject];
+    NSLog(@"%@", newLocation);
+    NSLog(@"%f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+    self.originLocation.text = @"Current location";
+    NSTimeInterval locationAge = -[newLocation.timestamp timeIntervalSinceNow];
+    if ( locationAge > 10.0 ) return;
+    
+    if ( newLocation.horizontalAccuracy < 0 ) return;
+    
+    NSLog(@"'current location' %@", self.currentLocation);
+    NSLog(@"horizonal accuracy %f", newLocation.horizontalAccuracy);
+    NSLog(@"desired accuracy %f", self.locationManager.desiredAccuracy);
+    
+    if ( self.currentLocation == nil && newLocation.horizontalAccuracy <= self.locationManager.desiredAccuracy ) {
+        
+        self.currentLocation = newLocation;
+        self.originLocation.text = @"Current location";
+        NSLog(@"%f %f", self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude);
+        [self stopLocationManager];
+    }
+}
+
+- (void)stopLocationManager
+{
+    [self.locationManager stopUpdatingLocation];
+}
+
+- (void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"%@",error);
+    
+    if ( [error code] != kCLErrorLocationUnknown ){
+        [self stopLocationManager];
+    }
+}
 @end
