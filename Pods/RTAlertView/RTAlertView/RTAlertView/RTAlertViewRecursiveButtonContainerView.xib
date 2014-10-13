@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1" customClass="RTAlertViewRecursiveButtonContainerView">
+            <rect key="frame" x="0.0" y="0.0" width="270" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ay-zI-LHa" userLabel="buttonContainer">
+                    <rect key="frame" x="0.0" y="0.0" width="270" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LDB-ps-TiE" userLabel="button0">
+                            <rect key="frame" x="0.0" y="0.0" width="270" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="Button 0">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="button0Tapped:" destination="1" eventType="touchUpInside" id="Nfa-zr-bLg"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ol-el-OyS" userLabel="button1">
+                            <rect key="frame" x="270" y="0.0" width="0.0" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" id="Q3k-JK-3tb" userLabel="widthConstraintForButton1"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="Button 1">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="button1Tapped:" destination="1" eventType="touchUpInside" id="MtB-ra-iwD"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="LDB-ps-TiE" firstAttribute="leading" secondItem="4Ay-zI-LHa" secondAttribute="leading" id="9yf-nT-7et"/>
+                        <constraint firstItem="1Ol-el-OyS" firstAttribute="top" secondItem="4Ay-zI-LHa" secondAttribute="top" id="FUT-v1-pjX"/>
+                        <constraint firstAttribute="trailing" secondItem="1Ol-el-OyS" secondAttribute="trailing" id="HSM-sD-13H"/>
+                        <constraint firstAttribute="bottom" secondItem="LDB-ps-TiE" secondAttribute="bottom" id="J0Z-QU-PoE"/>
+                        <constraint firstItem="LDB-ps-TiE" firstAttribute="top" secondItem="4Ay-zI-LHa" secondAttribute="top" id="T1o-zx-ssq"/>
+                        <constraint firstItem="1Ol-el-OyS" firstAttribute="leading" secondItem="LDB-ps-TiE" secondAttribute="trailing" id="VJv-vb-U0I"/>
+                        <constraint firstAttribute="bottom" secondItem="1Ol-el-OyS" secondAttribute="bottom" id="vUY-9F-oJS"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eus-Ej-PNw" userLabel="horizontalDividerLine">
+                    <rect key="frame" x="0.0" y="0.0" width="270" height="1"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="3Nh-kI-SME" userLabel="heightConstraintForHorizontalDividerLine"/>
+                        <constraint firstAttribute="width" constant="270" id="Wfv-gB-Unr"/>
+                    </constraints>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HP5-yD-EJN" userLabel="verticalDividerLine">
+                    <rect key="frame" x="270" y="1" width="1" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="JDM-Wt-uaX"/>
+                        <constraint firstAttribute="width" constant="1" id="Z0v-vY-DfX" userLabel="widthConstraintForVerticalDividerLine"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G1E-dK-D3q" userLabel="nextButtonContainer">
+                    <rect key="frame" x="0.0" y="44" width="270" height="0.0"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" placeholder="YES" id="2KO-QN-qMS"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="4Ay-zI-LHa" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="52g-pC-1gU"/>
+                <constraint firstAttribute="trailing" secondItem="eus-Ej-PNw" secondAttribute="trailing" id="8TD-oT-OkM"/>
+                <constraint firstAttribute="bottom" secondItem="G1E-dK-D3q" secondAttribute="bottom" id="FeO-EO-l7V"/>
+                <constraint firstItem="1Ol-el-OyS" firstAttribute="leading" secondItem="HP5-yD-EJN" secondAttribute="leading" id="Rz9-cv-tfU"/>
+                <constraint firstItem="G1E-dK-D3q" firstAttribute="top" secondItem="4Ay-zI-LHa" secondAttribute="bottom" id="ZJv-uq-9lf"/>
+                <constraint firstItem="HP5-yD-EJN" firstAttribute="height" secondItem="4Ay-zI-LHa" secondAttribute="height" id="ZX2-1B-rh8"/>
+                <constraint firstAttribute="trailing" secondItem="4Ay-zI-LHa" secondAttribute="trailing" id="dsq-hk-8wM"/>
+                <constraint firstItem="eus-Ej-PNw" firstAttribute="top" secondItem="1" secondAttribute="top" id="gOH-Md-A7I" userLabel="topConstraintForHorizontalDividerLine"/>
+                <constraint firstAttribute="trailing" secondItem="G1E-dK-D3q" secondAttribute="trailing" id="jei-sf-Ca4"/>
+                <constraint firstItem="G1E-dK-D3q" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="mnb-5i-x5e"/>
+                <constraint firstItem="eus-Ej-PNw" firstAttribute="bottom" secondItem="HP5-yD-EJN" secondAttribute="top" id="p96-D0-X4t"/>
+                <constraint firstItem="eus-Ej-PNw" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="xrc-2D-v4N"/>
+                <constraint firstItem="4Ay-zI-LHa" firstAttribute="top" secondItem="1" secondAttribute="top" id="y79-xm-RPY"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="button0" destination="LDB-ps-TiE" id="AvN-ZG-aec"/>
+                <outlet property="button1" destination="1Ol-el-OyS" id="s02-Um-6g1"/>
+                <outlet property="heightConstraintForHorizontalDividerLine" destination="3Nh-kI-SME" id="XmS-J8-vbx"/>
+                <outlet property="horizontalDividerLine" destination="eus-Ej-PNw" id="zGl-80-0ki"/>
+                <outlet property="nextButtonContainer" destination="G1E-dK-D3q" id="PAj-C0-ZaI"/>
+                <outlet property="topConstraintForHorizontalDividerLine" destination="gOH-Md-A7I" id="lRK-gU-ZrZ"/>
+                <outlet property="verticalDividerLine" destination="HP5-yD-EJN" id="sJa-4t-3M9"/>
+                <outlet property="widthConstraintForButton1" destination="Q3k-JK-3tb" id="Ugd-A6-B3C"/>
+                <outlet property="widthConstraintForVerticalDividerLine" destination="Z0v-vY-DfX" id="PNQ-HA-7qZ"/>
+            </connections>
+        </view>
+    </objects>
+</document>
