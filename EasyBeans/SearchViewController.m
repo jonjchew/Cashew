@@ -22,6 +22,10 @@
     NSString *_inputtedOrigin;
     NSString *_inputtedDestination;
     CGFloat _screenHeight;
+    UITableView *_originLocationDropdown;
+    CLLocation *_currentLocation;
+    CLLocationManager *_locationManager;
+    BOOL _currentLocationSelected;
 }
 
 - (void)viewDidLoad
@@ -42,8 +46,12 @@
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     _screenHeight = screenRect.size.height;
     
+    self.originLocationTableView.alpha = 0;
+    
     [self findGPSLocation];
 }
+
+#pragma mark - Origin location textfield
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -56,6 +64,16 @@
     return YES;
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField == _originLocation) {
+        [self showOriginLocationTableView];
+    }
+    if (textField == _destinationLocation) {
+        [self hideOriginLocationTableView];
+    }
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -65,16 +83,16 @@
         viewController.selectedTravelModes = self.selectedTravelModes;
         viewController.originLocationText = self.originLocation.text;
         viewController.destinationLocationText = self.destinationLocation.text;
+         viewController.currenLocation = _currentLocation;
         [viewController findResults];
      }
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    
     if ([identifier isEqualToString:@"ResultsViewController"]) {
         NSString *error = [self checkMissingField];
-        if ([error isEqualToString:@"PASS"]) {
+        if ([error isEqualToString:@"none"]) {
             return YES;
         }
         else {
@@ -82,17 +100,13 @@
             return NO;
         }
     }
-    else if ([identifier isEqualToString:@"InfoViewController"]){
-        return YES;
-    }
     else {
         return YES;
     }
 }
 
-- (void) showErrorAlert:(NSString*)error
+- (void) showErrorAlert:(NSString*)errorMessage
 {
-    NSString *errorMessage = [NSString stringWithFormat:@"Remember to %@", error];
     RTAlertView *alertView = [[RTAlertView alloc] initWithTitle:@"oops"
                                                         message:errorMessage
                                                        delegate:nil
@@ -107,16 +121,19 @@
 - (NSString*)checkMissingField
 {
     if (self.originLocation.text.length == 0) {
-        return @"enter your start location!";
+        return @"Remember to enter your start location!";
+    }
+    else if ([self.originLocation.text isEqualToString:@"Current Location"] && _currentLocation == nil) {
+        return @"We couldn't find your current location. Try entering an address instead.";
     }
     else if (self.destinationLocation.text.length == 0){
-        return @"enter your destination!";
+        return @"Remember to enter your destination!";
     }
     else if ([self.selectedTravelModes count] == 0) {
-        return @"select a transportation mode to compare!";
+        return @"Remember to select a transportation mode to compare!";
     }
     else {
-        return @"PASS";
+        return @"none";
     }
 }
 
@@ -126,58 +143,109 @@
 
 #pragma mark - Table View methods
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.travelModesArray.count;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (tableView == self.tableView) {
+        return self.travelModesArray.count;
+    }
+    else {
+        return 1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.textLabel.text = [self.travelModesArray objectAtIndex:indexPath.row];
-    cell.textLabel.font = [self determineCellFont];
-    return cell;
+    if (tableView == self.tableView) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+        cell.textLabel.text = [self.travelModesArray objectAtIndex:indexPath.row];
+        cell.textLabel.font = [self determineCellFont];
+        return cell;
+    }
+    else {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"currentLocationCell" forIndexPath:indexPath];
+        cell.textLabel.text = @"Current Location";
+        cell.textLabel.font = [UIFont fontWithName:@"Walkway" size:15];
+        cell.textLabel.textColor = [UIColor blueColor];
+        return cell;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath: indexPath];
-    
-    if (cell.accessoryType == UITableViewCellAccessoryNone) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    if (tableView == self.tableView) {
+        
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath: indexPath];
+        
+        if (cell.accessoryType == UITableViewCellAccessoryNone) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        else {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.contentView.backgroundColor = [UIColor whiteColor];
+        }
+        
+        NSString *travelMode = [self.travelModesArray objectAtIndex:indexPath.row];
+        if ([self.selectedTravelModes indexOfObject: travelMode] == NSNotFound) {
+            [self.selectedTravelModes addObject: travelMode];
+        }
+        else {
+            [self.selectedTravelModes removeObject: travelMode];
+        }
+
     }
     else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.contentView.backgroundColor = [UIColor whiteColor];
-    }
-    
-    NSString *travelMode = [self.travelModesArray objectAtIndex:indexPath.row];
-    if ([self.selectedTravelModes indexOfObject: travelMode] == NSNotFound) {
-        [self.selectedTravelModes addObject: travelMode];
-    }
-    else {
-        [self.selectedTravelModes removeObject: travelMode];
+        self.originLocation.text = @"Current Location";
+        _currentLocationSelected = YES;
+        [_destinationLocation becomeFirstResponder];
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (_screenHeight > 700.0) {
-        return 98.0;
-    }
-    else if (_screenHeight > 600.0) {
-        return 90.0;
-    }
-    else if (_screenHeight > 500.0){
-        return 68.0;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == self.tableView) {
+        if (_screenHeight > 700.0) {
+            return 98.0;
+        }
+        else if (_screenHeight > 600.0) {
+            return 90.0;
+        }
+        else if (_screenHeight > 500.0){
+            return 68.0;
+        }
+        else {
+            return 52.0;
+        }
     }
     else {
-        return 52.0;
+        return 30;
     }
+}
+
+- (void)showOriginLocationTableView
+{
+    self.originLocationTableView.hidden = NO;
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.originLocationTableView setAlpha:1.0];
+    }
+    completion:^(BOOL finished){
+     self.originLocationTableView.hidden = NO;
+    }];
+}
+
+- (void)hideOriginLocationTableView
+{
+    [UIView animateWithDuration:0.25 animations:^{
+         [self.originLocationTableView setAlpha:0.0];
+     }
+     completion:^(BOOL finished){
+         self.originLocationTableView.hidden = YES;
+     }];
 }
 
 - (UIFont *)determineCellFont
@@ -200,53 +268,40 @@
 
 - (void)findGPSLocation
 {
-    NSLog(@"findGPS");
-    
-    if (!self.locationManager) {
-        NSLog(@"self.locationmanager was nil");
+    if (!_locationManager) {
         if([CLLocationManager locationServicesEnabled] == NO){
             NSLog(@"GPS not enabled");
         }
-        self.locationManager = [[CLLocationManager alloc] init];
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        self.locationManager.distanceFilter = 10;
-        self.locationManager.delegate = self;
-        if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-            [self.locationManager requestWhenInUseAuthorization];
+        _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.distanceFilter = 10;
+        _locationManager.delegate = self;
+        if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [_locationManager requestWhenInUseAuthorization];
         }
     }
     
-    [self.locationManager startUpdatingLocation];
+    [_locationManager startUpdatingLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    NSLog(@"updating location");
     CLLocation *newLocation = [locations lastObject];
-    NSLog(@"%@", newLocation);
-    NSLog(@"%f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-    self.originLocation.text = @"Current location";
-    NSTimeInterval locationAge = -[newLocation.timestamp timeIntervalSinceNow];
-    if ( locationAge > 10.0 ) return;
     
-    if ( newLocation.horizontalAccuracy < 0 ) return;
-    
-    NSLog(@"'current location' %@", self.currentLocation);
-    NSLog(@"horizonal accuracy %f", newLocation.horizontalAccuracy);
-    NSLog(@"desired accuracy %f", self.locationManager.desiredAccuracy);
-    
-    if ( self.currentLocation == nil && newLocation.horizontalAccuracy <= self.locationManager.desiredAccuracy ) {
-        
-        self.currentLocation = newLocation;
-        self.originLocation.text = @"Current location";
-        NSLog(@"%f %f", self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude);
-        [self stopLocationManager];
+    if ( _currentLocation == nil || newLocation.horizontalAccuracy <= _currentLocation.horizontalAccuracy ) {
+
+        NSLog(@"%@", newLocation);
+        NSLog(@"%f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+        _currentLocation = newLocation;
+//        self.originLocation.textColor = [UIColor blueColor];
+//        self.originLocation.placeholder = @"Current location";
+//        self.originLocation.attributedPlaceholder = [[NSAttributedString alloc]
+//                                                     initWithString:@"Current location"                                                                                    attributes:@{NSForegroundColorAttributeName:[UIColor blueColor]}];
     }
 }
 
 - (void)stopLocationManager
 {
-    [self.locationManager stopUpdatingLocation];
+    [_locationManager stopUpdatingLocation];
 }
 
 - (void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {

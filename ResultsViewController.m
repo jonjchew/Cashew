@@ -62,13 +62,20 @@
     
     if (![_inputtedOrigin isEqualToString:self.originLocationText]) {
         _inputtedOrigin = self.originLocationText;
-        [GoogleApi getGeocode: self.originLocationText forLocation:@"origin" withBlock:^(NSDictionary *responseObject) {
-            [self storeLocations:responseObject forLocation:@"origin"];
-        }];
+        if ([_inputtedOrigin isEqualToString:@"Current Location"] && self.currenLocation != nil) {
+            [GoogleApi getAddressWithGeocode:self.currenLocation forLocation:@"origin" withBlock:^(NSDictionary *responseObject) {
+                [self storeLocations:responseObject forLocation:@"origin"];
+            }];
+        }
+        else {
+            [GoogleApi getGeocodeWithAddress: self.originLocationText forLocation:@"origin" withBlock:^(NSDictionary *responseObject) {
+                [self storeLocations:responseObject forLocation:@"origin"];
+            }];
+        }
     }
     if (![_inputtedDestination isEqualToString:self.destinationLocationText]) {
         _inputtedDestination = self.destinationLocationText;
-        [GoogleApi getGeocode: self.destinationLocationText forLocation:@"destination" withBlock:^(NSDictionary *responseObject) {
+        [GoogleApi getGeocodeWithAddress: self.destinationLocationText forLocation:@"destination" withBlock:^(NSDictionary *responseObject) {
             [self storeLocations:responseObject forLocation:@"destination"];
         }];    }
 }

@@ -12,10 +12,23 @@
 
 @implementation GoogleApi
 
-+ (void) getGeocode: (NSString *) addressString forLocation: (NSString *) locationType withBlock: (successBlockWithResponse) successBlock
++ (void)getGeocodeWithAddress: (NSString *) addressString forLocation: (NSString *) locationType withBlock: (successBlockWithResponse) successBlock
+{
+    NSDictionary *parameters = @{@"address": addressString};
+    [self getGeocode: parameters withBlock: successBlock];
+}
+
++ (void)getAddressWithGeocode:(CLLocation *)currentLocation forLocation: (NSString *) locationType withBlock: (successBlockWithResponse) successBlock
+{
+    NSDictionary *parameters = @{@"latlng": [NSString stringWithFormat:@"%f,%f",
+                                             currentLocation.coordinate.latitude,
+                                             currentLocation.coordinate.longitude]};
+    [self getGeocode: parameters withBlock: successBlock];
+}
+
++ (void)getGeocode:(NSDictionary *)parameters withBlock: (successBlockWithResponse) successBlock
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"address": addressString};
     
     NSString *geocodeApiRootUrl = [[Config sharedConfig].apiURLs objectForKey:@"geocodeApiRootUrl"];
     
@@ -26,7 +39,7 @@
     }];
 }
 
-+ (void) getGoogleDirections: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode byMode: (NSString *) travelMode withBlock: (successBlockWithResponse) successBlock
++ (void)getGoogleDirections: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode byMode: (NSString *) travelMode withBlock: (successBlockWithResponse) successBlock
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     

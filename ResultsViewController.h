@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 
@@ -20,6 +21,7 @@ typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) NSString *destinationLocationText;
 @property (strong, nonatomic) NSArray *selectedTravelModes;
+@property (strong, nonatomic) CLLocation *currenLocation;
 
 -(void)findResults;
 
