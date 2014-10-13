@@ -191,6 +191,7 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
         cell.textLabel.text = [self.travelModesArray objectAtIndex:indexPath.row];
         cell.textLabel.font = [self determineCellFont];
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
         return cell;
     }
     else {
@@ -334,7 +335,7 @@
 
 - (BOOL)currentLocationAvailable
 {
-    return _currentLocation == nil;
+    return _currentLocation != nil;
 }
 
 - (BOOL)currenLocationSelected
