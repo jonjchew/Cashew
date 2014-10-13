@@ -25,6 +25,7 @@
     UITableView *_originLocationDropdown;
     CLLocation *_currentLocation;
     CLLocationManager *_locationManager;
+    BOOL _currentLocationAvailable;
     BOOL _currentLocationSelected;
 }
 
@@ -32,11 +33,14 @@
 {
     [super viewDidLoad];
     
+    _currentLocationAvailable = NO;
+    
     self.originLocation.delegate = self;
     self.destinationLocation.delegate = self;
     
     _inputtedDestination = @"destination";
     _inputtedOrigin = @"origin";
+
     self.travelModesArray = [Config sharedConfig].travelModes;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.selectedTravelModes = [NSMutableArray array];
@@ -66,12 +70,22 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (textField == _originLocation) {
+    if (textField == _originLocation && _currentLocationAvailable) {
         [self showOriginLocationTableView];
     }
     if (textField == _destinationLocation) {
         [self hideOriginLocationTableView];
     }
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (textField == self.originLocation && [self.originLocation.text isEqualToString:@"Current Location"] &&
+        [string isEqualToString:@""]) {
+        self.originLocation.text = @"";
+        self.originLocation.textColor = [UIColor blackColor];
+    }
+    return YES;
 }
 
 #pragma mark - Navigation
@@ -123,7 +137,7 @@
     if (self.originLocation.text.length == 0) {
         return @"Remember to enter your start location!";
     }
-    else if ([self.originLocation.text isEqualToString:@"Current Location"] && _currentLocation == nil) {
+    else if (_currentLocationSelected && _currentLocation == nil) {
         return @"We couldn't find your current location. Try entering an address instead.";
     }
     else if (self.destinationLocation.text.length == 0){
@@ -201,6 +215,7 @@
     }
     else {
         self.originLocation.text = @"Current Location";
+        self.originLocation.textColor = [UIColor blueColor];
         _currentLocationSelected = YES;
         [_destinationLocation becomeFirstResponder];
     }
@@ -288,7 +303,7 @@
     CLLocation *newLocation = [locations lastObject];
     
     if ( _currentLocation == nil || newLocation.horizontalAccuracy <= _currentLocation.horizontalAccuracy ) {
-
+        _currentLocationAvailable = YES;
         NSLog(@"%@", newLocation);
         NSLog(@"%f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
         _currentLocation = newLocation;
