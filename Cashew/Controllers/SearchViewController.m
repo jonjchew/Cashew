@@ -10,7 +10,7 @@
 #import "UberMode.h"
 #import "GoogleDirection.h"
 #import "Config.h"
-#import "UIColor+CashewGreen.h"
+#import "UIColor+Cashew.h"
 #import <RTAlertView.h>
 #import <AFNetworking/AFNetworking.h>
 
@@ -191,7 +191,6 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
         cell.textLabel.text = [self.travelModesArray objectAtIndex:indexPath.row];
         cell.textLabel.font = [self determineCellFont];
-        cell.textLabel.textAlignment = NSTextAlignmentCenter;
         return cell;
     }
     else {
