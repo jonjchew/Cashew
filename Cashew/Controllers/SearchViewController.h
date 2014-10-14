@@ -18,7 +18,6 @@ typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 @property (strong, nonatomic) IBOutlet UITableView *originLocationTableView;
 @property (strong, nonatomic) IBOutlet UITextField *originLocation;
 @property (strong, nonatomic) IBOutlet UITextField *destinationLocation;
-- (IBAction)findResults:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *compareButton;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 

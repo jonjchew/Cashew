@@ -164,10 +164,6 @@
     }
 }
 
-- (IBAction)findResults:(id)sender {
-
-}
-
 #pragma mark - Table View methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -191,6 +187,7 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
         cell.textLabel.text = [self.travelModesArray objectAtIndex:indexPath.row];
         cell.textLabel.font = [self determineCellFont];
+//        cell.textLabel.textAlignment = NSTextAlignmentCenter;
         return cell;
     }
     else {
@@ -208,6 +205,14 @@
     if (tableView == self.tableView) {
         
         UITableViewCell *cell = [tableView cellForRowAtIndexPath: indexPath];
+        
+//        if (cell.contentView.backgroundColor == [UIColor colorWithWhite:0 alpha:0]) {
+//            cell.contentView.backgroundColor = [UIColor highlightBlueColor];
+//            cell.textLabel.textColor = [UIColor whiteColor];
+//        }
+//        else {
+//            cell.contentView.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+//        }
         
         if (cell.accessoryType == UITableViewCellAccessoryNone) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;

@@ -15,7 +15,7 @@
 }
 
 +(UIColor*)highlightBlueColor {
-    return [UIColor colorWithRed:0.098 green:0.7098 blue:0.996 alpha:1];
+    return [UIColor colorWithRed:0.419 green:0.725 blue:0.941 alpha:1];
 }
 
 @end

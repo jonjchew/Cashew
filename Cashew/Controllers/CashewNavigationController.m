@@ -7,7 +7,7 @@
 //
 
 #import "CashewNavigationController.h"
-#import "UIColor+CashewGreen.h"
+#import "UIColor+Cashew.h"
 
 @implementation CashewNavigationController
 
