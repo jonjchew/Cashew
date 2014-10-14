@@ -48,6 +48,8 @@
     
     self.originLocationTableView.alpha = 0;
     
+    [self.fromToImageView setImage:[UIImage imageNamed:@"FromTo"]];
+    
     [self findGPSLocation];
 }
 
@@ -71,8 +73,7 @@
     }
     if (textField == _destinationLocation) {
         if ([[_originLocation.text lowercaseString] isEqualToString:@"current location"] && [self currentLocationAvailable]) {
-            _originLocation.textColor = [UIColor blueColor];
-            _originLocation.text = @"Current Location";
+            [self selectCurrentLocation];
         }
         [self hideOriginLocationTableView];
     }
@@ -82,8 +83,7 @@
 {
     if (textField == self.originLocation && [self.originLocation.text isEqualToString:@"Current Location"]) {
         if ([string isEqualToString:@""]) {
-            self.originLocation.text = @"";
-            self.originLocation.textColor = [UIColor blackColor];
+            [self unselectCurrentLocation];
             return YES;
         }
         else {
@@ -96,7 +96,7 @@
 - (BOOL)textFieldShouldClear:(UITextField *)textField
 {
     if (textField == self.originLocation) {
-        self.originLocation.textColor = [UIColor blackColor];
+        [self unselectCurrentLocation];
     }
     return YES;
 }
@@ -232,8 +232,7 @@
 
     }
     else {
-        self.originLocation.text = @"Current Location";
-        self.originLocation.textColor = [UIColor blueColor];;
+        [self selectCurrentLocation];
         [_destinationLocation becomeFirstResponder];
     }
 }
@@ -345,5 +344,34 @@
 - (BOOL)currenLocationSelected
 {
     return [self.originLocation.text isEqualToString:@"Current Location"];
+}
+
+- (void)selectCurrentLocation
+{
+    _originLocation.textColor = [UIColor blueColor];
+    _originLocation.text = @"Current Location";
+    
+    UIImage *toImage = [UIImage imageNamed:@"FromToCurrentLocation"];
+    [UIView transitionWithView:self.fromToImageView
+                      duration:0.5f
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        self.fromToImageView.image = toImage;
+                    } completion:nil];
+}
+
+- (void)unselectCurrentLocation
+{
+    self.originLocation.text = @"";
+    self.originLocation.textColor = [UIColor blackColor];
+    [self.fromToImageView setImage:[UIImage imageNamed:@"FromTo"]];
+    
+    UIImage *toImage = [UIImage imageNamed:@"FromTo"];
+    [UIView transitionWithView:self.fromToImageView
+                      duration:0.5f
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        self.fromToImageView.image = toImage;
+                    } completion:nil];
 }
 @end

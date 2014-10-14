@@ -20,6 +20,7 @@ typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 @property (strong, nonatomic) IBOutlet UITextField *destinationLocation;
 @property (strong, nonatomic) IBOutlet UIButton *compareButton;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UIImageView *fromToImageView;
 
 @property (strong, nonatomic) NSArray *travelModesArray;
 @property (strong, nonatomic) NSMutableArray *selectedTravelModes;
