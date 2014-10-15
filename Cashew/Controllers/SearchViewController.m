@@ -209,7 +209,6 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (tableView == self.tableView) {
-        
         UITableViewCell *cell = [tableView cellForRowAtIndexPath: indexPath];
 
         UIImageView *travelModeIcon;
@@ -237,7 +236,6 @@
         else {
             [self.selectedTravelModes removeObject: travelMode];
         }
-
     }
     else {
         [self selectCurrentLocation];
@@ -252,7 +250,7 @@
             return 98.0;
         }
         else if (_screenHeight > 600.0) {
-            return 90.0;
+            return 88.0;
         }
         else if (_screenHeight > 500.0) {
             return 68.0;
@@ -269,10 +267,10 @@
 - (UIImageView *)getTravelModeIconImageView
 {
     if (_screenHeight > 700.0) {
-        return [[UIImageView alloc] initWithFrame:CGRectMake(285, 9, 80, 80)];
+        return [[UIImageView alloc] initWithFrame:CGRectMake(288, 12, 74, 74)];
     }
     else if (_screenHeight > 600.0) {
-        return [[UIImageView alloc] initWithFrame:CGRectMake(261, 8, 74, 74)];
+        return [[UIImageView alloc] initWithFrame:CGRectMake(265, 10, 68, 68)];
     }
     else if (_screenHeight > 500.0) {
         return [[UIImageView alloc] initWithFrame:CGRectMake(227, 7, 54, 54)];
@@ -306,16 +304,16 @@
 - (UIFont *)determineCellFont
 {
     if (_screenHeight > 700.0) {
-        return [UIFont fontWithName:@"weezerfont" size:42];
+        return [UIFont fontWithName:@"weezerfont" size:54];
     }
     else if (_screenHeight > 600.0) {
-        return [UIFont fontWithName:@"weezerfont" size:38];
+        return [UIFont fontWithName:@"weezerfont" size:48];
     }
     else if (_screenHeight > 500.0){
-        return [UIFont fontWithName:@"weezerfont" size:30];
+        return [UIFont fontWithName:@"weezerfont" size:40];
     }
     else {
-        return [UIFont fontWithName:@"weezerfont" size:24];
+        return [UIFont fontWithName:@"weezerfont" size:26];
     }
 }
 
