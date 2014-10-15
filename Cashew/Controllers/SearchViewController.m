@@ -49,7 +49,11 @@
     self.originLocationTableView.alpha = 0;
     
     [self.fromToImageView setImage:[UIImage imageNamed:@"FromTo"]];
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self findGPSLocation];
 }
 
@@ -273,7 +277,7 @@
         return [[UIImageView alloc] initWithFrame:CGRectMake(265, 10, 68, 68)];
     }
     else if (_screenHeight > 500.0) {
-        return [[UIImageView alloc] initWithFrame:CGRectMake(227, 7, 54, 54)];
+        return [[UIImageView alloc] initWithFrame:CGRectMake(229, 9, 50, 50)];
     }
     else {
         return [[UIImageView alloc] initWithFrame:CGRectMake(242, 6, 40, 40)];
