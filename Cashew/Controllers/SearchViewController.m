@@ -187,7 +187,13 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
         cell.textLabel.text = [self.travelModesArray objectAtIndex:indexPath.row];
         cell.textLabel.font = [self determineCellFont];
-//        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        
+        UIImageView *travelModeIcon = [self getTravelModeIconImageView];
+        
+        travelModeIcon.image = [UIImage imageNamed:[self.travelModesArray objectAtIndex:indexPath.row]];
+        [cell.contentView addSubview:travelModeIcon];
+        [travelModeIcon setAlpha:0];
+        
         return cell;
     }
     else {
@@ -205,21 +211,23 @@
     if (tableView == self.tableView) {
         
         UITableViewCell *cell = [tableView cellForRowAtIndexPath: indexPath];
+
+        UIImageView *travelModeIcon;
+        for (id subview in cell.contentView.subviews) {
+            if ([subview isKindOfClass: [UIImageView class]]) {
+                travelModeIcon = subview;
+            }
+        }
         
-//        if (cell.contentView.backgroundColor == [UIColor colorWithWhite:0 alpha:0]) {
-//            cell.contentView.backgroundColor = [UIColor highlightBlueColor];
-//            cell.textLabel.textColor = [UIColor whiteColor];
-//        }
-//        else {
-//            cell.contentView.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
-//        }
-        
-        if (cell.accessoryType == UITableViewCellAccessoryNone) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        if (travelModeIcon.alpha == 0) {
+            [UIView animateWithDuration:0.25 animations:^{
+                [travelModeIcon setAlpha:1.0];
+            } completion:nil];
         }
         else {
-            cell.accessoryType = UITableViewCellAccessoryNone;
-            cell.contentView.backgroundColor = [UIColor whiteColor];
+            [UIView animateWithDuration:0.25 animations:^{
+                [travelModeIcon setAlpha:0.0];
+            } completion:nil];
         }
         
         NSString *travelMode = [self.travelModesArray objectAtIndex:indexPath.row];
@@ -246,7 +254,7 @@
         else if (_screenHeight > 600.0) {
             return 90.0;
         }
-        else if (_screenHeight > 500.0){
+        else if (_screenHeight > 500.0) {
             return 68.0;
         }
         else {
@@ -255,6 +263,22 @@
     }
     else {
         return 30;
+    }
+}
+
+- (UIImageView *)getTravelModeIconImageView
+{
+    if (_screenHeight > 700.0) {
+        return [[UIImageView alloc] initWithFrame:CGRectMake(285, 9, 80, 80)];
+    }
+    else if (_screenHeight > 600.0) {
+        return [[UIImageView alloc] initWithFrame:CGRectMake(261, 8, 74, 74)];
+    }
+    else if (_screenHeight > 500.0) {
+        return [[UIImageView alloc] initWithFrame:CGRectMake(227, 7, 54, 54)];
+    }
+    else {
+        return [[UIImageView alloc] initWithFrame:CGRectMake(242, 6, 40, 40)];
     }
 }
 
