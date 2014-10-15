@@ -233,7 +233,7 @@
     }
     
     [loadAppButton setImage:buttonImage forState:UIControlStateNormal];
-//    [loadAppButton setImage:pressedButtonImage forState:UIControlStateSelected | UIControlStateHighlighted];
+    [loadAppButton setImage:pressedButtonImage forState:UIControlStateSelected | UIControlStateHighlighted];
     
     return cell;
 }

@@ -25,11 +25,14 @@
     UITableView *_originLocationDropdown;
     CLLocation *_currentLocation;
     CLLocationManager *_locationManager;
+    BOOL *_internetNotAvailable;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _internetNotAvailable = [self checkInternet];
     
     self.originLocation.delegate = self;
     self.destinationLocation.delegate = self;
@@ -42,10 +45,8 @@
     self.selectedTravelModes = [NSMutableArray array];
     
     self.compareButton.layer.cornerRadius = 25;
-    
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     _screenHeight = screenRect.size.height;
-    
     self.originLocationTableView.alpha = 0;
     
     [self.fromToImageView setImage:[UIImage imageNamed:@"FromTo"]];
@@ -122,7 +123,7 @@
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     if ([identifier isEqualToString:@"ResultsViewController"]) {
-        NSString *error = [self checkMissingField];
+        NSString *error = [self checkErrors];
         if ([error isEqualToString:@"none"]) {
             return YES;
         }
@@ -143,7 +144,7 @@
     RTAlertView *alertView = [[RTAlertView alloc] initWithTitle:@"oops"
                                                         message:errorMessage
                                                        delegate:nil
-                                              cancelButtonTitle:@"Got it!"
+                                              cancelButtonTitle:@"got it!"
                                               otherButtonTitles:nil];
     alertView.messageFont = [UIFont fontWithName:@"Walkway" size:20];
     alertView.titleFont = [UIFont fontWithName:@"weezerfont" size:28];
@@ -151,7 +152,7 @@
     [alertView show];
 }
 
-- (NSString*)checkMissingField
+- (NSString*)checkErrors
 {
     if (self.originLocation.text.length == 0) {
         return @"Remember to enter your start location!";
@@ -164,6 +165,9 @@
     }
     else if ([self.selectedTravelModes count] == 0) {
         return @"Remember to select a transportation mode to compare!";
+    }
+    else if (_internetNotAvailable) {
+        return @"Looks like we can't find a connection!";
     }
     else {
         return @"none";
@@ -402,4 +406,19 @@
                         self.fromToImageView.image = toImage;
                     } completion:nil];
 }
+
+#pragma mark - connectivity
+
+- (BOOL)checkInternet
+{
+    NSURL *testURL = [NSURL URLWithString:@"http://www.google.com"];
+    NSData *data = [NSData dataWithContentsOfURL:testURL];
+    if (data) {
+        return NO;
+    }
+    else {
+        return YES;
+    }
+}
+
 @end
