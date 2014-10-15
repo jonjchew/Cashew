@@ -204,7 +204,10 @@
     UILabel *timeDurationLabel = (UILabel *)[cell viewWithTag:2];
     UILabel *thirdLabel = (UILabel *)[cell viewWithTag:3];
     UILabel *fourthLabel = (UILabel *)[cell viewWithTag:4];
-    
+    UIButton *loadAppButton = (UIButton *)[cell viewWithTag:5];
+    UIImage *buttonImage;
+    UIImage *pressedButtonImage;
+
     id travelMode = [_travelModeResults objectAtIndex:indexPath.row];
     
     if ([travelMode isKindOfClass:[GoogleDirection class]]) {
@@ -217,13 +220,20 @@
         else {
             fourthLabel.text = [travelMode distance];
         }
+        buttonImage = [UIImage imageNamed:@"GoogleMapsLogo"];
+        pressedButtonImage = [UIImage imageNamed:@"UberLogoPressed"];
     }
     else {
         modeLabel.text = [travelMode productName];
         timeDurationLabel.text = [NSString stringWithFormat:@"%i mins total", (int)[travelMode timeDurationSeconds]/60];
         thirdLabel.text = [travelMode formattedPriceAndSurgeMultiplier];
-        fourthLabel.text = [NSString stringWithFormat:@"~%@ to get to you", [travelMode formattedTimeDuration] ];
+        fourthLabel.text = [NSString stringWithFormat:@"~%@ to get to you", [travelMode formattedTimeDuration]];
+        buttonImage = [UIImage imageNamed:@"UberLogo"];
+        pressedButtonImage = [UIImage imageNamed:@"UberLogoPressed"];
     }
+    
+    [loadAppButton setImage:buttonImage forState:UIControlStateNormal];
+//    [loadAppButton setImage:pressedButtonImage forState:UIControlStateSelected | UIControlStateHighlighted];
     
     return cell;
 }
@@ -264,23 +274,19 @@
                                         originAddressURI, destinationAddressURI, [(GoogleDirection*)selectedDirection mode]];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:googleMapURLString]];
     } else {
-        [self showErrorAlert:@"Looks like you don't have GoogleMaps installed... =(" withOtherTitle:@"Open mobile site"];
+        [self showErrorAlert:@"Looks like you don't have GoogleMaps installed... =(" withOtherTitle:@"open mobile site"];
     }
 }
 
 - (void)loadUberWithPreferences:(UberMode *)selectedMode withOrigin:(NSString *)originAddressURI withDestination:(NSString *)destinationAddressURI
 {
-    NSString *uberAppURLString = [NSString stringWithFormat:@"uber://?action=setPickup?pickup[formatted_address]=%@&dropoff[formatted_address]=%@&product_id=%@",
-                               originAddressURI, destinationAddressURI, selectedMode.productID];
-    NSLog(@"%@", uberAppURLString);
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"uber://"]]) {
-//        NSString *uberURLString = [NSString stringWithFormat:@"uber://?action=setPickup?pickup[formatted_address]=%@&dropoff[formatted_address]=%@&product_id=%@",
-//                                   originAddressURI, destinationAddressURI, selectedMode.productID];
-//        NSLog(uberURLString);
+        NSString *uberAppURLString = [NSString stringWithFormat:@"uber://?action=setPickup?pickup[formatted_address]=%@&dropoff[formatted_address]=%@&product_id=%@",
+                                   originAddressURI, destinationAddressURI, selectedMode.productID];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:uberAppURLString]];
     }
     else {
-        [self showErrorAlert:@"Looks like you don't have Uber installed... =(" withOtherTitle:@"Download Uber"];
+        [self showErrorAlert:@"Looks like you don't have Uber installed... =(" withOtherTitle:@"sign up"];
     }
 }
 
@@ -375,12 +381,12 @@
     alertView.messageFont = [UIFont fontWithName:@"Walkway" size:20];
     alertView.titleFont = [UIFont fontWithName:@"weezerfont" size:30];
     if ([otherTitle length] == 0) {
-        alertView.cancelButtonFont = [UIFont fontWithName:@"weezerfont" size:25];
+        alertView.cancelButtonFont = [UIFont fontWithName:@"Walkway" size:25];
     }
     else {
-       alertView.cancelButtonFont = [UIFont fontWithName:@"weezerfont" size:15];
+       alertView.cancelButtonFont = [UIFont fontWithName:@"Walkway" size:18];
     }
-    alertView.otherButtonFont = [UIFont fontWithName:@"weezerfont" size:15];
+    alertView.otherButtonFont = [UIFont fontWithName:@"Walkway" size:18];
     [alertView show];
 }
 

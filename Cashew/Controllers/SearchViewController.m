@@ -136,6 +136,8 @@
     }
 }
 
+#pragma mark - Error handling
+
 - (void) showErrorAlert:(NSString*)errorMessage
 {
     RTAlertView *alertView = [[RTAlertView alloc] initWithTitle:@"oops"
@@ -144,8 +146,8 @@
                                               cancelButtonTitle:@"Got it!"
                                               otherButtonTitles:nil];
     alertView.messageFont = [UIFont fontWithName:@"Walkway" size:20];
-    alertView.titleFont = [UIFont fontWithName:@"weezerfont" size:25];
-    alertView.cancelButtonFont = [UIFont fontWithName:@"weezerfont" size:25];
+    alertView.titleFont = [UIFont fontWithName:@"weezerfont" size:28];
+    alertView.cancelButtonFont = [UIFont fontWithName:@"Walkway" size:25];
     [alertView show];
 }
 

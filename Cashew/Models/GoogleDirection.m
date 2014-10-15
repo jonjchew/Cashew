@@ -88,8 +88,8 @@
             walkingTime += [[[step objectForKey:@"duration"] objectForKey:@"value"] unsignedIntegerValue];
         }
     }
-    NSString *transitTimeMins = [NSString stringWithFormat:@"%u mins transit", transitTime/60];
-    NSString *walkingTimeMins = [NSString stringWithFormat:@"%u mins walking", walkingTime/60];
+    NSString *transitTimeMins = [NSString stringWithFormat:@"%u mins transit", (unsigned int)transitTime/60];
+    NSString *walkingTimeMins = [NSString stringWithFormat:@"%u mins walking", (unsigned int)walkingTime/60];
     return [NSString stringWithFormat:@"%@, %@", transitTimeMins, walkingTimeMins];
 }
 

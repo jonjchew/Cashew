@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kUg-HG-VlC">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -218,12 +219,12 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Mep-L1-FsI"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Walkway" family="Walkway" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Walkway" family="Walkway" pointSize="14"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atP-aj-Dpj">
                                 <rect key="frame" x="44" y="46" width="260" height="21"/>
-                                <fontDescription key="fontDescription" name="Walkway" family="Walkway" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Walkway" family="Walkway" pointSize="14"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="130" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Q52-du-kuf">
@@ -255,10 +256,10 @@
                                                     <fontDescription key="fontDescription" name="Walkway" family="Walkway" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRG-NO-tev">
-                                                    <rect key="frame" x="214" y="46" width="46" height="50"/>
+                                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRG-NO-tev">
+                                                    <rect key="frame" x="230" y="65" width="46" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="46" id="71F-wl-BXU"/>
+                                                        <constraint firstAttribute="width" constant="46" id="DuZ-cB-drv"/>
                                                     </constraints>
                                                     <state key="normal" title="Button">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -283,15 +284,15 @@
                                                 <constraint firstItem="qYF-rH-iqM" firstAttribute="leading" secondItem="KqK-fs-6QX" secondAttribute="leading" id="Dr1-U9-MhM"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="qYF-rH-iqM" secondAttribute="trailing" constant="48" id="FoY-EX-NUm"/>
                                                 <constraint firstItem="qYF-rH-iqM" firstAttribute="leading" secondItem="Vzq-9d-7I1" secondAttribute="leading" id="Idk-Ze-hwu"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="VRG-NO-tev" secondAttribute="bottom" constant="6.5" id="JNl-sw-iqA"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="qYF-rH-iqM" secondAttribute="bottom" constant="30.5" id="KOt-ID-2fC"/>
                                                 <constraint firstItem="KqK-fs-6QX" firstAttribute="top" secondItem="Vzq-9d-7I1" secondAttribute="bottom" constant="21" id="KYd-u1-Ebj"/>
                                                 <constraint firstItem="qYF-rH-iqM" firstAttribute="top" secondItem="Vzq-9d-7I1" secondAttribute="bottom" constant="1" id="O0A-8u-Rii"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="KqK-fs-6QX" secondAttribute="bottom" constant="0.5" id="Stu-wU-dcp"/>
                                                 <constraint firstItem="Q8m-Ku-JbF" firstAttribute="top" secondItem="mCw-EC-J3b" secondAttribute="topMargin" constant="-5" id="W0E-lb-vr5"/>
-                                                <constraint firstItem="VRG-NO-tev" firstAttribute="trailing" secondItem="Vzq-9d-7I1" secondAttribute="trailing" id="Wba-zI-B1q"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="VRG-NO-tev" secondAttribute="bottom" constant="25.5" id="Wxs-sI-dVk"/>
                                                 <constraint firstItem="Vzq-9d-7I1" firstAttribute="top" secondItem="mCw-EC-J3b" secondAttribute="topMargin" constant="40" id="dfS-sD-FoL"/>
-                                                <constraint firstItem="VRG-NO-tev" firstAttribute="top" secondItem="mCw-EC-J3b" secondAttribute="topMargin" constant="38" id="fDc-tF-kI3"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="VRG-NO-tev" secondAttribute="trailing" constant="4" id="kFb-g8-JDA"/>
+                                                <constraint firstItem="VRG-NO-tev" firstAttribute="top" secondItem="Q8m-Ku-JbF" secondAttribute="bottom" constant="10" id="oKv-mT-bGD"/>
                                                 <constraint firstItem="qYF-rH-iqM" firstAttribute="top" secondItem="Q8m-Ku-JbF" secondAttribute="bottom" constant="15" id="ygp-Qm-F6a"/>
                                             </constraints>
                                         </tableViewCellContentView>
