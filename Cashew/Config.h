@@ -1,6 +1,6 @@
 //
 //  Config.h
-//  EasyBeans
+//  Cashew
 //
 //  Created by Jonathan Chew on 9/14/14.
 //  Copyright (c) 2014 JC. All rights reserved.

@@ -15,11 +15,6 @@
 		3627ACC019B6AEE3002E37D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3627ACBF19B6AEE3002E37D7 /* main.m */; };
 		3627ACC419B6AEE3002E37D7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3627ACC319B6AEE3002E37D7 /* AppDelegate.m */; };
 		3627ACC619B6AEE3002E37D7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3627ACC519B6AEE3002E37D7 /* Images.xcassets */; };
-		3627ACCD19B6AEE3002E37D7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3627ACCC19B6AEE3002E37D7 /* XCTest.framework */; };
-		3627ACCE19B6AEE3002E37D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3627ACB319B6AEE3002E37D7 /* Foundation.framework */; };
-		3627ACCF19B6AEE3002E37D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3627ACB719B6AEE3002E37D7 /* UIKit.framework */; };
-		3627ACD719B6AEE3002E37D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3627ACD519B6AEE3002E37D7 /* InfoPlist.strings */; };
-		3627ACD919B6AEE3002E37D7 /* EasyBeansTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3627ACD819B6AEE3002E37D7 /* EasyBeansTests.m */; };
 		3627ACE319B6AF18002E37D7 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3627ACE219B6AF18002E37D7 /* Storyboard.storyboard */; };
 		3627ACE619B6B031002E37D7 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3627ACE519B6B031002E37D7 /* SearchViewController.m */; };
 		3627ACEE19B6C8D0002E37D7 /* secret.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3627ACED19B6C8D0002E37D7 /* secret.plist */; };
@@ -42,16 +37,6 @@
 		36FEFA3D19DA5DD9005C3FB3 /* Champagne & Limousines Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36FEFA3B19DA5DD9005C3FB3 /* Champagne & Limousines Bold.ttf */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		3627ACD019B6AEE3002E37D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3627ACA819B6AEE3002E37D7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3627ACAF19B6AEE3002E37D7;
-			remoteInfo = EasyBeans;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		3627ACB019B6AEE3002E37D7 /* Cashew.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cashew.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3627ACB319B6AEE3002E37D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -64,7 +49,6 @@
 		3627ACC219B6AEE3002E37D7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3627ACC319B6AEE3002E37D7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3627ACC519B6AEE3002E37D7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		3627ACCB19B6AEE3002E37D7 /* CashewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CashewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3627ACCC19B6AEE3002E37D7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3627ACD419B6AEE3002E37D7 /* CashewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CashewTests-Info.plist"; sourceTree = "<group>"; };
 		3627ACD619B6AEE3002E37D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -117,16 +101,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3627ACC819B6AEE3002E37D7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3627ACCD19B6AEE3002E37D7 /* XCTest.framework in Frameworks */,
-				3627ACCF19B6AEE3002E37D7 /* UIKit.framework in Frameworks */,
-				3627ACCE19B6AEE3002E37D7 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -146,7 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				3627ACB019B6AEE3002E37D7 /* Cashew.app */,
-				3627ACCB19B6AEE3002E37D7 /* CashewTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -288,24 +261,6 @@
 			productReference = 3627ACB019B6AEE3002E37D7 /* Cashew.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3627ACCA19B6AEE3002E37D7 /* CashewTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3627ACDF19B6AEE3002E37D7 /* Build configuration list for PBXNativeTarget "CashewTests" */;
-			buildPhases = (
-				3627ACC719B6AEE3002E37D7 /* Sources */,
-				3627ACC819B6AEE3002E37D7 /* Frameworks */,
-				3627ACC919B6AEE3002E37D7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3627ACD119B6AEE3002E37D7 /* PBXTargetDependency */,
-			);
-			name = CashewTests;
-			productName = EasyBeansTests;
-			productReference = 3627ACCB19B6AEE3002E37D7 /* CashewTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -317,9 +272,6 @@
 				TargetAttributes = {
 					3627ACAF19B6AEE3002E37D7 = {
 						DevelopmentTeam = H9TK6A3227;
-					};
-					3627ACCA19B6AEE3002E37D7 = {
-						TestTargetID = 3627ACAF19B6AEE3002E37D7;
 					};
 				};
 			};
@@ -336,7 +288,6 @@
 			projectRoot = "";
 			targets = (
 				3627ACAF19B6AEE3002E37D7 /* Cashew */,
-				3627ACCA19B6AEE3002E37D7 /* CashewTests */,
 			);
 		};
 /* End PBXProject section */
@@ -357,14 +308,6 @@
 				36FEFA3D19DA5DD9005C3FB3 /* Champagne & Limousines Bold.ttf in Resources */,
 				36FEFA1019DA5A23005C3FB3 /* TRUE TYPOLA.ttf in Resources */,
 				3645FAA819E60EE200508DA4 /* secret.sample.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3627ACC919B6AEE3002E37D7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3627ACD719B6AEE3002E37D7 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,23 +366,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3627ACC719B6AEE3002E37D7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3627ACD919B6AEE3002E37D7 /* EasyBeansTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3627ACD119B6AEE3002E37D7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3627ACAF19B6AEE3002E37D7 /* Cashew */;
-			targetProxy = 3627ACD019B6AEE3002E37D7 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3627ACBC19B6AEE3002E37D7 /* InfoPlist.strings */ = {
@@ -562,46 +489,6 @@
 			};
 			name = Release;
 		};
-		3627ACE019B6AEE3002E37D7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/EasyBeans.app/EasyBeans";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EasyBeans/EasyBeans-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "EasyBeansTests/CashewTests-Info.plist";
-				PRODUCT_NAME = CashewTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		3627ACE119B6AEE3002E37D7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/EasyBeans.app/EasyBeans";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EasyBeans/EasyBeans-Prefix.pch";
-				INFOPLIST_FILE = "EasyBeansTests/CashewTests-Info.plist";
-				PRODUCT_NAME = CashewTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -619,15 +506,6 @@
 			buildConfigurations = (
 				3627ACDD19B6AEE3002E37D7 /* Debug */,
 				3627ACDE19B6AEE3002E37D7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3627ACDF19B6AEE3002E37D7 /* Build configuration list for PBXNativeTarget "CashewTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3627ACE019B6AEE3002E37D7 /* Debug */,
-				3627ACE119B6AEE3002E37D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
