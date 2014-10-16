@@ -95,9 +95,9 @@
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="currentLocationCell" id="9iT-PT-DJL">
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9iT-PT-DJL" id="o9z-D4-DG5">
+                                        <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9iT-PT-DJL" id="o9z-D4-DG5">
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.98731181569343063" alpha="1" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -256,9 +256,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRG-NO-tev">
-                                                    <rect key="frame" x="230" y="65" width="46" height="50"/>
+                                                    <rect key="frame" x="235" y="6" width="46" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="46" id="DuZ-cB-drv"/>
+                                                        <constraint firstAttribute="width" constant="46" id="iKJ-jU-Z9h"/>
                                                     </constraints>
                                                     <state key="normal" title="Button">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -280,18 +280,18 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="Vzq-9d-7I1" secondAttribute="trailing" constant="20" id="34G-LJ-nVJ"/>
                                                 <constraint firstItem="Q8m-Ku-JbF" firstAttribute="leading" secondItem="Vzq-9d-7I1" secondAttribute="leading" id="5UX-Sw-nzF"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Q8m-Ku-JbF" secondAttribute="trailing" constant="43" id="6Gs-gf-XNq"/>
+                                                <constraint firstItem="KqK-fs-6QX" firstAttribute="top" secondItem="VRG-NO-tev" secondAttribute="bottom" constant="34" id="BFO-Fu-ubc"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="VRG-NO-tev" secondAttribute="trailing" constant="-1" id="Cna-bE-5Ut"/>
                                                 <constraint firstItem="qYF-rH-iqM" firstAttribute="leading" secondItem="KqK-fs-6QX" secondAttribute="leading" id="Dr1-U9-MhM"/>
+                                                <constraint firstItem="VRG-NO-tev" firstAttribute="top" secondItem="mCw-EC-J3b" secondAttribute="topMargin" constant="-2" id="FSh-o8-hJ5"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="qYF-rH-iqM" secondAttribute="trailing" constant="48" id="FoY-EX-NUm"/>
                                                 <constraint firstItem="qYF-rH-iqM" firstAttribute="leading" secondItem="Vzq-9d-7I1" secondAttribute="leading" id="Idk-Ze-hwu"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="VRG-NO-tev" secondAttribute="bottom" constant="6.5" id="JNl-sw-iqA"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="qYF-rH-iqM" secondAttribute="bottom" constant="30.5" id="KOt-ID-2fC"/>
                                                 <constraint firstItem="KqK-fs-6QX" firstAttribute="top" secondItem="Vzq-9d-7I1" secondAttribute="bottom" constant="21" id="KYd-u1-Ebj"/>
                                                 <constraint firstItem="qYF-rH-iqM" firstAttribute="top" secondItem="Vzq-9d-7I1" secondAttribute="bottom" constant="1" id="O0A-8u-Rii"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="KqK-fs-6QX" secondAttribute="bottom" constant="0.5" id="Stu-wU-dcp"/>
                                                 <constraint firstItem="Q8m-Ku-JbF" firstAttribute="top" secondItem="mCw-EC-J3b" secondAttribute="topMargin" constant="-5" id="W0E-lb-vr5"/>
                                                 <constraint firstItem="Vzq-9d-7I1" firstAttribute="top" secondItem="mCw-EC-J3b" secondAttribute="topMargin" constant="40" id="dfS-sD-FoL"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="VRG-NO-tev" secondAttribute="trailing" constant="4" id="kFb-g8-JDA"/>
-                                                <constraint firstItem="VRG-NO-tev" firstAttribute="top" secondItem="Q8m-Ku-JbF" secondAttribute="bottom" constant="10" id="oKv-mT-bGD"/>
                                                 <constraint firstItem="qYF-rH-iqM" firstAttribute="top" secondItem="Q8m-Ku-JbF" secondAttribute="bottom" constant="15" id="ygp-Qm-F6a"/>
                                             </constraints>
                                         </tableViewCellContentView>

@@ -19,7 +19,6 @@ typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSString *originLocationText;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
-@property (strong, nonatomic) IBOutlet UIButton *loadAppButton;
 @property (strong, nonatomic) NSString *destinationLocationText;
 @property (strong, nonatomic) NSArray *selectedTravelModes;
 @property (strong, nonatomic) CLLocation *currenLocation;

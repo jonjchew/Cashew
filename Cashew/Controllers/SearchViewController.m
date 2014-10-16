@@ -25,7 +25,7 @@
     UITableView *_originLocationDropdown;
     CLLocation *_currentLocation;
     CLLocationManager *_locationManager;
-    BOOL *_internetNotAvailable;
+    BOOL _internetNotAvailable;
 }
 
 - (void)viewDidLoad

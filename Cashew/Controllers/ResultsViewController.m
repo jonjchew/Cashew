@@ -32,6 +32,8 @@
     NSMutableArray *_errors;
     NSMutableArray *_successes;
     NSMutableArray *_resultsToFind;
+    NSUInteger _badInputErrors;
+    NSUInteger _successfulGeocodes;
     GoogleDirection *_drivingDirection;
 }
 
@@ -47,6 +49,13 @@
     _errors = [NSMutableArray array];
     _uberModes = [NSMutableArray array];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    _badInputErrors = 0;
+    _successfulGeocodes = 0;
 }
 
 #pragma mark - Executing queries
@@ -109,7 +118,7 @@
 
 - (void)storeAndUpdateDirections:(NSDictionary *)responseObject forMode: (NSString *)travelMode
 {
-    if ([[responseObject objectForKey:@"status"]  isEqual: @"OK"]) {
+    if ([[responseObject objectForKey:@"status"] isEqual: @"OK"]) {
         [_successes addObject:travelMode];
         NSDictionary *data = [responseObject objectForKey:@"routes"][0];
         
@@ -133,23 +142,30 @@
 
 - (void)storeLocations:(NSDictionary *)responseObject forLocation:(NSString *)locationType
 {
-    NSDictionary *geocodeResult = [responseObject objectForKey:@"results"][0];
-    NSDictionary *geocode = [[geocodeResult objectForKey:@"geometry"] objectForKey:@"location"];
-    NSString *formattedAddress = [geocodeResult objectForKey:@"formatted_address"];
-    
-    NSString *geocodeVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"Geocode"];
-    NSString *labelVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"Label"];
-    NSString *URIVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"AddressURI"];
-    
-    [self setValue:geocode forKey:geocodeVariableName];
-    [self setValue:[formattedAddress stringByAddingPercentEncodingWithAllowedCharacters:
-                    [NSCharacterSet URLHostAllowedCharacterSet]] forKey:URIVariableName];
-    UILabel *formattedLabel = [self valueForKey:labelVariableName];
-    formattedLabel.text = formattedAddress;
-    if (_originGeocode != NULL && _destinationGeocode != NULL) {
-        [self getTransportationEstimates: _originGeocode toDestination: _destinationGeocode];
+    if ([[responseObject objectForKey:@"status"] isEqualToString:@"ZERO_RESULTS"] || responseObject == NULL) {
+        _badInputErrors += 1;
+        [self showBadInputError:locationType];
     }
-
+    else {
+        _successfulGeocodes += 1;
+        [self showBadInputError:locationType];
+        NSDictionary *geocodeResult = [responseObject objectForKey:@"results"][0];
+        NSDictionary *geocode = [[geocodeResult objectForKey:@"geometry"] objectForKey:@"location"];
+        NSString *formattedAddress = [geocodeResult objectForKey:@"formatted_address"];
+        
+        NSString *geocodeVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"Geocode"];
+        NSString *labelVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"Label"];
+        NSString *URIVariableName = [NSString stringWithFormat:@"%@%@",locationType,@"AddressURI"];
+        
+        [self setValue:geocode forKey:geocodeVariableName];
+        [self setValue:[formattedAddress stringByAddingPercentEncodingWithAllowedCharacters:
+                        [NSCharacterSet URLHostAllowedCharacterSet]] forKey:URIVariableName];
+        UILabel *formattedLabel = [self valueForKey:labelVariableName];
+        formattedLabel.text = formattedAddress;
+        if (_originGeocode != NULL && _destinationGeocode != NULL) {
+            [self getTransportationEstimates: _originGeocode toDestination: _destinationGeocode];
+        }
+    }
 }
 
 #pragma mark - Uber API response handling
@@ -255,7 +271,6 @@
             [self showErrorAlert:[self buildErrorMessages] withOtherTitle:nil];
         }
     }
-    
 }
 
 - (BOOL)queriesComplete
@@ -325,7 +340,6 @@
                      completion:^(BOOL finished){
                          [self.activityIndicator stopAnimating];
                      }];
-    
 }
 
 #pragma mark - Error handling
@@ -333,20 +347,7 @@
 - (NSString *)buildErrorMessages
 {
     NSMutableString *errorMessage = [NSMutableString string];
-    NSMutableString *uberErrorMessage = [NSMutableString stringWithString:@""];
-
-    if ([_errors containsObject:@"uber"]) {
-        [_errors removeObject:@"uber"];
-        if (![self.selectedTravelModes containsObject:@"driving"] && [_errors containsObject:@"driving"]) {
-            [_errors removeObject:@"driving"];
-        }
-        [uberErrorMessage appendString:@"No Uber results were found"];
-        if ([_errors count] > 0) {
-            [uberErrorMessage appendString:@", either"];
-            uberErrorMessage = [NSMutableString stringWithFormat:@" %@", uberErrorMessage];
-        }
-        [uberErrorMessage appendString:@"."];
-    }
+    NSString *uberErrorMessage = [self buildUberErrorMessage];
 
     if ([_errors count] > 0) {
         [errorMessage appendString:@"No "];
@@ -369,6 +370,42 @@
 
     [errorMessage appendString:uberErrorMessage];
     return errorMessage;
+}
+
+- (NSString *)buildUberErrorMessage
+{
+    NSMutableString *uberErrorMessage = [NSMutableString stringWithString:@""];
+    if ([_errors containsObject:@"uber"]) {
+        [_errors removeObject:@"uber"];
+        if (![self.selectedTravelModes containsObject:@"driving"] && [_errors containsObject:@"driving"]) {
+            [_errors removeObject:@"driving"];
+        }
+        [uberErrorMessage appendString:@"No Uber results were found"];
+        if ([_errors count] > 0) {
+            [uberErrorMessage appendString:@", either"];
+            uberErrorMessage = [NSMutableString stringWithFormat:@" %@", uberErrorMessage];
+        }
+        [uberErrorMessage appendString:@"."];
+    }
+    return [NSString stringWithString:uberErrorMessage];
+}
+
+- (void)showBadInputError:(NSString *)locationType
+{
+    if (_badInputErrors + _successfulGeocodes == 2) {
+        NSString *errorMessage;
+        if (_badInputErrors == 1) {
+            NSString *badInputVariable = [NSString stringWithFormat:@"%@%@",locationType,@"LocationText"];
+            NSString *badInput = [self valueForKey:badInputVariable];
+            errorMessage = [NSString stringWithFormat:@"Don't know where %@ is =(", badInput];
+        }
+        else if (_badInputErrors == 2) {
+            errorMessage = [NSString stringWithFormat:@"Don't know where %@ and %@ is =(",
+                            self.originLocationText, self.destinationLocationText];
+        }
+        [self showErrorAlert:errorMessage withOtherTitle:nil];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 - (void)showErrorAlert:(NSString *)errorMessage withOtherTitle:(NSString *)otherTitle
