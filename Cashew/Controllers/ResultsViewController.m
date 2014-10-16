@@ -392,7 +392,7 @@
 
 - (void)showBadInputError:(NSString *)locationType
 {
-    if (_badInputErrors + _successfulGeocodes == 2) {
+    if (_badInputErrors + _successfulGeocodes == 2 && _successfulGeocodes != 2) {
         NSString *errorMessage;
         if (_badInputErrors == 1) {
             NSString *badInputVariable = [NSString stringWithFormat:@"%@%@",locationType,@"LocationText"];
