@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kUg-HG-VlC">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Walkway.ttf">
+            <string>Walkway</string>
+            <string>Walkway</string>
+            <string>Walkway</string>
+            <string>Walkway</string>
             <string>Walkway</string>
             <string>Walkway</string>
             <string>Walkway</string>
@@ -88,9 +93,12 @@
                                     <constraint firstAttribute="width" constant="20" id="tce-xE-7ZD"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="30" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MQM-xL-z1G">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="30" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MQM-xL-z1G">
                                 <rect key="frame" x="39" y="41" width="265" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Q3z-gM-Wau"/>
+                                </constraints>
                                 <color key="sectionIndexColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="currentLocationCell" id="9iT-PT-DJL">
@@ -112,14 +120,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="MQM-xL-z1G" firstAttribute="trailing" secondItem="Hnq-4t-0cf" secondAttribute="trailingMargin" id="0XN-CB-oJn"/>
                             <constraint firstItem="rMF-gJ-bYZ" firstAttribute="trailing" secondItem="rgl-Qv-LXR" secondAttribute="trailing" id="23H-IJ-vaC"/>
                             <constraint firstItem="PWA-Au-5yn" firstAttribute="top" secondItem="6bs-N9-o7b" secondAttribute="bottom" constant="11" id="6QK-xI-Ggr"/>
+                            <constraint firstItem="MQM-xL-z1G" firstAttribute="top" secondItem="PWA-Au-5yn" secondAttribute="bottom" id="CFc-cn-58E"/>
                             <constraint firstItem="rgl-Qv-LXR" firstAttribute="top" secondItem="rMF-gJ-bYZ" secondAttribute="bottom" constant="8" symbolic="YES" id="G4S-iU-VVC"/>
                             <constraint firstItem="rMF-gJ-bYZ" firstAttribute="leading" secondItem="PWA-Au-5yn" secondAttribute="leading" id="GKn-E0-Qtz"/>
                             <constraint firstItem="rgl-Qv-LXR" firstAttribute="leading" secondItem="zeG-Yi-uzV" secondAttribute="leading" id="MI1-m2-HBf"/>
                             <constraint firstItem="ZCu-mC-0YZ" firstAttribute="top" secondItem="Hnq-4t-0cf" secondAttribute="top" constant="20" symbolic="YES" id="bY0-kJ-Gk7"/>
                             <constraint firstItem="rMF-gJ-bYZ" firstAttribute="top" secondItem="PWA-Au-5yn" secondAttribute="bottom" constant="8" symbolic="YES" id="cmf-AO-bcq"/>
                             <constraint firstItem="rMF-gJ-bYZ" firstAttribute="trailing" secondItem="PWA-Au-5yn" secondAttribute="trailing" id="e1b-U2-74o"/>
+                            <constraint firstItem="MQM-xL-z1G" firstAttribute="leading" secondItem="ZCu-mC-0YZ" secondAttribute="trailing" constant="3" id="nZn-j9-Yez"/>
                             <constraint firstItem="rgl-Qv-LXR" firstAttribute="trailing" secondItem="Hnq-4t-0cf" secondAttribute="trailingMargin" id="oqD-yZ-LLw"/>
                             <constraint firstItem="XA0-nD-HnQ" firstAttribute="top" secondItem="rgl-Qv-LXR" secondAttribute="bottom" constant="67" id="qXk-ar-xST"/>
                             <constraint firstItem="ZCu-mC-0YZ" firstAttribute="leading" secondItem="rgl-Qv-LXR" secondAttribute="leading" id="s29-xE-aY1"/>
@@ -140,7 +151,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="3Ye-MV-0wg" kind="modal" identifier="showInfoViewController" modalTransitionStyle="crossDissolve" id="myM-xM-Cua"/>
+                                    <segue destination="3Ye-MV-0wg" kind="modal" identifier="showInfoViewController" modalTransitionStyle="coverVertical" id="myM-xM-Cua"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -170,27 +181,139 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="cashew later" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMz-98-lhf">
-                                <rect key="frame" x="56" y="193" width="195" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fK-7P-7Hi">
-                                <rect key="frame" x="149" y="386" width="46" height="30"/>
-                                <state key="normal" title="Back">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="goBack:" destination="3Ye-MV-0wg" eventType="touchUpInside" id="sZP-D8-tsu"/>
-                                </connections>
-                            </button>
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infoScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Uyh-MA-uxG">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uiK-yt-pGT" customClass="CSAnimationView">
+                                <rect key="frame" x="0.0" y="112" width="265" height="92"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cashew later!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJq-of-vvM">
+                                        <rect key="frame" x="20" y="20" width="197" height="35"/>
+                                        <fontDescription key="fontDescription" name="Walkway" family="Walkway" pointSize="33"/>
+                                        <color key="textColor" white="0.98731181570000004" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="92" id="ww1-2a-Juq"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="type" value="bounceLeft"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="duration" value="0.7"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="delay" value="0"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cuq-wP-V1L" customClass="CSAnimationView">
+                                <rect key="frame" x="0.0" y="19" width="320" height="100"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What did the nut say to the other as it was leaving?" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="288" translatesAutoresizingMaskIntoConstraints="NO" id="Pwu-I3-ZyM">
+                                        <rect key="frame" x="20" y="20" width="288" height="85"/>
+                                        <fontDescription key="fontDescription" name="Walkway" family="Walkway" pointSize="24"/>
+                                        <color key="textColor" white="0.98731181570000004" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="MCd-FE-6gI"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="type" value="fadeIn"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="duration" value="0.3"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KvK-zI-s9W" customClass="CSAnimationView">
+                                <rect key="frame" x="135" y="275" width="82" height="61"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="bye." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJ0-Ff-r6v">
+                                        <rect key="frame" x="20" y="20" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" name="Walkway" family="Walkway" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="type" value="fadeIn"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="duration" value="0.5"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="delay" value="1"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FDR-4A-e0q">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zsT-dm-wvt" customClass="CSAnimationView">
+                                <rect key="frame" x="83" y="450" width="154" height="95"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fK-7P-7Hi">
+                                        <rect key="frame" x="20" y="20" width="114" height="55"/>
+                                        <color key="backgroundColor" red="0.10980392160000001" green="0.80000000000000004" blue="0.66666666669999997" alpha="1" colorSpace="deviceRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="114" id="4GT-wW-CB8"/>
+                                            <constraint firstAttribute="height" constant="55" id="lfK-WF-nhH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Walkway" family="Walkway" pointSize="40"/>
+                                        <state key="normal" title="LOL">
+                                            <color key="titleColor" white="0.98731181570000004" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goBack:" destination="3Ye-MV-0wg" eventType="touchUpInside" id="sZP-D8-tsu"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="8fK-7P-7Hi" firstAttribute="top" secondItem="zsT-dm-wvt" secondAttribute="top" constant="20" id="9bx-nh-wVe"/>
+                                    <constraint firstAttribute="bottom" secondItem="8fK-7P-7Hi" secondAttribute="bottom" constant="20" id="HAc-AM-NzK"/>
+                                    <constraint firstItem="8fK-7P-7Hi" firstAttribute="leading" secondItem="zsT-dm-wvt" secondAttribute="leading" constant="20" id="Hu6-Yl-zB0"/>
+                                    <constraint firstAttribute="trailing" secondItem="8fK-7P-7Hi" secondAttribute="trailing" constant="20" id="yVJ-lv-ePW"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="type" value="bounceUp"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="duration" value="0.5"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Uyh-MA-uxG" secondAttribute="trailing" constant="-16" id="0oF-ps-T6v"/>
+                            <constraint firstItem="cuq-wP-V1L" firstAttribute="top" secondItem="ewM-md-LET" secondAttribute="topMargin" constant="19" id="14D-q9-fwO"/>
+                            <constraint firstItem="KvK-zI-s9W" firstAttribute="leading" secondItem="ewM-md-LET" secondAttribute="leading" constant="135" id="1d3-dr-LkV"/>
+                            <constraint firstAttribute="bottom" secondItem="KvK-zI-s9W" secondAttribute="bottom" constant="232" id="21m-5C-ERi"/>
+                            <constraint firstItem="FDR-4A-e0q" firstAttribute="leading" secondItem="ewM-md-LET" secondAttribute="leadingMargin" constant="-16" id="97I-GZ-Wd1"/>
+                            <constraint firstItem="Blb-8k-bV6" firstAttribute="top" secondItem="FDR-4A-e0q" secondAttribute="bottom" id="DgQ-1z-aMZ"/>
+                            <constraint firstAttribute="centerX" secondItem="zsT-dm-wvt" secondAttribute="centerX" id="E0L-Tg-kXV"/>
+                            <constraint firstItem="KvK-zI-s9W" firstAttribute="top" secondItem="uiK-yt-pGT" secondAttribute="bottom" constant="71" id="I31-Wi-h7o"/>
+                            <constraint firstItem="uiK-yt-pGT" firstAttribute="leading" secondItem="ewM-md-LET" secondAttribute="leadingMargin" constant="-16" id="N0R-ff-ZUN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FDR-4A-e0q" secondAttribute="trailing" constant="-16" id="OHa-dD-N8a"/>
+                            <constraint firstItem="Uyh-MA-uxG" firstAttribute="leading" secondItem="ewM-md-LET" secondAttribute="leadingMargin" constant="-16" id="R3f-7C-IrL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uiK-yt-pGT" secondAttribute="trailing" constant="39" id="U5g-qS-226"/>
+                            <constraint firstItem="FDR-4A-e0q" firstAttribute="top" secondItem="ewM-md-LET" secondAttribute="topMargin" id="X78-hG-5yS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KvK-zI-s9W" secondAttribute="trailing" constant="87" id="XeA-rj-Vnj"/>
+                            <constraint firstItem="Blb-8k-bV6" firstAttribute="top" secondItem="Uyh-MA-uxG" secondAttribute="bottom" id="ZNI-q7-P2t"/>
+                            <constraint firstItem="cuq-wP-V1L" firstAttribute="leading" secondItem="ewM-md-LET" secondAttribute="leadingMargin" constant="-16" id="gL1-xk-k1I"/>
+                            <constraint firstItem="uiK-yt-pGT" firstAttribute="top" secondItem="Oov-ka-zGo" secondAttribute="bottom" constant="92" id="hyt-H0-Imi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cuq-wP-V1L" secondAttribute="trailing" constant="-16" id="i4B-q6-TTs"/>
+                            <constraint firstItem="Uyh-MA-uxG" firstAttribute="top" secondItem="ewM-md-LET" secondAttribute="topMargin" id="uOV-Uj-egQ"/>
+                            <constraint firstItem="Blb-8k-bV6" firstAttribute="top" secondItem="zsT-dm-wvt" secondAttribute="bottom" constant="23" id="vRC-Ct-L4S"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lVa-uA-waZ"/>
+                    <connections>
+                        <outlet property="byeView" destination="KvK-zI-s9W" id="Rmc-Ia-Im5"/>
+                        <outlet property="cashewLater" destination="uiK-yt-pGT" id="1IP-Eg-fe4"/>
+                        <outlet property="firstQuestionView" destination="cuq-wP-V1L" id="msW-a5-goy"/>
+                        <outlet property="goBackButton" destination="8fK-7P-7Hi" id="3gF-GL-g6O"/>
+                        <outlet property="goBackButtonView" destination="zsT-dm-wvt" id="d8h-vX-2I1"/>
+                        <outlet property="touchListenerView" destination="FDR-4A-e0q" id="knP-KV-22U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bcc-75-Kf9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Vcd-9m-cqU"/>
             </objects>
             <point key="canvasLocation" x="1059" y="708"/>
         </scene>
@@ -379,6 +502,7 @@
     <resources>
         <image name="FromTo" width="20" height="52"/>
         <image name="info" width="25" height="25"/>
+        <image name="infoScreen" width="320" height="569"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

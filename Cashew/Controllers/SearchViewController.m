@@ -13,6 +13,7 @@
 #import "UIColor+Cashew.h"
 #import <RTAlertView.h>
 #import <AFNetworking/AFNetworking.h>
+#import <Reachability/Reachability.h>
 
 @interface SearchViewController () 
 
@@ -25,14 +26,11 @@
     UITableView *_originLocationDropdown;
     CLLocation *_currentLocation;
     CLLocationManager *_locationManager;
-    BOOL _internetNotAvailable;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    _internetNotAvailable = [self checkInternet];
     
     self.originLocation.delegate = self;
     self.destinationLocation.delegate = self;
@@ -166,7 +164,7 @@
     else if ([self.selectedTravelModes count] == 0) {
         return @"Remember to select a transportation mode to compare!";
     }
-    else if (_internetNotAvailable) {
+    else if ([self connectivityNotAvailable]) {
         return @"Looks like we can't find a connection!";
     }
     else {
@@ -280,10 +278,10 @@
         return [[UIImageView alloc] initWithFrame:CGRectMake(288, 12, 74, 74)];
     }
     else if (_screenHeight > 600.0) {
-        return [[UIImageView alloc] initWithFrame:CGRectMake(265, 10, 68, 68)];
+        return [[UIImageView alloc] initWithFrame:CGRectMake(269, 14, 60, 60)];
     }
     else if (_screenHeight > 500.0) {
-        return [[UIImageView alloc] initWithFrame:CGRectMake(229, 9, 50, 50)];
+        return [[UIImageView alloc] initWithFrame:CGRectMake(245, 9, 50, 50)];
     }
     else {
         return [[UIImageView alloc] initWithFrame:CGRectMake(242, 6, 40, 40)];
@@ -409,15 +407,16 @@
 
 #pragma mark - connectivity
 
-- (BOOL)checkInternet
+- (BOOL)connectivityNotAvailable
 {
-    NSURL *testURL = [NSURL URLWithString:@"http://www.google.com"];
-    NSData *data = [NSData dataWithContentsOfURL:testURL];
-    if (data) {
-        return NO;
+    Reachability *myNetwork = [Reachability reachabilityWithHostname:@"google.com"];
+    NetworkStatus status = [myNetwork currentReachabilityStatus];
+
+    if (status == NotReachable) {
+        return YES;
     }
     else {
-        return YES;
+        return NO;
     }
 }
 

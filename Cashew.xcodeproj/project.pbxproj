@@ -31,6 +31,7 @@
 		36C56A6E19BECDFE0089D1E2 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C56A6D19BECDFE0089D1E2 /* ResultsViewController.m */; };
 		36E5655E19E0DA0E0068084F /* CashewNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E5655D19E0DA0E0068084F /* CashewNavigationController.m */; };
 		36E5656019E208D60068084F /* GeosansLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36E5655F19E208D60068084F /* GeosansLight.ttf */; };
+		36EEDCC719F0D0AE008C5205 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36EEDCC619F0D0AE008C5205 /* SystemConfiguration.framework */; };
 		36FEFA1019DA5A23005C3FB3 /* TRUE TYPOLA.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36FEFA0F19DA5A23005C3FB3 /* TRUE TYPOLA.ttf */; };
 		36FEFA3819DA5C49005C3FB3 /* Walkway.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36FEFA2419DA5C49005C3FB3 /* Walkway.ttf */; };
 		36FEFA3C19DA5DD9005C3FB3 /* Champagne & Limousines.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36FEFA3A19DA5DD9005C3FB3 /* Champagne & Limousines.ttf */; };
@@ -79,6 +80,7 @@
 		36E5655C19E0DA0E0068084F /* CashewNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashewNavigationController.h; sourceTree = "<group>"; };
 		36E5655D19E0DA0E0068084F /* CashewNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashewNavigationController.m; sourceTree = "<group>"; };
 		36E5655F19E208D60068084F /* GeosansLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GeosansLight.ttf; sourceTree = "<group>"; };
+		36EEDCC619F0D0AE008C5205 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		36FEFA0F19DA5A23005C3FB3 /* TRUE TYPOLA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TRUE TYPOLA.ttf"; sourceTree = "<group>"; };
 		36FEFA2419DA5C49005C3FB3 /* Walkway.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Walkway.ttf; sourceTree = "<group>"; };
 		36FEFA3A19DA5DD9005C3FB3 /* Champagne & Limousines.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Champagne & Limousines.ttf"; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36EEDCC719F0D0AE008C5205 /* SystemConfiguration.framework in Frameworks */,
 				3675681C19EA4DAA004A9F39 /* CoreLocation.framework in Frameworks */,
 				3627ACB619B6AEE3002E37D7 /* CoreGraphics.framework in Frameworks */,
 				3627ACB819B6AEE3002E37D7 /* UIKit.framework in Frameworks */,
@@ -127,6 +130,7 @@
 		3627ACB219B6AEE3002E37D7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				36EEDCC619F0D0AE008C5205 /* SystemConfiguration.framework */,
 				3675681B19EA4DAA004A9F39 /* CoreLocation.framework */,
 				3627ACB319B6AEE3002E37D7 /* Foundation.framework */,
 				3627ACB519B6AEE3002E37D7 /* CoreGraphics.framework */,

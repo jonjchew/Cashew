@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "25ADAEDFA5F94418A77E844B"
+               BlueprintIdentifier = "DB6B156B6FED4476A5B4D14E"
                BuildableName = "libPods-RTAlertView.a"
                BlueprintName = "Pods-RTAlertView"
                ReferencedContainer = "container:Pods.xcodeproj">

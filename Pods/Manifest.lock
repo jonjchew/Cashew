@@ -22,18 +22,21 @@ PODS:
     - AFNetworking/NSURLSession
   - Canvas (0.1.2)
   - RBBAnimation (0.3.0)
+  - Reachability (3.1.1)
   - RTAlertView (0.0.6):
     - RBBAnimation (= 0.3.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - Canvas
+  - Reachability (~> 3.1)
   - RTAlertView (= 0.0.6)
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   Canvas: ae2faca05a15c4d6659fb3ae5e2a14817df4449a
   RBBAnimation: 243d73be1a526f1b51d266b182e4aa0cfe9cbf64
+  Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
   RTAlertView: 93a2c3a42bffde43b0736a50e0d8e811081c3ea4
 
 COCOAPODS: 0.33.1
