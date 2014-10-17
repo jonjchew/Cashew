@@ -89,7 +89,7 @@
         }];    }
 }
 
-- (void)getTransportationEstimates: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode
+- (void)getTransportationEstimates:(NSDictionary *)originGeocode toDestination:(NSDictionary *)destinationGeocode
 {
     if ([self.selectedTravelModes containsObject:@"driving"] || [self.selectedTravelModes containsObject:@"uber"]) {
         if (![self.selectedTravelModes containsObject:@"driving"]) {
