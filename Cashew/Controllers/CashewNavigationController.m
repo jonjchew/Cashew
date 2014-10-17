@@ -13,6 +13,7 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                 [UIColor whiteColor], NSForegroundColorAttributeName,
                                                [UIFont fontWithName:@"weezerfont" size:30],
