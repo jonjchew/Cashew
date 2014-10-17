@@ -284,7 +284,7 @@
     if ([[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString:@"comgooglemaps://"]]) {
         
         NSString *googleMapURLString =
-        [NSString stringWithFormat:@"comgooglemaps-x-callback://?saddr=%@&daddr=%@&directionsmode=%@&x-success=sourceapp://?resume=true&x-source=Cashew",
+        [NSString stringWithFormat:@"comgooglemaps-x-callback://?saddr=%@&daddr=%@&directionsmode=%@&x-success=sourceapp://?resume=true&x-source=com.jonjchew.",
                                         originAddressURI, destinationAddressURI, [(GoogleDirection*)selectedDirection mode]];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:googleMapURLString]];
     } else {

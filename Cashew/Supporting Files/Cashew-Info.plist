@@ -4,14 +4,12 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>(Need to know where you&apos;re starting from first!)</string>
 	<key>CFBundleDisplayName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
-	<string>JC.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.jonjchew.$(PRODUCT_NAME:rfc1034identifier)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -26,13 +24,15 @@
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UIMainStoryboardFile</key>
-	<string>Storyboard</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>(so we can find where you're starting from)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>weezerfont.ttf</string>
 		<string>Walkway.ttf</string>
 	</array>
+	<key>UIMainStoryboardFile</key>
+	<string>Storyboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
