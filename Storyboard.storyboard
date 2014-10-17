@@ -386,9 +386,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRG-NO-tev">
-                                                    <rect key="frame" x="235" y="6" width="46" height="50"/>
+                                                    <rect key="frame" x="239" y="6" width="42" height="42"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="46" id="iKJ-jU-Z9h"/>
+                                                        <constraint firstAttribute="width" constant="42" id="iKJ-jU-Z9h"/>
                                                     </constraints>
                                                     <state key="normal" title="Button">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -410,7 +410,7 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="Vzq-9d-7I1" secondAttribute="trailing" constant="20" id="34G-LJ-nVJ"/>
                                                 <constraint firstItem="Q8m-Ku-JbF" firstAttribute="leading" secondItem="Vzq-9d-7I1" secondAttribute="leading" id="5UX-Sw-nzF"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Q8m-Ku-JbF" secondAttribute="trailing" constant="43" id="6Gs-gf-XNq"/>
-                                                <constraint firstItem="KqK-fs-6QX" firstAttribute="top" secondItem="VRG-NO-tev" secondAttribute="bottom" constant="34" id="BFO-Fu-ubc"/>
+                                                <constraint firstItem="KqK-fs-6QX" firstAttribute="top" secondItem="VRG-NO-tev" secondAttribute="bottom" constant="42" id="BFO-Fu-ubc"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="VRG-NO-tev" secondAttribute="trailing" constant="-1" id="Cna-bE-5Ut"/>
                                                 <constraint firstItem="qYF-rH-iqM" firstAttribute="leading" secondItem="KqK-fs-6QX" secondAttribute="leading" id="Dr1-U9-MhM"/>
                                                 <constraint firstItem="VRG-NO-tev" firstAttribute="top" secondItem="mCw-EC-J3b" secondAttribute="topMargin" constant="-2" id="FSh-o8-hJ5"/>
