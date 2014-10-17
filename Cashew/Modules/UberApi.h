@@ -12,6 +12,6 @@ typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 
 @interface UberApi : NSObject
 
-+ (void) getUberPrices: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode withBlock: (successBlockWithResponse) successBlock
-       withSecondBlock: (successBlockWithResponse) secondSuccessBlock;
++ (void)getUberPrices:(NSDictionary *)originGeocode toDestination:(NSDictionary *)destinationGeocode withBlock: (successBlockWithResponse)successBlock
+       withSecondBlock:(successBlockWithResponse)secondSuccessBlock;
 @end

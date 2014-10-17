@@ -13,8 +13,8 @@ typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 
 @interface GoogleApi : NSObject
 
-+ (void)getGeocodeWithAddress: (NSString *) addressString forLocation: (NSString *) locationType withBlock: (successBlockWithResponse) successBlock;
-+ (void)getAddressWithGeocode:(CLLocation *)currentLocation forLocation: (NSString *) locationType withBlock: (successBlockWithResponse) successBlock;
-+ (void)getGoogleDirections: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode byMode: (NSString *) transportationMode
++ (void)getGeocodeWithAddress: (NSString *)addressString forLocation:(NSString *)locationType withBlock: (successBlockWithResponse)successBlock;
++ (void)getAddressWithGeocode:(CLLocation *)currentLocation forLocation:(NSString *)locationType withBlock: (successBlockWithResponse)successBlock;
++ (void)getGoogleDirections:(NSDictionary *)originGeocode toDestination:(NSDictionary *)destinationGeocode byMode:(NSString *) transportationMode
                    withBlock: (successBlockWithResponse) successBlock;
 @end

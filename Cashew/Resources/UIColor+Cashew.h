@@ -11,6 +11,5 @@
 @interface UIColor (Cashew)
 
 +(UIColor*)cashewGreenColor;
-+(UIColor*)highlightBlueColor;
 
 @end

@@ -10,12 +10,12 @@
 
 @implementation UberMode
 
-+(instancetype)initWithJsonData: (NSDictionary *) data
++(instancetype)initWithJsonData:(NSDictionary *) data
 {
     return [[UberMode alloc] initWithJSONData:data];
 }
 
--(id)initWithJSONData: (NSDictionary *) data
+-(id)initWithJSONData:(NSDictionary *) data
 {
     if (self = [super init]) {
         _productID = [data objectForKey:@"product_id"];

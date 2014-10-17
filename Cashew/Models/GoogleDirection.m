@@ -10,12 +10,12 @@
 
 @implementation GoogleDirection
 
-+(instancetype)initWithJsonData: (NSDictionary *) data andMode: (NSString *) mode
++ (instancetype)initWithJsonData:(NSDictionary *)data andMode:(NSString *)mode
 {
     return [[GoogleDirection alloc] initWithJSONData:data andMode: mode];
 }
 
--(id)initWithJSONData: (NSDictionary *) data andMode: (NSString *) mode
+- (id)initWithJSONData:(NSDictionary *)data andMode:(NSString *)mode
 {
     if (self = [super init]) {
         _mode = mode;
@@ -38,7 +38,7 @@
     return self;
 }
 
--(NSString *)formattedTransitSummary:(NSArray *)stepsResponseArray
+- (NSString *)formattedTransitSummary:(NSArray *)stepsResponseArray
 {
     NSArray *vehicleTypesArray = [self getVehicleTypes:stepsResponseArray];
 
@@ -61,7 +61,7 @@
     return [NSString stringWithString:formattedSummary];
 }
 
--(NSArray *)getVehicleTypes:(NSArray *)stepsResponseArray
+- (NSArray *)getVehicleTypes:(NSArray *)stepsResponseArray
 {
     NSMutableArray *vehicleTypesArray = [NSMutableArray array];
     for (NSDictionary *step in stepsResponseArray) {
@@ -76,7 +76,7 @@
     return [NSArray arrayWithArray:vehicleTypesArray];
 }
 
--(NSString *)getWalkingTransitTime:(NSArray *)stepsResponseArray
+- (NSString *)getWalkingTransitTime:(NSArray *)stepsResponseArray
 {
     NSUInteger walkingTime = 0;
     NSUInteger transitTime = 0;

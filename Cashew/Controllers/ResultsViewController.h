@@ -12,17 +12,18 @@
 typedef void(^successBlockWithResponse)(NSDictionary *responseObject);
 
 @interface ResultsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
-- (IBAction)loadApp:(id)sender;
+
 @property (strong, nonatomic) IBOutlet UIView *progressView;
 @property (strong, nonatomic) IBOutlet UILabel *destinationLabel;
 @property (strong, nonatomic) IBOutlet UILabel *originLabel;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSString *originLocationText;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (strong, nonatomic) NSString *originLocationText;
 @property (strong, nonatomic) NSString *destinationLocationText;
 @property (strong, nonatomic) NSArray *selectedTravelModes;
 @property (strong, nonatomic) CLLocation *currenLocation;
 
--(void)findResults;
+- (void)findResults;
+- (IBAction)loadApp:(id)sender;
 
 @end

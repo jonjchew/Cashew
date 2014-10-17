@@ -19,7 +19,7 @@
 @property (assign, nonatomic) NSInteger timeEstimate;
 @property (assign, nonatomic) NSInteger timeDurationSeconds;
 
-+(instancetype)initWithJsonData: (NSDictionary *) data;
++(instancetype)initWithJsonData:(NSDictionary *)data;
 
 -(NSString *)formattedSurgeMultiplier;
 -(NSString *)formattedTimeDuration;

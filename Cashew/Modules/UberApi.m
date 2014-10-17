@@ -12,7 +12,7 @@
 
 @implementation UberApi
 
-+ (void) getUberPrices: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode withBlock: (successBlockWithResponse) successBlock
++ (void)getUberPrices:(NSDictionary *)originGeocode toDestination:(NSDictionary *)destinationGeocode withBlock: (successBlockWithResponse)successBlock
        withSecondBlock: (successBlockWithResponse) secondSuccessBlock
 {
     NSString *uberPriceApiRootUrl = [[Config sharedConfig].apiURLs objectForKey:@"uberPriceApiRootUrl"];
@@ -22,7 +22,7 @@
     }];
 }
 
-+ (void) getUberTimes: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode withBlock: (successBlockWithResponse) successBlock
++ (void)getUberTimes:(NSDictionary *)originGeocode toDestination:(NSDictionary *)destinationGeocode withBlock: (successBlockWithResponse)successBlock
 {
     NSString *uberTimeApiRootUrl = [[Config sharedConfig].apiURLs objectForKey:@"uberTimeApiRootUrl"];
     [UberApi getUberEstimates:originGeocode toDestination:destinationGeocode withUrl:uberTimeApiRootUrl withBlock:^(NSDictionary *responseObject) {
@@ -30,7 +30,7 @@
     }];
 }
 
-+ (void) getUberEstimates: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode withUrl: (NSString *) apiUrl withBlock:(successBlockWithResponse) successBlock
++ (void)getUberEstimates:(NSDictionary *)originGeocode toDestination:(NSDictionary *)destinationGeocode withUrl:(NSString *) apiUrl withBlock:(successBlockWithResponse)successBlock
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];

@@ -12,13 +12,13 @@
 
 @implementation GoogleApi
 
-+ (void)getGeocodeWithAddress: (NSString *) addressString forLocation: (NSString *) locationType withBlock: (successBlockWithResponse) successBlock
++ (void)getGeocodeWithAddress:(NSString *)addressString forLocation:(NSString *)locationType withBlock: (successBlockWithResponse)successBlock
 {
     NSDictionary *parameters = @{@"address": addressString};
     [self getGeocode: parameters withBlock: successBlock];
 }
 
-+ (void)getAddressWithGeocode:(CLLocation *)currentLocation forLocation: (NSString *) locationType withBlock: (successBlockWithResponse) successBlock
++ (void)getAddressWithGeocode:(CLLocation *)currentLocation forLocation:(NSString *)locationType withBlock: (successBlockWithResponse)successBlock
 {
     NSDictionary *parameters = @{@"latlng": [NSString stringWithFormat:@"%f,%f",
                                              currentLocation.coordinate.latitude,
@@ -39,7 +39,7 @@
     }];
 }
 
-+ (void)getGoogleDirections: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode byMode: (NSString *) travelMode withBlock: (successBlockWithResponse) successBlock
++ (void)getGoogleDirections:(NSDictionary *)originGeocode toDestination:(NSDictionary *)destinationGeocode byMode:(NSString *)travelMode withBlock:(successBlockWithResponse)successBlock
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     

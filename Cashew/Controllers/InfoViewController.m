@@ -58,7 +58,6 @@
         [self.goBackButtonView startCanvasAnimation];
         _tapCount += 1;
     }
-
 }
 
 @end

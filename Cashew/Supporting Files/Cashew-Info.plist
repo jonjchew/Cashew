@@ -31,8 +31,6 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>weezerfont.ttf</string>
-		<string>GeosansLight</string>
-		<string>TRUE TYPOLA.ttf</string>
 		<string>Walkway.ttf</string>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>

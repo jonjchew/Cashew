@@ -91,7 +91,6 @@
 
 - (void)getTransportationEstimates: (NSDictionary *) originGeocode toDestination: (NSDictionary *) destinationGeocode
 {
-    // Get driving directions and estimates for Uber / driving
     if ([self.selectedTravelModes containsObject:@"driving"] || [self.selectedTravelModes containsObject:@"uber"]) {
         if (![self.selectedTravelModes containsObject:@"driving"]) {
             [_resultsToFind addObject:@"driving"];
@@ -106,7 +105,7 @@
         if ([travelMode isEqualToString:@"uber"]){
             [self getUberEstimates:destinationGeocode originGeocode:originGeocode];
         }
-        else if (![travelMode isEqualToString:@"driving"]){ // Get estimates for everything else besides driving
+        else if (![travelMode isEqualToString:@"driving"]){
             [GoogleApi getGoogleDirections: originGeocode toDestination: destinationGeocode byMode: travelMode withBlock:^(NSDictionary *responseObject) {
                 [self storeAndUpdateDirections:responseObject forMode:travelMode];
             }];

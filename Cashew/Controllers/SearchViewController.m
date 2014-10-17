@@ -20,8 +20,6 @@
 @end
 
 @implementation SearchViewController {
-    NSString *_inputtedOrigin;
-    NSString *_inputtedDestination;
     CGFloat _screenHeight;
     UITableView *_originLocationDropdown;
     CLLocation *_currentLocation;
@@ -34,9 +32,6 @@
     
     self.originLocation.delegate = self;
     self.destinationLocation.delegate = self;
-    
-    _inputtedDestination = @"destination";
-    _inputtedOrigin = @"origin";
 
     self.travelModesArray = [Config sharedConfig].travelModes;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
