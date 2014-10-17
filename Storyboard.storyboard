@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kUg-HG-VlC">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -207,7 +208,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cuq-wP-V1L" customClass="CSAnimationView">
                                 <rect key="frame" x="0.0" y="19" width="320" height="100"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What did the nut say to the other as it was leaving?" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="288" translatesAutoresizingMaskIntoConstraints="NO" id="Pwu-I3-ZyM">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What did the nut say to the other as it was leaving?" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="288" translatesAutoresizingMaskIntoConstraints="NO" id="Pwu-I3-ZyM">
                                         <rect key="frame" x="20" y="20" width="288" height="85"/>
                                         <fontDescription key="fontDescription" name="Walkway" family="Walkway" pointSize="24"/>
                                         <color key="textColor" white="0.98731181570000004" alpha="1" colorSpace="calibratedWhite"/>
@@ -217,6 +218,9 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="MCd-FE-6gI"/>
+                                    <constraint firstAttribute="bottom" secondItem="Pwu-I3-ZyM" secondAttribute="bottom" constant="-5" id="Nbg-Na-rE5"/>
+                                    <constraint firstAttribute="trailing" secondItem="Pwu-I3-ZyM" secondAttribute="trailing" constant="12" id="uhn-78-Im9"/>
+                                    <constraint firstItem="Pwu-I3-ZyM" firstAttribute="top" secondItem="cuq-wP-V1L" secondAttribute="top" constant="20" id="uwI-8I-RlQ"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="type" value="fadeIn"/>
@@ -226,14 +230,18 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KvK-zI-s9W" customClass="CSAnimationView">
                                 <rect key="frame" x="135" y="275" width="82" height="61"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="bye." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJ0-Ff-r6v">
-                                        <rect key="frame" x="20" y="20" width="42" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bye." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJ0-Ff-r6v">
+                                        <rect key="frame" x="24.5" y="21" width="33" height="19"/>
                                         <fontDescription key="fontDescription" name="Walkway" family="Walkway" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="dJ0-Ff-r6v" secondAttribute="centerX" id="ulp-US-EFg"/>
+                                    <constraint firstAttribute="centerY" secondItem="dJ0-Ff-r6v" secondAttribute="centerY" id="w6e-aw-OfV"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="type" value="fadeIn"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="duration" value="0.5"/>
