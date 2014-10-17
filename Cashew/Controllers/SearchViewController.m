@@ -276,7 +276,12 @@
         return [[UIImageView alloc] initWithFrame:CGRectMake(269, 14, 60, 60)];
     }
     else if (_screenHeight > 500.0) {
-        return [[UIImageView alloc] initWithFrame:CGRectMake(245, 9, 50, 50)];
+        if (self.tableView.frame.size.width > 300.0) {
+            return [[UIImageView alloc] initWithFrame:CGRectMake(245, 9, 50, 50)];
+        }
+        else {
+            return [[UIImageView alloc] initWithFrame:CGRectMake(230, 10, 48, 48)];
+        }
     }
     else {
         return [[UIImageView alloc] initWithFrame:CGRectMake(242, 6, 40, 40)];
