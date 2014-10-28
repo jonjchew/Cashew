@@ -35,6 +35,7 @@
     NSUInteger _badInputErrors;
     NSUInteger _successfulGeocodes;
     GoogleDirection *_drivingDirection;
+    id _selectedMode;
 }
 
 - (void)viewDidLoad
@@ -267,7 +268,7 @@
         [self.tableView reloadData];
         [self hideActivityIndicator];
         if ([_errors count] > 0) {
-            [self showErrorAlert:[self buildErrorMessages] withOtherTitle:nil];
+            [self showErrorAlert:[self buildErrorMessages] withCancelTitle:nil withOtherTitle:nil];
         }
     }
 }
@@ -281,43 +282,42 @@
 
 - (void)loadGoogleMapsWithDirections:(GoogleDirection *)selectedDirection withOrigin:(NSString *)originAddressURI withDestination:(NSString *)destinationAddressURI
 {
-    if ([[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString:@"comgooglemaps://"]]) {
-        
-        NSString *googleMapURLString =
-        [NSString stringWithFormat:@"comgooglemaps-x-callback://?saddr=%@&daddr=%@&directionsmode=%@&x-success=sourceapp://?resume=true&x-source=com.jonjchew.",
-                                        originAddressURI, destinationAddressURI, [(GoogleDirection*)selectedDirection mode]];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:googleMapURLString]];
-    } else {
-        [self showErrorAlert:@"Looks like you don't have GoogleMaps installed... =(" withOtherTitle:@"open mobile site"];
-    }
+    NSString *googleMapURLString =
+    [NSString stringWithFormat:@"comgooglemaps-x-callback://?saddr=%@&daddr=%@&directionsmode=%@&x-success=sourceapp://?resume=true&x-source=com.jonjchew.Cashew",
+     originAddressURI, destinationAddressURI, [(GoogleDirection*)selectedDirection mode]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:googleMapURLString]];
 }
 
 - (void)loadUberWithPreferences:(UberMode *)selectedMode withOrigin:(NSString *)originAddressURI withDestination:(NSString *)destinationAddressURI
 {
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"uber://"]]) {
-        NSString *uberAppURLString = [NSString stringWithFormat:@"uber://?action=setPickup?pickup[formatted_address]=%@&dropoff[formatted_address]=%@&product_id=%@",
-                                   originAddressURI, destinationAddressURI, selectedMode.productID];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:uberAppURLString]];
-    }
-    else {
-        [self showErrorAlert:@"Looks like you don't have Uber installed... =(" withOtherTitle:@"sign up"];
-    }
+    NSString *uberAppURLString = [NSString stringWithFormat:@"uber://?action=setPickup?pickup[formatted_address]=%@&dropoff[formatted_address]=%@&product_id=%@",
+                                  originAddressURI, destinationAddressURI, selectedMode.productID];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:uberAppURLString]];
 }
-
 
 - (IBAction)loadApp:(id)sender
 {
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
     
-    id selectedDirection = [_travelModeResults objectAtIndex:indexPath.row];
+    _selectedMode = [_travelModeResults objectAtIndex:indexPath.row];
    
     
-    if ([selectedDirection isKindOfClass:[GoogleDirection class]]) {
-        [self loadGoogleMapsWithDirections:selectedDirection withOrigin:_originAddressURI withDestination:_destinationAddressURI];
+    if ([_selectedMode isKindOfClass:[GoogleDirection class]]) {
+        if ([[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString:@"comgooglemaps://"]]) {
+            [self showErrorAlert:@"This will load GoogleMaps" withCancelTitle:@"nah.." withOtherTitle:@"DO IT"];
+        }
+        else {
+            [self showErrorAlert:@"Looks like you don't have GoogleMaps installed... =(" withCancelTitle:nil withOtherTitle:@"open mobile site"];
+        }
     }
     else {
-        [self loadUberWithPreferences:selectedDirection withOrigin:_originAddressURI withDestination:_destinationAddressURI];
+        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"uber://"]]) {
+            [self showErrorAlert:@"This will load Uber" withCancelTitle:@"nah.." withOtherTitle:@"DO IT"];
+        }
+        else {
+            [self showErrorAlert:@"Looks like you don't have Uber installed... =(" withCancelTitle:nil withOtherTitle:@"sign up"];
+        }
     }
 }
 
@@ -402,17 +402,26 @@
             errorMessage = [NSString stringWithFormat:@"Don't know where %@ and %@ is =(",
                             self.originLocationText, self.destinationLocationText];
         }
-        [self showErrorAlert:errorMessage withOtherTitle:nil];
+        [self showErrorAlert:errorMessage withCancelTitle:nil withOtherTitle:nil];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
 
-- (void)showErrorAlert:(NSString *)errorMessage withOtherTitle:(NSString *)otherTitle
+- (void)showErrorAlert:(NSString *)errorMessage withCancelTitle:(NSString *)cancelTitle withOtherTitle:(NSString *)otherTitle
 {
-    RTAlertView *alertView = [[RTAlertView alloc] initWithTitle:@"sorry.."
+    NSString *mainTitle;
+    if (cancelTitle == nil) {
+        cancelTitle = @"aw man..";
+        mainTitle = @"sorry..";
+    }
+    else {
+        mainTitle = @"btw";
+    }
+
+    RTAlertView *alertView = [[RTAlertView alloc] initWithTitle:mainTitle
                                                         message:errorMessage
                                                        delegate:self
-                                              cancelButtonTitle:@"aw man.."
+                                              cancelButtonTitle:cancelTitle
                                               otherButtonTitles:otherTitle, nil];
     alertView.messageFont = [UIFont fontWithName:@"Walkway" size:20];
     alertView.titleFont = [UIFont fontWithName:@"weezerfont" size:30];
@@ -429,12 +438,18 @@
 - (void)alertView:(RTAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex != [alertView cancelButtonIndex]){
-        if ([[alertView buttonTitleAtIndex:1] isEqualToString:@"Open mobile site"]) {
+        if ([alertView.message containsString:@"load GoogleMaps"]) {
+            [self loadGoogleMapsWithDirections:_selectedMode withOrigin:_originAddressURI withDestination:_destinationAddressURI];
+        }
+        else if ([alertView.message containsString:@"load Uber"]) {
+            [self loadUberWithPreferences:_selectedMode withOrigin:_originAddressURI withDestination:_destinationAddressURI];
+        }
+        else if ([alertView.message containsString:@"don't have GoogleMaps installed."]) {
             NSString *googleMapURL = [NSString stringWithFormat:@"https://maps.google.com?saddr=%@&daddr=%@",
                                       _originAddressURI, _destinationAddressURI];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:googleMapURL]];
-            
-        } else{
+        }
+        else {
             NSString *uberUrl = [NSString stringWithFormat:@"https://m.uber.com/sign-up?client_id=%@&pickup_address=%@&dropoff_address=%@",
                                  [[Config sharedConfig].apiURLs objectForKey:@"uberClientID"], _originAddressURI, _destinationAddressURI ];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:uberUrl]];
