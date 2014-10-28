@@ -201,9 +201,11 @@
     }
     else {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"currentLocationCell" forIndexPath:indexPath];
-        cell.textLabel.text = @"Current Location";
-        cell.textLabel.font = [UIFont fontWithName:@"Walkway" size:15];
-        cell.textLabel.textColor = [UIColor blueColor];
+        UILabel *locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(7.0, 0.0, 220.0, 25.0)];
+        [cell.contentView addSubview:locationLabel];
+        locationLabel.text = @"Current Location";
+        locationLabel.font = [UIFont fontWithName:@"Walkway" size:15];
+        locationLabel.textColor = [UIColor blueColor];
         return cell;
     }
 }

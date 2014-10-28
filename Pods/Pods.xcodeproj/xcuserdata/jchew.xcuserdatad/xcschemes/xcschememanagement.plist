@@ -8,73 +8,61 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>Pods-Canvas.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 		<key>Pods-RBBAnimation.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 		<key>Pods-RTAlertView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>6</integer>
 		</dict>
 		<key>Pods-Reachability.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>28064CC9DFA448648C2E05C8</key>
+		<key>1D350C8835D6462C81EC0E5E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>49A4526F24A84C21BE744172</key>
+		<key>25A75784D8A041A288D154BA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5B9E77D0DCC7409CB87DA475</key>
+		<key>4201C46823D342078F814843</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6A3E4BFC9BFA4CFC8FD2DE9C</key>
+		<key>7D8ACAC3DD764B80956BB5E8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C025755F4F554E4D97617CAD</key>
+		<key>8FF039EB8C964BB4B8D7E646</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D773FFD1C9C04F9E9B78735A</key>
+		<key>F3D61549C79D41F0A5B72840</key>
 		<dict>
 			<key>primary</key>
 			<true/>
