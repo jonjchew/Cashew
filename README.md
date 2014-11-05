@@ -9,8 +9,9 @@ This project started as a way to make my own life in San Francisco a little easi
 
 Utilizes the GoogleMaps and Uber APIs.
 
-![alt tag](http://jonjchew.com/images/cashew/iphone6_cover.png)![alt tag](http://jonjchew.com/images/cashew/iphone6_info.png)
-![alt tag](http://jonjchew.com/images/cashew/iphone6_search.png)![alt tag](http://jonjchew.com/images/cashew/iphone6_results.png)
+![alt tag](http://jonjchew.com/images/cashew/iphone6_cover.png) ![alt tag](http://jonjchew.com/images/cashew/iphone6_info.png)
+<br />
+![alt tag](http://jonjchew.com/images/cashew/iphone6_search.png) ![alt tag](http://jonjchew.com/images/cashew/iphone6_results.png)
 
 ###Setting up locally
 
